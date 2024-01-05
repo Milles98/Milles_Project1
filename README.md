@@ -7,3 +7,5 @@ Sedan laddade jag ned de nödvändiga nuget paketen inklusive autofac och börja
 
 Jag började skissa och skapa klasserna som ska innehålla meny för huvudmeny, sten sax påse, miniräknare och shapes.
 Därefter la jag in metoden ShowMenu i MainMenu klassen, ShowCalculatorMenu i CalculatorMenu klassen, ShowRockPaperScissorMenu i RockPaperScissor klassen, ShowShapesMenu i ShapesMenu klassen.
+
+Efter att grundarbetet lagts upp började jag skriva i program.cs min tankeprocess och vilka tabeller samt attribut jag skulle behöva.
