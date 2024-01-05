@@ -9,6 +9,15 @@
 
             var app = new App();
             app.Run();
+
+            //använd strategy pattern för calculator och shapes
+            //använd autofac
+            //singleton?
+            //glöm ej redovisa i readme!
+            //fundera över vilka attribut i de olika entities?
+            //vilka entities?
+            //vilka fler mappar/klasser?
+            //fokusera på DRY !!
         }
     }
 }
