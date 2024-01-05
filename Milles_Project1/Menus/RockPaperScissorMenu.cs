@@ -19,7 +19,7 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("╭──────────────────────────╮");
                 Console.WriteLine("│Rock Paper Scissors Menu  │");
                 Console.WriteLine("│1. Play Game              │");
-                Console.WriteLine("│1. Game Rules             │");
+                Console.WriteLine("│2. Game Rules             │");
                 Console.WriteLine("│0. Return to MainMenu     │");
                 Console.WriteLine("╰──────────────────────────╯");
 
