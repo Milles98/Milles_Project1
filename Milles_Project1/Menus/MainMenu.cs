@@ -30,10 +30,13 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
+                            ShapesMenu.ShowShapesMenu();
                             break;
                         case 2:
+                            CalculatorMenu.ShowCalculatorMenu();
                             break;
                         case 3:
+                            RockPaperScissorMenu.ShowRockPaperScissorMenu();
                             break;
                         case 0:
                             Console.WriteLine("Exiting program...");
