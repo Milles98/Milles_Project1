@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Milles_Project1.Menus.Calculator;
+using Milles_Project1.Menus.Shapes;
 using Milles_Project1Library.ExtraServices;
 
 namespace Milles_Project1.Menus
@@ -20,7 +22,7 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("│ Main Menu               │");
                 Console.WriteLine("│ 1. Shapes               │");
                 Console.WriteLine("│ 2. Calculator           │");
-                Console.WriteLine("│ 3. Rock Papeer Scissors │");
+                Console.WriteLine("│ 3. Rock Paper Scissors  │");
                 Console.WriteLine("│ 0. Exit Program         │");
                 Console.WriteLine("╰─────────────────────────╯");
 

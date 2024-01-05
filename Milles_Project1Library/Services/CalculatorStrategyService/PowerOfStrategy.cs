@@ -1,0 +1,17 @@
+﻿using Milles_Project1Library.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Milles_Project1Library.Services.CalculatorStrategyService
+{
+    public class PowerOfStrategy : ICalculatorStrategy
+    {
+        public double Calculate(double num1, double num2)
+        {
+            return Math.Pow(num1, num2);
+        }
+    }
+}
