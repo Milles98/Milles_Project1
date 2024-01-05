@@ -1,28 +1,26 @@
-﻿using System;
+﻿using Milles_Project1Library.ExtraServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Milles_Project1Library.ExtraServices;
 
 namespace Milles_Project1.Menus
 {
-    public static class MainMenu
+    public static class CalculatorMenu
     {
-        public static void ShowMenu()
+        public static void ShowCalculatorMenu()
         {
             int choice;
 
             do
             {
                 Console.Clear();
-                Console.WriteLine("╭─────────────────────────╮");
-                Console.WriteLine("│  Main Menu              │");
-                Console.WriteLine("│ 1. Shapes               │");
-                Console.WriteLine("│ 2. Calculator           │");
-                Console.WriteLine("│ 3. Rock Papeer Scissors │");
-                Console.WriteLine("│ 0. Exit Program         │");
-                Console.WriteLine("╰─────────────────────────╯");
+                Console.WriteLine("╭──────────────────────╮");
+                Console.WriteLine("│Calculator Menu       │");
+                Console.WriteLine("│1. Register Room      │");
+                Console.WriteLine("│0. Return to MainMenu │");
+                Console.WriteLine("╰──────────────────────╯");
 
                 Console.Write("Enter your choice: ");
                 if (int.TryParse(Console.ReadLine(), out choice))
@@ -31,13 +29,8 @@ namespace Milles_Project1.Menus
                     {
                         case 1:
                             break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
                         case 0:
-                            Console.WriteLine("Exiting program...");
-                            Environment.Exit(0);
+                            Console.WriteLine("Returning to MainMenu...");
                             break;
                         default:
                             Message.ErrorMessage("Invalid choice. Please try again.");
