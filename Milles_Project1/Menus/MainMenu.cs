@@ -17,7 +17,7 @@ namespace Milles_Project1.Menus
             {
                 Console.Clear();
                 Console.WriteLine("╭─────────────────────────╮");
-                Console.WriteLine("│  Main Menu              │");
+                Console.WriteLine("│ Main Menu               │");
                 Console.WriteLine("│ 1. Shapes               │");
                 Console.WriteLine("│ 2. Calculator           │");
                 Console.WriteLine("│ 3. Rock Papeer Scissors │");
