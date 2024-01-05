@@ -18,6 +18,37 @@
             //vilka entities?
             //vilka fler mappar/klasser?
             //fokusera på DRY !!
+
+
+            //Shapes tabell
+
+            //Attribut:
+            //ShapeType
+            //Form?
+            //Area?
+            //Omkrets?
+            //Datum när beräkning gjorts
+
+            //Calculator tabell
+
+            //Attribut:
+            //Beräkningstyp/operator
+            //Tal 1?
+            //Tal 2?
+            //Resultat?
+            //Datum när beräkning gjorts
+
+            //RockPaperScissor tabell
+
+            //Attribut:
+            //Spelare
+            //Datorspelare
+            //Vinst
+            //Förlust
+            //Oavgjort
+            //Antal Vinster
+            //Datum när spel avklarats
+
         }
     }
 }
