@@ -18,7 +18,12 @@ namespace Milles_Project1.Menus
                 Console.Clear();
                 Console.WriteLine("╭──────────────────────╮");
                 Console.WriteLine("│Calculator Menu       │");
-                Console.WriteLine("│1. Register Room      │");
+                Console.WriteLine("│1. (+) Addition       │");
+                Console.WriteLine("│1. (-) Subtraction    │");
+                Console.WriteLine("│1. (*) Multiplication │");
+                Console.WriteLine("│1. (/) Divison        │");
+                Console.WriteLine("│1. (√) Power of       │");
+                Console.WriteLine("│1. (%) Modulus        │");
                 Console.WriteLine("│0. Return to MainMenu │");
                 Console.WriteLine("╰──────────────────────╯");
 
