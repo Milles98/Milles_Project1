@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Milles_Project1.Menus
+namespace Milles_Project1.Menus.Shapes
 {
     public static class ShapesMenu
     {
