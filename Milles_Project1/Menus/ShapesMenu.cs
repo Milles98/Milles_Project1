@@ -16,11 +16,14 @@ namespace Milles_Project1.Menus
             do
             {
                 Console.Clear();
-                Console.WriteLine("╭──────────────────────╮");
-                Console.WriteLine("│Shapes Menu           │");
-                Console.WriteLine("│1. Calculate shape    │");
-                Console.WriteLine("│0. Return to MainMenu │");
-                Console.WriteLine("╰──────────────────────╯");
+                Console.WriteLine("╭────────────────────────────╮");
+                Console.WriteLine("│Shapes Menu                 │");
+                Console.WriteLine("│1. Calculate Rectangle      │");
+                Console.WriteLine("│2. Calculate Parallellogram │");
+                Console.WriteLine("│3. Calculate Triangle       │");
+                Console.WriteLine("│4. Calculate Romb           │");
+                Console.WriteLine("│0. Return to MainMenu       │");
+                Console.WriteLine("╰────────────────────────────╯");
 
                 Console.Write("Enter your choice: ");
                 if (int.TryParse(Console.ReadLine(), out choice))
