@@ -9,3 +9,8 @@ Jag började skissa och skapa klasserna som ska innehålla meny för huvudmeny, 
 Därefter la jag in metoden ShowMenu i MainMenu klassen, ShowCalculatorMenu i CalculatorMenu klassen, ShowRockPaperScissorMenu i RockPaperScissor klassen, ShowShapesMenu i ShapesMenu klassen.
 
 Efter att grundarbetet lagts upp började jag skriva i program.cs min tankeprocess och vilka tabeller samt attribut jag skulle behöva.
+
+Jag skapade en mapp CalculatorStrategyService och StrategyContext för att förbereda strategy pattern till först miniräknaren och senare shapes.
+Jag skapade en ICalculatorStrategy och IShapeStrategy interface. Första implementeringen blev Calculate metod i ICalculatorStrategy.
+Efter det började jag lägga in alla beräknings-klasser i CalculatorStrategyService mappen samt la in CalculatorContext i StrategyContext mappen.
+Sedan testade jag alla beräkningar efter jag la in dom i CalculatorMenu klassens meny metod.
