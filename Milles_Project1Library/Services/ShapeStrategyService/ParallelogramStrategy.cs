@@ -12,6 +12,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
         public double Base { get; set; }
         public double Height { get; set; }
         public double SideLength { get; set; }
+        public string ShapeType => "Parallelogram";
 
         public void SetDimensions(params double[] dimensions)
         {

@@ -11,6 +11,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
     {
         private double _width;
         private double _height;
+        public string ShapeType => "Rectangle";
 
         public double CalculateArea()
         {

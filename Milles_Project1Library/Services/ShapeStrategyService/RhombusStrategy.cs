@@ -11,6 +11,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
     {
         public double Diagonal1 { get; set; }
         public double Diagonal2 { get; set; }
+        public string ShapeType => "Rhombus";
 
         public double CalculateArea()
         {

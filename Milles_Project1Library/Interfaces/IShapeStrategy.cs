@@ -11,5 +11,6 @@ namespace Milles_Project1Library.Interfaces
         double CalculateArea();
         double CalculatePerimeter();
         void SetDimensions(params double[] dimensions);
+        string ShapeType { get; }
     }
 }
