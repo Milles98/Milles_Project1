@@ -7,12 +7,13 @@ using Milles_Project1.Menus.Calculator;
 using Milles_Project1.Menus.Shapes;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
+using Autofac;
 
 namespace Milles_Project1.Menus
 {
     public static class MainMenu
     {
-        public static void ShowMenu()
+        public static void ShowMenu(IContainer container)
         {
             int choice;
 
@@ -33,13 +34,13 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            ShapesMenu.ShowShapesMenu();
+                            ShapesMenu.ShowShapesMenu(container);
                             break;
                         case 2:
-                            CalculatorMenu.ShowCalculatorMenu();
+                            CalculatorMenu.ShowCalculatorMenu(container);
                             break;
                         case 3:
-                            GameMenu.ShowGameMenu();
+                            GameMenu.ShowGameMenu(container);
                             break;
                         case 0:
                             Console.WriteLine("Exiting program...");

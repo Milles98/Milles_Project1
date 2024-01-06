@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Interfaces
 {
-    public interface IShapeStrategy
+    public interface ICalculatorContext
     {
-        double CalculateArea();
-        double CalculatePerimeter();
-        void SetDimensions(params double[] dimensions);
+        double ExecuteOperation(double num1, double num2);
+
+        void SetStrategy(ICalculatorStrategy strategy);
     }
 }

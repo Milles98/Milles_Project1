@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Interfaces
 {
-    public interface IShapeStrategy
+    public interface IShapeDimensionsProvider
     {
-        double CalculateArea();
-        double CalculatePerimeter();
-        void SetDimensions(params double[] dimensions);
+        int GetDimensionCount();
     }
 }

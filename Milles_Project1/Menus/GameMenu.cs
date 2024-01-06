@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 
 namespace Milles_Project1.Menus
 {
     public static class GameMenu
     {
-        public static void ShowGameMenu()
+        public static void ShowGameMenu(IContainer container)
         {
             int choice;
 
