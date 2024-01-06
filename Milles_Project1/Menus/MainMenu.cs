@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Milles_Project1.Menus.Calculator;
 using Milles_Project1.Menus.Shapes;
+using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 
 namespace Milles_Project1.Menus
@@ -38,7 +39,7 @@ namespace Milles_Project1.Menus
                             CalculatorMenu.ShowCalculatorMenu();
                             break;
                         case 3:
-                            RockPaperScissorMenu.ShowRockPaperScissorMenu();
+                            GameMenu.ShowGameMenu();
                             break;
                         case 0:
                             Console.WriteLine("Exiting program...");
