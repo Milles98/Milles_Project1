@@ -21,3 +21,5 @@ Jag kollade mer i detalj på vilka entiteter och attribut jag skulle behöva och
 
 Jag började lägga till mapparna för Shapes Strategy.
 Jag implementerade metoderna och strategies för Shapes, började dependency injecta med Autofac och la till fler relevanta interfaces.
+
+Uppdaterade starten av appen och såg till att relevanta klasser blev resolved med Autofac och la till ShapeTypes i IShapeStrategy som kommer att användas för att spara ned vilken form som användas i SSMS.
