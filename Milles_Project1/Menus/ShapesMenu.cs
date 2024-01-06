@@ -12,7 +12,7 @@ using Autofac;
 using Milles_Project1Library.Services;
 using Milles_Project1Library.Data;
 
-namespace Milles_Project1.Menus.Shapes
+namespace Milles_Project1.Menus
 {
     public static class ShapesMenu
     {
