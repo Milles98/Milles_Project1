@@ -11,7 +11,7 @@ using Autofac;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.Services;
 
-namespace Milles_Project1.Menus.Calculator
+namespace Milles_Project1.Menus
 {
     public static class CalculatorMenu
     {
