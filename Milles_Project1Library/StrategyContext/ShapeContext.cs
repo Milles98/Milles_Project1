@@ -34,19 +34,20 @@ namespace Milles_Project1Library.StrategyContext
             }
 
             // Assume you have settings or input for the shape, e.g., side lengths, etc.
-            double[] dimensions = GetDimensionsInput();
+            decimal[] dimensions = GetDimensionsInput();
 
             // Set values on _shapeStrategy based on user input
             SetShapeProperties(dimensions);
 
             // Calculate and display the results
-            double area = _shapeStrategy.CalculateArea();
-            double perimeter = _shapeStrategy.CalculatePerimeter();
+            decimal area = _shapeStrategy.CalculateArea();
+            decimal perimeter = _shapeStrategy.CalculatePerimeter();
 
             Console.WriteLine($"Area: {area}");
             Console.WriteLine($"Perimeter: {perimeter}");
 
             SaveResultsToDatabase();
+            SaveResultsToUserHistory(area, perimeter);
 
             Console.ReadKey();
         }
@@ -64,8 +65,8 @@ namespace Milles_Project1Library.StrategyContext
             string shapeType = _shapeStrategy.ShapeType;
 
             // Anta att dessa metoder är tillgängliga på din _shapeStrategy
-            double area = _shapeStrategy.CalculateArea();
-            double perimeter = _shapeStrategy.CalculatePerimeter();
+            decimal area = _shapeStrategy.CalculateArea();
+            decimal perimeter = _shapeStrategy.CalculatePerimeter();
 
             // Skapa en ny Shape-instans med resultaten
             var resultShape = new Shape
@@ -81,7 +82,33 @@ namespace Milles_Project1Library.StrategyContext
             _dbContext.SaveChanges();
         }
 
-        private void SetShapeProperties(double[] dimensions)
+        private void SaveResultsToUserHistory(decimal area, decimal perimeter)
+        {
+            // Kontrollera först om _shapeStrategy är satt
+            if (_shapeStrategy == null)
+            {
+                Console.WriteLine("No shape calculator selected.");
+                return;
+            }
+
+            // Få typen av form från den aktuella strategin
+            string shapeType = _shapeStrategy.ShapeType;
+
+            // Skapa en ny UserHistory-instans med resultaten
+            var userHistory = new UserHistory
+            {
+                ActionType = "Shapes",
+                Action = "C", // Exempel: C, R, U, D
+                DatePerformed = DateTime.Now,
+                Description = $"ShapeType: {shapeType}, Area: {area}, Perimeter: {perimeter}"
+            };
+
+            // Spara i databasen
+            _dbContext.UserHistory.Add(userHistory);
+            _dbContext.SaveChanges();
+        }
+
+        private void SetShapeProperties(decimal[] dimensions)
         {
             // Assume you set user input values on _shapeStrategy
             // This can vary depending on the type of shape you're working with
@@ -89,12 +116,12 @@ namespace Milles_Project1Library.StrategyContext
             _shapeStrategy.SetDimensions(dimensions);
         }
 
-        private double[] GetDimensionsInput()
+        private decimal[] GetDimensionsInput()
         {
             if (_shapeStrategy is IShapeDimensionsProvider dimensionsProvider)
             {
                 int dimensionCount = dimensionsProvider.GetDimensionCount();
-                double[] dimensions = new double[dimensionCount];
+                decimal[] dimensions = new decimal[dimensionCount];
 
                 for (int i = 0; i < dimensionCount; i++)
                 {
@@ -104,18 +131,18 @@ namespace Milles_Project1Library.StrategyContext
                 return dimensions;
             }
 
-            return Array.Empty<double>();
+            return Array.Empty<decimal>();
         }
 
-        private double GetDoubleInput(string prompt)
+        private decimal GetDoubleInput(string prompt)
         {
-            double result;
+            decimal result;
             bool validInput;
 
             do
             {
                 Console.Write(prompt);
-                validInput = double.TryParse(Console.ReadLine(), out result);
+                validInput = decimal.TryParse(Console.ReadLine(), out result);
 
                 if (!validInput)
                 {

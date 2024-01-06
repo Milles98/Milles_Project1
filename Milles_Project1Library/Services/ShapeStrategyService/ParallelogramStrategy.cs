@@ -9,12 +9,12 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 {
     public class ParallelogramStrategy : IShapeStrategy, IShapeDimensionsProvider
     {
-        public double Base { get; set; }
-        public double Height { get; set; }
-        public double SideLength { get; set; }
+        public decimal Base { get; set; }
+        public decimal Height { get; set; }
+        public decimal SideLength { get; set; }
         public string ShapeType => "Parallelogram";
 
-        public void SetDimensions(params double[] dimensions)
+        public void SetDimensions(params decimal[] dimensions)
         {
             if (dimensions.Length == 3)
             {
@@ -33,12 +33,12 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
             return 3;
         }
 
-        public double CalculateArea()
+        public decimal CalculateArea()
         {
             return Base * Height;
         }
 
-        public double CalculatePerimeter()
+        public decimal CalculatePerimeter()
         {
             return 2 * (Base + SideLength);
         }

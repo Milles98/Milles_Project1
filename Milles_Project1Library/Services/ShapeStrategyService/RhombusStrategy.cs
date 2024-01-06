@@ -9,22 +9,22 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 {
     public class RhombusStrategy : IShapeStrategy, IShapeDimensionsProvider
     {
-        public double Diagonal1 { get; set; }
-        public double Diagonal2 { get; set; }
+        public decimal Diagonal1 { get; set; }
+        public decimal Diagonal2 { get; set; }
         public string ShapeType => "Rhombus";
 
-        public double CalculateArea()
+        public decimal CalculateArea()
         {
             return (Diagonal1 * Diagonal2) / 2;
         }
 
-        public double CalculatePerimeter()
+        public decimal CalculatePerimeter()
         {
             // Assuming all sides of the rhombus are equal
-            return 4 * Math.Sqrt((Diagonal1 * Diagonal1 + Diagonal2 * Diagonal2) / 4);
+            return 4 * (decimal)Math.Sqrt((double)(Diagonal1 * Diagonal1 + Diagonal2 * Diagonal2) / 4);
         }
 
-        public void SetDimensions(params double[] dimensions)
+        public void SetDimensions(params decimal[] dimensions)
         {
             if (dimensions.Length == 2)
             {

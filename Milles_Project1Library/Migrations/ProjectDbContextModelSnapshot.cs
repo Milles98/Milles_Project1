@@ -33,18 +33,18 @@ namespace Milles_Project1Library.Migrations
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Number1")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Number1")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("Number2")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Number2")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Operator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Result")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Result")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CalculationId");
 
@@ -90,14 +90,14 @@ namespace Milles_Project1Library.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShapeId"));
 
-                    b.Property<double>("Area")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Area")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Perimeter")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Perimeter")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ShapeType")
                         .IsRequired()
@@ -126,6 +126,10 @@ namespace Milles_Project1Library.Migrations
 
                     b.Property<DateTime>("DatePerformed")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserHistoryId");
 

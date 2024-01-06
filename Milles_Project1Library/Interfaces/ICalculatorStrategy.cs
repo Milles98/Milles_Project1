@@ -8,6 +8,6 @@ namespace Milles_Project1Library.Interfaces
 {
     public interface ICalculatorStrategy
     {
-        double Calculate(double num1, double num2);
+        decimal Calculate(decimal num1, decimal num2);
     }
 }

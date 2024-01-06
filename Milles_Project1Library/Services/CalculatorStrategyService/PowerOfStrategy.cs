@@ -9,9 +9,9 @@ namespace Milles_Project1Library.Services.CalculatorStrategyService
 {
     public class PowerOfStrategy : ICalculatorStrategy
     {
-        public double Calculate(double num1, double num2)
+        public decimal Calculate(decimal num1, decimal num2)
         {
-            return Math.Pow(num1, num2);
+            return (decimal)Math.Pow((double)num1, (double)num2);
         }
     }
 }

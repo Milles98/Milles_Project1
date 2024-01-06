@@ -9,7 +9,7 @@ namespace Milles_Project1Library.Services.CalculatorStrategyService
 {
     public class ModulusStrategy : ICalculatorStrategy
     {
-        public double Calculate(double num1, double num2)
+        public decimal Calculate(decimal num1, decimal num2)
         {
             return num1 % num2;
         }

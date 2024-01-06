@@ -23,6 +23,29 @@ namespace Milles_Project1Library.Data
         public DbSet<Game> Game { get; set; }
         public DbSet<Shape> Shape { get; set; }
         public DbSet<UserHistory> UserHistory { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // För Calculator
+            modelBuilder.Entity<Calculator>()
+                .Property(c => c.Number1)
+                .HasColumnType("decimal(18,2)"); // Ändra precision och scale efter ditt behov
+            modelBuilder.Entity<Calculator>()
+                .Property(c => c.Number2)
+                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Calculator>()
+                .Property(c => c.Result)
+                .HasColumnType("decimal(18,2)");
+
+            // För Shape
+            modelBuilder.Entity<Shape>()
+                .Property(s => s.Area)
+                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Shape>()
+                .Property(s => s.Perimeter)
+                .HasColumnType("decimal(18,2)");
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
