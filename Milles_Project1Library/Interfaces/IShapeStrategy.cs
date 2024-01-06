@@ -8,9 +8,9 @@ namespace Milles_Project1Library.Interfaces
 {
     public interface IShapeStrategy
     {
-        double CalculateArea();
-        double CalculatePerimeter();
-        void SetDimensions(params double[] dimensions);
+        decimal CalculateArea();
+        decimal CalculatePerimeter();
+        void SetDimensions(params decimal[] dimensions);
         string ShapeType { get; }
     }
 }

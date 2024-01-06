@@ -14,5 +14,6 @@ namespace Milles_Project1Library.Models
         public string ActionType { get; set; } // Exempel: Shapes, Calculator, Game
         public string Action { get; set; } // Exempel: C, R, U, D, R (för att se tidigare spel)
         public DateTime DatePerformed { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -17,10 +17,10 @@ namespace Milles_Project1Library.Migrations
                 {
                     CalculationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Number1 = table.Column<double>(type: "float", nullable: false),
-                    Number2 = table.Column<double>(type: "float", nullable: false),
+                    Number1 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Number2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Operator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Result = table.Column<double>(type: "float", nullable: false),
+                    Result = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -52,8 +52,8 @@ namespace Milles_Project1Library.Migrations
                     ShapeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ShapeType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Area = table.Column<double>(type: "float", nullable: false),
-                    Perimeter = table.Column<double>(type: "float", nullable: false),
+                    Area = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Perimeter = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -69,7 +69,8 @@ namespace Milles_Project1Library.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ActionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Action = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DatePerformed = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DatePerformed = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

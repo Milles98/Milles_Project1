@@ -8,7 +8,8 @@ namespace Milles_Project1Library.Interfaces
 {
     public interface ICalculatorContext
     {
-        double ExecuteOperation(double num1, double num2);
+        decimal ExecuteOperation(decimal num1, decimal num2);
+        void CalculateAndDisplayResults();
 
         void SetStrategy(ICalculatorStrategy strategy);
     }

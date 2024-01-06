@@ -40,27 +40,27 @@ namespace Milles_Project1.Menus.Calculator
                     {
                         case 1:
                             calculatorContext.SetStrategy(new AdditionStrategy());
-                            PerformCalculation(calculatorContext);
+                            calculatorContext.CalculateAndDisplayResults();
                             break;
                         case 2:
                             calculatorContext.SetStrategy(new SubtractionStrategy());
-                            PerformCalculation(calculatorContext);
+                            calculatorContext.CalculateAndDisplayResults();
                             break;
                         case 3:
                             calculatorContext.SetStrategy(new MultiplicationStrategy());
-                            PerformCalculation(calculatorContext);
+                            calculatorContext.CalculateAndDisplayResults();
                             break;
                         case 4:
                             calculatorContext.SetStrategy(new DivisionStrategy());
-                            PerformCalculation(calculatorContext);
+                            calculatorContext.CalculateAndDisplayResults();
                             break;
                         case 5:
                             calculatorContext.SetStrategy(new PowerOfStrategy());
-                            PerformCalculation(calculatorContext);
+                            calculatorContext.CalculateAndDisplayResults();
                             break;
                         case 6:
                             calculatorContext.SetStrategy(new ModulusStrategy());
-                            PerformCalculation(calculatorContext);
+                            calculatorContext.CalculateAndDisplayResults();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");
@@ -78,33 +78,6 @@ namespace Milles_Project1.Menus.Calculator
                 }
 
             } while (choice != 0);
-        }
-
-        private static void PerformCalculation(ICalculatorContext calculatorContext)
-        {
-            Console.Write("Enter the first number: ");
-            if (double.TryParse(Console.ReadLine(), out double num1))
-            {
-                Console.Write("Enter the second number: ");
-                if (double.TryParse(Console.ReadLine(), out double num2))
-                {
-                    double result = calculatorContext.ExecuteOperation(num1, num2);
-                    Console.WriteLine($"Result: {result}");
-                }
-                else
-                {
-                    Message.ErrorMessage("Invalid input for the second number. Please enter a valid number.");
-                    Thread.Sleep(1000);
-                }
-            }
-            else
-            {
-                Message.ErrorMessage("Invalid input for the first number. Please enter a valid number.");
-                Thread.Sleep(1000);
-            }
-
-            Console.WriteLine("Press any button to continue.");
-            Console.ReadKey();
         }
     }
 }

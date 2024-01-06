@@ -9,22 +9,22 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 {
     public class TriangleStrategy : IShapeStrategy, IShapeDimensionsProvider
     {
-        private double[] sides = new double[3];
+        private decimal[] sides = new decimal[3];
         public string ShapeType => "Triangle";
 
-        public double CalculateArea()
+        public decimal CalculateArea()
         {
             // Heron's formula for area of a triangle
             var s = CalculatePerimeter() / 2;
-            return Math.Sqrt(s * (s - sides[0]) * (s - sides[1]) * (s - sides[2]));
+            return (decimal)Math.Sqrt((double)(s * (s - sides[0]) * (s - sides[1]) * (s - sides[2])));
         }
 
-        public double CalculatePerimeter()
+        public decimal CalculatePerimeter()
         {
             return sides.Sum();
         }
 
-        public void SetDimensions(params double[] dimensions)
+        public void SetDimensions(params decimal[] dimensions)
         {
             if (dimensions.Length == 3)
             {
