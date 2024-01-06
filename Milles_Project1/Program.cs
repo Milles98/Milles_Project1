@@ -23,9 +23,10 @@
             //Shapes tabell
 
             //Attribut:
+            //ShapeId
             //ShapeType
-            //Form?
             //Area?
+            //Form?
             //Omkrets?
             //Datum när beräkning gjorts
 
@@ -41,12 +42,11 @@
             //RockPaperScissor tabell
 
             //Attribut:
-            //Spelare
-            //Datorspelare
-            //Vinst
-            //Förlust
-            //Oavgjort
-            //Antal Vinster
+            //GameId
+            //PlayerMove
+            //ComputerMove
+            //Result
+            //AverageWins
             //Datum när spel avklarats
 
         }

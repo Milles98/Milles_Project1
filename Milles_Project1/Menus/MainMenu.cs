@@ -38,7 +38,7 @@ namespace Milles_Project1.Menus
                             CalculatorMenu.ShowCalculatorMenu();
                             break;
                         case 3:
-                            RockPaperScissorMenu.ShowRockPaperScissorMenu();
+                            GameMenu.ShowGameMenu();
                             break;
                         case 0:
                             Console.WriteLine("Exiting program...");

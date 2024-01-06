@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1.Menus
 {
-    public static class RockPaperScissorMenu
+    public static class GameMenu
     {
-        public static void ShowRockPaperScissorMenu()
+        public static void ShowGameMenu()
         {
             int choice;
 

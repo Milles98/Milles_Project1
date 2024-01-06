@@ -8,5 +8,14 @@ namespace Milles_Project1Library.Models
 {
     public class Shape
     {
+        public int ShapeId { get; set; }
+
+        public string ShapeType { get; set; }
+
+        public double Area { get; set; }
+
+        public double Perimeter { get; set; }
+
+        public DateTime CalculationDate { get; set; }
     }
 }
