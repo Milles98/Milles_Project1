@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.StrategyContext
 {
-    public class CalculatorContext
+    public class CalculatorContext : ICalculatorContext
     {
         private ICalculatorStrategy _strategy;
 

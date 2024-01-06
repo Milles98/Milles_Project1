@@ -20,7 +20,7 @@ namespace Milles_Project1
 
                 while (true)
                 {
-                    MainMenu.ShowMenu();
+                    MainMenu.ShowMenu(container);
                 }
             }
         }
