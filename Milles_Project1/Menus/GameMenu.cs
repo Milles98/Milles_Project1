@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using Milles_Project1Library.Data;
 
 namespace Milles_Project1.Menus
 {
     public static class GameMenu
     {
-        public static void ShowGameMenu(IContainer container)
+        public static void ShowGameMenu(ProjectDbContext dbContext)
         {
             int choice;
 

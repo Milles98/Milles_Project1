@@ -10,6 +10,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
     public class TriangleStrategy : IShapeStrategy, IShapeDimensionsProvider
     {
         private double[] sides = new double[3];
+        public string ShapeType => "Triangle";
 
         public double CalculateArea()
         {

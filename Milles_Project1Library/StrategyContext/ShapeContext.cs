@@ -1,4 +1,7 @@
-﻿using Milles_Project1Library.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Milles_Project1Library.Data;
+using Milles_Project1Library.Interfaces;
+using Milles_Project1Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +13,12 @@ namespace Milles_Project1Library.StrategyContext
     public class ShapeContext : IShapeContext
     {
         private IShapeStrategy _shapeStrategy;
+        private readonly ProjectDbContext _dbContext; // Lägg till din DbContext här
+
+        public ShapeContext(ProjectDbContext dbContext)
+        {
+            this._dbContext = dbContext;
+        }
 
         public void SetShapeCalculator(IShapeStrategy shapeStrategy)
         {
@@ -37,7 +46,39 @@ namespace Milles_Project1Library.StrategyContext
             Console.WriteLine($"Area: {area}");
             Console.WriteLine($"Perimeter: {perimeter}");
 
+            SaveResultsToDatabase();
+
             Console.ReadKey();
+        }
+
+        private void SaveResultsToDatabase()
+        {
+            // Kontrollera först om _shapeStrategy är satt
+            if (_shapeStrategy == null)
+            {
+                Console.WriteLine("No shape calculator selected.");
+                return;
+            }
+
+            // Få typen av form från den aktuella strategin
+            string shapeType = _shapeStrategy.ShapeType;
+
+            // Anta att dessa metoder är tillgängliga på din _shapeStrategy
+            double area = _shapeStrategy.CalculateArea();
+            double perimeter = _shapeStrategy.CalculatePerimeter();
+
+            // Skapa en ny Shape-instans med resultaten
+            var resultShape = new Shape
+            {
+                ShapeType = shapeType,
+                Area = area,
+                Perimeter = perimeter,
+                CalculationDate = DateTime.Now
+            };
+
+            // Spara i databasen
+            _dbContext.Shape.Add(resultShape);
+            _dbContext.SaveChanges();
         }
 
         private void SetShapeProperties(double[] dimensions)

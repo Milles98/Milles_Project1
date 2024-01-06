@@ -8,12 +8,13 @@ using Milles_Project1.Menus.Shapes;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Autofac;
+using Milles_Project1Library.Interfaces;
 
 namespace Milles_Project1.Menus
 {
     public static class MainMenu
     {
-        public static void ShowMenu(IContainer container)
+        public static void ShowMenu(ProjectDbContext dbContext, IShapeContext shapeContext, ICalculatorContext calculatorContext)
         {
             int choice;
 
@@ -34,13 +35,13 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            ShapesMenu.ShowShapesMenu(container);
+                            ShapesMenu.ShowShapesMenu(shapeContext);
                             break;
                         case 2:
-                            CalculatorMenu.ShowCalculatorMenu(container);
+                            CalculatorMenu.ShowCalculatorMenu(calculatorContext);
                             break;
                         case 3:
-                            GameMenu.ShowGameMenu(container);
+                            GameMenu.ShowGameMenu(dbContext);
                             break;
                         case 0:
                             Console.WriteLine("Exiting program...");
