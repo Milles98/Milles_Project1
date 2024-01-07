@@ -19,5 +19,7 @@ namespace Milles_Project1Library.Models
         public decimal Perimeter { get; set; }
 
         public DateTime CalculationDate { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

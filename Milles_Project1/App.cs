@@ -18,17 +18,19 @@ namespace Milles_Project1
         private readonly ProjectDbContext _dbContext;
         private readonly IShapeContext _shapeContext;
         private readonly ICalculatorContext _calculatorContext;
-        public App(ProjectDbContext dbContext, IShapeContext shapeContext, ICalculatorContext calculatorContext)
+        private readonly ICalculatorService _calculatorService;
+        public App(ProjectDbContext dbContext, IShapeContext shapeContext, ICalculatorContext calculatorContext, ICalculatorService calculatorService)
         {
             _dbContext = dbContext;
             _shapeContext = shapeContext;
             _calculatorContext = calculatorContext;
+            _calculatorService = calculatorService;
         }
         public void RunApplication()
         {
             while (true)
             {
-                MainMenu.ShowMenu(_dbContext, _shapeContext, _calculatorContext);
+                MainMenu.ShowMenu(_dbContext, _shapeContext, _calculatorContext, _calculatorService);
             }
         }
     }

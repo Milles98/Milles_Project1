@@ -33,6 +33,9 @@ namespace Milles_Project1Library.Migrations
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("Number1")
                         .HasColumnType("decimal(18,2)");
 
@@ -69,6 +72,9 @@ namespace Milles_Project1Library.Migrations
                     b.Property<DateTime>("GameDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("PlayerMove")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -95,6 +101,9 @@ namespace Milles_Project1Library.Migrations
 
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Perimeter")
                         .HasColumnType("decimal(18,2)");
@@ -130,6 +139,9 @@ namespace Milles_Project1Library.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("UserHistoryId");
 

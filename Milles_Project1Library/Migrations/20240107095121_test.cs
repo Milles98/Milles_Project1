@@ -21,7 +21,8 @@ namespace Milles_Project1Library.Migrations
                     Number2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Operator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Result = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,7 +39,8 @@ namespace Milles_Project1Library.Migrations
                     ComputerMove = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Result = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GameDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AverageWins = table.Column<double>(type: "float", nullable: false)
+                    AverageWins = table.Column<double>(type: "float", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,7 +56,8 @@ namespace Milles_Project1Library.Migrations
                     ShapeType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Perimeter = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,7 +73,8 @@ namespace Milles_Project1Library.Migrations
                     ActionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Action = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DatePerformed = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

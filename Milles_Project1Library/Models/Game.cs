@@ -21,5 +21,7 @@ namespace Milles_Project1Library.Models
         public DateTime GameDate { get; set; }
 
         public double AverageWins { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

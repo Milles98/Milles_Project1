@@ -12,7 +12,7 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240106114737_test")]
+    [Migration("20240107095121_test")]
     partial class test
     {
         /// <inheritdoc />
@@ -35,6 +35,9 @@ namespace Milles_Project1Library.Migrations
 
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Number1")
                         .HasColumnType("decimal(18,2)");
@@ -72,6 +75,9 @@ namespace Milles_Project1Library.Migrations
                     b.Property<DateTime>("GameDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("PlayerMove")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -98,6 +104,9 @@ namespace Milles_Project1Library.Migrations
 
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Perimeter")
                         .HasColumnType("decimal(18,2)");
@@ -133,6 +142,9 @@ namespace Milles_Project1Library.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("UserHistoryId");
 
