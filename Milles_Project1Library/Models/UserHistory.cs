@@ -15,5 +15,7 @@ namespace Milles_Project1Library.Models
         public string Action { get; set; } // Exempel: C, R, U, D, R (för att se tidigare spel)
         public DateTime DatePerformed { get; set; }
         public string Description { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

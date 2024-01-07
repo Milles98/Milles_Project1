@@ -43,6 +43,8 @@ namespace Milles_Project1Library.Services
             builder.RegisterType<TriangleStrategy>().As<IShapeStrategy>();
             builder.RegisterType<RhombusStrategy>().As<IShapeStrategy>();
 
+            builder.RegisterType<CalculatorService>().As<ICalculatorService>();
+
             return builder.Build();
         }
     }

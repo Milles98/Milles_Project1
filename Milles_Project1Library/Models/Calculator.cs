@@ -20,5 +20,7 @@ namespace Milles_Project1Library.Models
         public decimal Result { get; set; }
 
         public DateTime CalculationDate { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

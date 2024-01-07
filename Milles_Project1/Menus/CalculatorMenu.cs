@@ -15,7 +15,7 @@ namespace Milles_Project1.Menus
 {
     public static class CalculatorMenu
     {
-        public static void ShowCalculatorMenu(ICalculatorContext calculatorContext)
+        public static void ShowCalculatorMenu(ICalculatorContext calculatorContext, ICalculatorService calculatorService)
         {
             int choice;
 
@@ -24,12 +24,10 @@ namespace Milles_Project1.Menus
                 Console.Clear();
                 Console.WriteLine("╭──────────────────────╮");
                 Console.WriteLine("│Calculator Menu       │");
-                Console.WriteLine("│1. (+) Addition       │");
-                Console.WriteLine("│2. (-) Subtraction    │");
-                Console.WriteLine("│3. (*) Multiplication │");
-                Console.WriteLine("│4. (/) Divison        │");
-                Console.WriteLine("│5. (√) Power of       │");
-                Console.WriteLine("│6. (%) Modulus        │");
+                Console.WriteLine("│1. Create Calculator  │"); //ska vara att göra beräkning
+                Console.WriteLine("│2. Read Calculator    │"); //läsa alla beräkningar
+                Console.WriteLine("│3. Update Calculator  │"); //uppdatera en beräkning
+                Console.WriteLine("│4. Delete Calculator  │"); //radera en beräkning
                 Console.WriteLine("│0. Return to MainMenu │");
                 Console.WriteLine("╰──────────────────────╯");
 
@@ -39,28 +37,17 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            calculatorContext.SetStrategy(new AdditionStrategy());
-                            calculatorContext.CalculateAndDisplayResults();
+                            calculatorContext.PerformCreateCalculation();
                             break;
                         case 2:
-                            calculatorContext.SetStrategy(new SubtractionStrategy());
-                            calculatorContext.CalculateAndDisplayResults();
+                            calculatorService.ReadCalculation();
+                            Console.ReadKey();
                             break;
                         case 3:
-                            calculatorContext.SetStrategy(new MultiplicationStrategy());
-                            calculatorContext.CalculateAndDisplayResults();
+                            calculatorService.UpdateCalculation();
                             break;
                         case 4:
-                            calculatorContext.SetStrategy(new DivisionStrategy());
-                            calculatorContext.CalculateAndDisplayResults();
-                            break;
-                        case 5:
-                            calculatorContext.SetStrategy(new PowerOfStrategy());
-                            calculatorContext.CalculateAndDisplayResults();
-                            break;
-                        case 6:
-                            calculatorContext.SetStrategy(new ModulusStrategy());
-                            calculatorContext.CalculateAndDisplayResults();
+                            calculatorService.DeleteCalculation();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");

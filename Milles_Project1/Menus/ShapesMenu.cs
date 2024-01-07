@@ -26,6 +26,10 @@ namespace Milles_Project1.Menus
                 Console.Clear();
                 Console.WriteLine("╭────────────────────────────╮");
                 Console.WriteLine("│Shapes Menu                 │");
+                Console.WriteLine("│1. Create Shape             │"); //ska vara att göra beräkning
+                Console.WriteLine("│1. Read Shape               │"); //läsa alla beräkningar
+                Console.WriteLine("│1. Update Shape             │"); //uppdatera en beräkning
+                Console.WriteLine("│1. Delete Shape             │"); //radera en beräkning
                 Console.WriteLine("│1. Calculate Rectangle      │");
                 Console.WriteLine("│2. Calculate Parallellogram │");
                 Console.WriteLine("│3. Calculate Triangle       │");
