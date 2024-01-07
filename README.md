@@ -23,3 +23,12 @@ Jag började lägga till mapparna för Shapes Strategy.
 Jag implementerade metoderna och strategies för Shapes, började dependency injecta med Autofac och la till fler relevanta interfaces.
 
 Uppdaterade starten av appen och såg till att relevanta klasser blev resolved med Autofac och la till ShapeTypes i IShapeStrategy som kommer att användas för att spara ned vilken form som användas i SSMS.
+
+Dag 3
+
+Jag hade tänkt dagen innan på hur jag skulle implementera CRUD operationerna för calculations och idag var det dags.
+
+Jag uppdaterade min meny i CalculatorMenu, skapade en CalculatorService klass för att hålla i metoderna som skulle anropas i CalculatorMenu klassen.
+Jag uppdaterade CalculatorContext för att hantera CRUD som skulle anropas i CalculatorService klassen.
+
+Fixade även IsActive attribut som jag hade glömt till alla mina entiteter!
