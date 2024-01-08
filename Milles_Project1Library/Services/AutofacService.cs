@@ -41,6 +41,7 @@ namespace Milles_Project1Library.Services
 
             builder.RegisterType<CalculatorService>().As<ICalculatorService>();
             builder.RegisterType<ShapeService>().As<IShapeService>();
+            builder.RegisterType<UserHistoryService>().As<IUserHistoryService>();
 
             return builder.Build();
         }
