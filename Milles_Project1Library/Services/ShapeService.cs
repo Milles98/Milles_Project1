@@ -87,7 +87,8 @@ namespace Milles_Project1Library.Services
 
             foreach (var s in shape)
             {
-                Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{s.Base,-15}│{s.Height,-13}│{s.SideLength,-13}│{s.Area,-11}│{s.Perimeter,-11}│{s.CalculationDate,-19}│");
+                string sideLengthDisplay = s.SideLength == 0 ? "N/A" : s.SideLength.ToString("F2");
+                Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{s.Base,-15}│{s.Height,-13}│{sideLengthDisplay,-13}│{s.Area,-11}│{s.Perimeter,-11}│{s.CalculationDate,-19}│");
                 Console.WriteLine("├──────────┼──────────────┼───────────────┼─────────────┼─────────────┼───────────┤───────────┤───────────────────┤");
             }
 
@@ -110,6 +111,8 @@ namespace Milles_Project1Library.Services
                     Console.Write("Enter the new value for Base: ");
                     if (decimal.TryParse(Console.ReadLine(), out decimal newBase))
                     {
+                        newBase = Math.Round(newBase, 2);
+
                         shape.Base = newBase;
                     }
                     else
@@ -120,6 +123,8 @@ namespace Milles_Project1Library.Services
                     Console.Write("Enter the new value for Height: ");
                     if (decimal.TryParse(Console.ReadLine(), out decimal newHeight))
                     {
+                        newHeight = Math.Round(newHeight, 2);
+
                         shape.Height = newHeight;
                     }
                     else
@@ -130,6 +135,8 @@ namespace Milles_Project1Library.Services
                     Console.Write("Enter the new value for Side Length: ");
                     if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength))
                     {
+                        newSideLength = Math.Round(newSideLength, 2);
+
                         shape.SideLength = newSideLength;
                     }
                     else

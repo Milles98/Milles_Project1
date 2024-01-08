@@ -47,7 +47,12 @@ namespace Milles_Project1Library.Services
                     decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1: ");
                     decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2: ");
 
+                    num1 = Math.Round(num1, 2);
+                    num2 = Math.Round(num2, 2);
+
                     decimal result = _calculatorContext.ExecuteOperation(num1, num2);
+
+                    result = Math.Round(result, 2);
 
                     Console.WriteLine($"Result: {result}");
 
@@ -129,6 +134,9 @@ namespace Milles_Project1Library.Services
                         Console.Write("Enter the new value for Number2: ");
                         if (decimal.TryParse(Console.ReadLine(), out decimal newNum2))
                         {
+                            newNum1 = Math.Round(newNum1, 2);
+                            newNum2 = Math.Round(newNum2, 2);
+
                             UpdateCalculationInDatabase(calculation, newNum1, newNum2);
                             Console.WriteLine("Calculation updated successfully!");
                             return;
@@ -187,6 +195,8 @@ namespace Milles_Project1Library.Services
             calculation.Number1 = newNum1;
             calculation.Number2 = newNum2;
             calculation.Result = _calculatorContext.ExecuteOperation(newNum1, newNum2);
+
+            calculation.Result = Math.Round(calculation.Result, 2);
 
             _calculatorContext.SaveCalculationToDatabase(newNum1, newNum2, calculation.Result);
         }

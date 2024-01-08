@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Milles_Project1Library.Migrations
 {
     /// <inheritdoc />
-    public partial class test : Migration
+    public partial class test1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,21 +30,20 @@ namespace Milles_Project1Library.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Game",
+                name: "GameStatistics",
                 columns: table => new
                 {
-                    GameId = table.Column<int>(type: "int", nullable: false)
+                    StatisticsId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlayerMove = table.Column<int>(type: "int", nullable: false),
-                    ComputerMove = table.Column<int>(type: "int", nullable: false),
-                    Result = table.Column<int>(type: "int", nullable: false),
-                    GameDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    TotalGamesPlayed = table.Column<int>(type: "int", nullable: false),
+                    TotalWins = table.Column<int>(type: "int", nullable: false),
+                    TotalLosses = table.Column<int>(type: "int", nullable: false),
+                    TotalDraws = table.Column<int>(type: "int", nullable: false),
                     AverageWins = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Game", x => x.GameId);
+                    table.PrimaryKey("PK_GameStatistics", x => x.StatisticsId);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,6 +84,30 @@ namespace Milles_Project1Library.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Game",
+                columns: table => new
+                {
+                    GameId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PlayerMove = table.Column<int>(type: "int", nullable: false),
+                    ComputerMove = table.Column<int>(type: "int", nullable: false),
+                    Result = table.Column<int>(type: "int", nullable: false),
+                    GameDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    AverageWins = table.Column<double>(type: "float", nullable: false),
+                    GameStatisticsId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Game", x => x.GameId);
+                    table.ForeignKey(
+                        name: "FK_Game_GameStatistics_GameStatisticsId",
+                        column: x => x.GameStatisticsId,
+                        principalTable: "GameStatistics",
+                        principalColumn: "StatisticsId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GameHistory",
                 columns: table => new
                 {
@@ -106,6 +129,11 @@ namespace Milles_Project1Library.Migrations
                         principalColumn: "GameId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Game_GameStatisticsId",
+                table: "Game",
+                column: "GameStatisticsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameHistory_GameId",
@@ -130,6 +158,9 @@ namespace Milles_Project1Library.Migrations
 
             migrationBuilder.DropTable(
                 name: "Game");
+
+            migrationBuilder.DropTable(
+                name: "GameStatistics");
         }
     }
 }

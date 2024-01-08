@@ -32,17 +32,17 @@ namespace Milles_Project1Library.Services
                 Console.Clear();
                 Console.WriteLine($"╭──────────────────────────╮");
                 Console.WriteLine($"│Rock Paper Scissors Game  │");
-                Message.DarkYellowMessage($"│ Round {rounds + 1}                  │");
                 Console.WriteLine($"│ Player Wins: {playerWins}           │");
                 Console.WriteLine($"│ Computer Wins: {computerWins}         │");
                 Console.WriteLine($"╰──────────────────────────╯");
 
+                Message.DarkYellowMessage($"Round {rounds + 1}");
                 Console.WriteLine("1. Rock");
                 Console.WriteLine("2. Paper");
                 Console.WriteLine("3. Scissors");
                 Console.WriteLine("0. End the Game");
 
-                Console.Write("Enter your move (1-3): ");
+                Console.Write("\nEnter your move (1-3): ");
                 if (int.TryParse(Console.ReadLine(), out int playerChoice))
                 {
                     if (playerChoice >= 1 && playerChoice <= 3)
@@ -97,9 +97,9 @@ namespace Milles_Project1Library.Services
 
             } while (playerWins < 2 && computerWins < 2);
 
-            string overallWinner = (playerWins >= 2) ? "Player" : "Computer";
+            string winner = (playerWins >= 2) ? "Player" : "Computer";
 
-            Message.InputSuccessMessage($"\nOverall Winner: {overallWinner}");
+            Message.InputSuccessMessage($"Winner: {winner}");
 
             if (lastGame != null)
             {
@@ -229,7 +229,7 @@ namespace Milles_Project1Library.Services
                     Console.WriteLine($"Game ID: {game.GameId}");
                     Console.WriteLine($"Your Move: {game.PlayerMove}");
                     Console.WriteLine($"Computer's Move: {game.ComputerMove}");
-                    Console.WriteLine($"Final Result: {game.Result}");
+                    Console.WriteLine($"Your Result: {game.Result}");
 
                     if (game.GameHistories != null && game.GameHistories.Any())
                     {
@@ -248,9 +248,9 @@ namespace Milles_Project1Library.Services
 
                 var averageWins = totalGames > 0 ? (double)totalWins / totalGames : 0;
 
-                Console.WriteLine($"Total Wins: {totalWins}");
-                Console.WriteLine($"Total Losses: {totalLosses}");
-                Console.WriteLine($"Total Draws: {totalDraws}");
+                Message.InputSuccessMessage($"Total Wins: {totalWins}");
+                Message.ErrorMessage($"Total Losses: {totalLosses}");
+                Message.DarkYellowMessage($"Total Draws: {totalDraws}");
                 Console.WriteLine($"Average Wins Against Computer: {averageWins:P}");
             }
             else
@@ -279,7 +279,7 @@ namespace Milles_Project1Library.Services
             Console.WriteLine("- Paper: A flat hand with fingers and thumb extended, palm facing downward");
             Console.WriteLine("- Scissors: A fist with the index and middle fingers fully extended");
 
-            Console.WriteLine("\nGame Rules:");
+            Message.DarkYellowMessage("\nGame Rules:");
             Console.WriteLine("- Rock wins against scissors");
             Console.WriteLine("- Paper wins against rock");
             Console.WriteLine("- Scissors wins against paper");
