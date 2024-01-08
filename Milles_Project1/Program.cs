@@ -17,19 +17,9 @@ namespace Milles_Project1
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.Title = "Project 1";
 
-            using (var container = AutofacService.RegisteredContainers())
-            {
-                var dbContext = container.Resolve<ProjectDbContext>();
-
-                var shapeContext = container.Resolve<IShapeContext>();
-                var calculatorContext = container.Resolve<ICalculatorContext>();
-                var calculatorService = container.Resolve<ICalculatorService>();
-                var shapeService = container.Resolve<IShapeService>();
-                var userHistory = container.Resolve<IUserHistoryService>();
-
-                var app = new App(dbContext, shapeContext, calculatorContext, calculatorService, shapeService, userHistory);
-                app.RunApplication();
-            }
+            var container = AutofacService.RegisteredContainers();
+            var app = new App(container);
+            app.RunApplication();
         }
     }
     //använd strategy pattern för calculator och shapes

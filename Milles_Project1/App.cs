@@ -15,27 +15,28 @@ namespace Milles_Project1
 {
     public class App
     {
-        private readonly ProjectDbContext _dbContext;
-        private readonly IShapeContext _shapeContext;
-        private readonly ICalculatorContext _calculatorContext;
-        private readonly ICalculatorService _calculatorService;
-        private readonly IShapeService _shapeService;
-        private readonly IUserHistoryService _userHistoryService;
-        public App(ProjectDbContext dbContext, IShapeContext shapeContext, ICalculatorContext calculatorContext,
-            ICalculatorService calculatorService, IShapeService shapeService, IUserHistoryService userHistoryService)
+        private readonly IContainer _container;
+
+        public App(IContainer container)
         {
-            _dbContext = dbContext;
-            _shapeContext = shapeContext;
-            _calculatorContext = calculatorContext;
-            _calculatorService = calculatorService;
-            _shapeService = shapeService;
-            _userHistoryService = userHistoryService;
+            _container = container;
         }
+
         public void RunApplication()
         {
-            while (true)
+            using (var scope = _container.BeginLifetimeScope())
             {
-                MainMenu.ShowMenu(_dbContext, _shapeContext, _calculatorContext, _calculatorService, _shapeService, _userHistoryService);
+                var dbContext = scope.Resolve<ProjectDbContext>();
+                var shapeContext = scope.Resolve<IShapeContext>();
+                var calculatorContext = scope.Resolve<ICalculatorContext>();
+                var calculatorService = scope.Resolve<ICalculatorService>();
+                var shapeService = scope.Resolve<IShapeService>();
+                var userHistoryService = scope.Resolve<IUserHistoryService>();
+
+                while (true)
+                {
+                    MainMenu.ShowMenu(dbContext, shapeContext, calculatorContext, calculatorService, shapeService, userHistoryService);
+                }
             }
         }
     }
