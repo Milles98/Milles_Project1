@@ -36,3 +36,5 @@ Fixade även IsActive attribut som jag hade glömt till alla mina entiteter!
 Dag 4
 
 La till IShapeService, ShapeService och började implementera CRUD för Shapes.
+
+Sedan la jag till en GameService klass som skulle hålla alla metoder för spelet att fungera.
