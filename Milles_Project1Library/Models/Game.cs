@@ -39,5 +39,8 @@ namespace Milles_Project1Library.Models
         public double AverageWins { get; set; }
 
         public virtual List<GameHistory> GameHistories { get; set; }
+
+        public int? GameStatisticsId { get; set; }
+        public virtual GameStatistics GameStatistics { get; set; }
     }
 }
