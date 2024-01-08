@@ -9,6 +9,7 @@ using Milles_Project1Library.StrategyContext;
 using Milles_Project1Library.Interfaces;
 using Milles_Project1Library.Services.ShapeStrategyService;
 using Milles_Project1Library.Services.CalculatorStrategyService;
+using Milles_Project1Library.Interfaces.ServiceInterface;
 
 namespace Milles_Project1Library.Services
 {
@@ -42,6 +43,7 @@ namespace Milles_Project1Library.Services
             builder.RegisterType<CalculatorService>().As<ICalculatorService>();
             builder.RegisterType<ShapeService>().As<IShapeService>();
             builder.RegisterType<UserHistoryService>().As<IUserHistoryService>();
+            builder.RegisterType<GameService>().As<IGameService>();
 
             return builder.Build();
         }

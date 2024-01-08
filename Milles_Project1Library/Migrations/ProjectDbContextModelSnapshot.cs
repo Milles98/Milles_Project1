@@ -65,23 +65,20 @@ namespace Milles_Project1Library.Migrations
                     b.Property<double>("AverageWins")
                         .HasColumnType("float");
 
-                    b.Property<string>("ComputerMove")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ComputerMove")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("GameDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PlayerMove")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PlayerMove")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Result")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Result")
+                        .HasColumnType("int");
 
                     b.HasKey("GameId");
 

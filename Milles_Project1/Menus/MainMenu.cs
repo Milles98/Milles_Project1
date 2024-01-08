@@ -7,13 +7,14 @@ using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Autofac;
 using Milles_Project1Library.Interfaces;
+using Milles_Project1Library.Interfaces.ServiceInterface;
 
 namespace Milles_Project1.Menus
 {
     public static class MainMenu
     {
         public static void ShowMenu(ProjectDbContext dbContext, IShapeContext shapeContext, ICalculatorContext calculatorContext,
-            ICalculatorService calculatorService, IShapeService shapeService, IUserHistoryService userHistoryService)
+            ICalculatorService calculatorService, IShapeService shapeService, IUserHistoryService userHistoryService, IGameService gameService)
         {
             int choice;
 
@@ -41,7 +42,7 @@ namespace Milles_Project1.Menus
                             CalculatorMenu.ShowCalculatorMenu(calculatorContext, calculatorService);
                             break;
                         case 3:
-                            GameMenu.ShowGameMenu(dbContext);
+                            GameMenu.ShowGameMenu(dbContext, gameService);
                             break;
                         case 4:
                             UserHistoryMenu.ShowUserHistoryMenu(dbContext, userHistoryService);

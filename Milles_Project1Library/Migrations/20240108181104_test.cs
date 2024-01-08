@@ -35,12 +35,12 @@ namespace Milles_Project1Library.Migrations
                 {
                     GameId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlayerMove = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ComputerMove = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Result = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlayerMove = table.Column<int>(type: "int", nullable: false),
+                    ComputerMove = table.Column<int>(type: "int", nullable: false),
+                    Result = table.Column<int>(type: "int", nullable: false),
                     GameDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AverageWins = table.Column<double>(type: "float", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    AverageWins = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

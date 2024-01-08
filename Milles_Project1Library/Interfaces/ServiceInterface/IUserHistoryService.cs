@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Milles_Project1Library.Interfaces
+namespace Milles_Project1Library.Interfaces.ServiceInterface
 {
     public interface IUserHistoryService
     {

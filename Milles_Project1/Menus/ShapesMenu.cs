@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Milles_Project1Library.Services;
 using Milles_Project1Library.Data;
+using Milles_Project1Library.Interfaces.ServiceInterface;
 
 namespace Milles_Project1.Menus
 {

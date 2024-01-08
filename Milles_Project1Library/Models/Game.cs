@@ -9,16 +9,16 @@ namespace Milles_Project1Library.Models
 {
     public enum Move
     {
-        Sten,
-        Sax,
-        Påse
+        Rock,
+        Paper,
+        Scissor
     }
 
     public enum GameResult
     {
-        Vinst,
-        Förlust,
-        Oavgjort
+        Win,
+        Loss,
+        Draw
     }
     public class Game
     {

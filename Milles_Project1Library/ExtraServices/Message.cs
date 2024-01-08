@@ -22,6 +22,13 @@ namespace Milles_Project1Library.ExtraServices
             Console.ResetColor();
         }
 
+        public static void DarkYellowMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
         //public static void MillesHotelMessage()
         //{
         //    Console.ForegroundColor = ConsoleColor.DarkMagenta;
