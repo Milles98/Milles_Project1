@@ -24,8 +24,9 @@ namespace Milles_Project1
                 var shapeContext = container.Resolve<IShapeContext>();
                 var calculatorContext = container.Resolve<ICalculatorContext>();
                 var calculatorService = container.Resolve<ICalculatorService>();
+                var shapeService = container.Resolve<IShapeService>();
 
-                var app = new App(dbContext, shapeContext, calculatorContext, calculatorService);
+                var app = new App(dbContext, shapeContext, calculatorContext, calculatorService, shapeService);
                 app.RunApplication();
             }
         }

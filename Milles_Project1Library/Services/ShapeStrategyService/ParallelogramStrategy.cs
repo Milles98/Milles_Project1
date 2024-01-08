@@ -1,4 +1,5 @@
-﻿using Milles_Project1Library.Interfaces;
+﻿using Milles_Project1Library.ExtraServices;
+using Milles_Project1Library.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
             }
             else
             {
-                // Felhantering om antalet dimensioner inte är korrekt för en parallelogram
+                Message.ErrorMessage("Incorrect dimensions for a parallelogram");
             }
         }
 

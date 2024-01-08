@@ -12,7 +12,8 @@ namespace Milles_Project1.Menus
 {
     public static class MainMenu
     {
-        public static void ShowMenu(ProjectDbContext dbContext, IShapeContext shapeContext, ICalculatorContext calculatorContext, ICalculatorService calculatorService)
+        public static void ShowMenu(ProjectDbContext dbContext, IShapeContext shapeContext,
+            ICalculatorContext calculatorContext, ICalculatorService calculatorService, IShapeService shapeService)
         {
             int choice;
 
@@ -33,7 +34,7 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            ShapesMenu.ShowShapesMenu(shapeContext);
+                            ShapesMenu.ShowShapesMenu(shapeContext, shapeService);
                             break;
                         case 2:
                             CalculatorMenu.ShowCalculatorMenu(calculatorContext, calculatorService);
