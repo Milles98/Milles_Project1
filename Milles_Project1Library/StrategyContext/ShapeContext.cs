@@ -13,7 +13,7 @@ namespace Milles_Project1Library.StrategyContext
     public class ShapeContext : IShapeContext
     {
         private IShapeStrategy _shapeStrategy;
-        private readonly ProjectDbContext _dbContext; // Lägg till din DbContext här
+        private readonly ProjectDbContext _dbContext;
 
         public ShapeContext(ProjectDbContext dbContext)
         {
@@ -33,13 +33,10 @@ namespace Milles_Project1Library.StrategyContext
                 return;
             }
 
-            // Assume you have settings or input for the shape, e.g., side lengths, etc.
             decimal[] dimensions = GetDimensionsInput();
 
-            // Set values on _shapeStrategy based on user input
             SetShapeProperties(dimensions);
 
-            // Calculate and display the results
             decimal area = _shapeStrategy.CalculateArea();
             decimal perimeter = _shapeStrategy.CalculatePerimeter();
 
@@ -54,21 +51,17 @@ namespace Milles_Project1Library.StrategyContext
 
         private void SaveResultsToDatabase()
         {
-            // Kontrollera först om _shapeStrategy är satt
             if (_shapeStrategy == null)
             {
                 Console.WriteLine("No shape calculator selected.");
                 return;
             }
 
-            // Få typen av form från den aktuella strategin
             string shapeType = _shapeStrategy.ShapeType;
 
-            // Anta att dessa metoder är tillgängliga på din _shapeStrategy
             decimal area = _shapeStrategy.CalculateArea();
             decimal perimeter = _shapeStrategy.CalculatePerimeter();
 
-            // Skapa en ny Shape-instans med resultaten
             var resultShape = new Shape
             {
                 ShapeType = shapeType,
@@ -77,24 +70,20 @@ namespace Milles_Project1Library.StrategyContext
                 CalculationDate = DateTime.Now
             };
 
-            // Spara i databasen
             _dbContext.Shape.Add(resultShape);
             _dbContext.SaveChanges();
         }
 
         private void SaveResultsToUserHistory(decimal area, decimal perimeter)
         {
-            // Kontrollera först om _shapeStrategy är satt
             if (_shapeStrategy == null)
             {
                 Console.WriteLine("No shape calculator selected.");
                 return;
             }
 
-            // Få typen av form från den aktuella strategin
             string shapeType = _shapeStrategy.ShapeType;
 
-            // Skapa en ny UserHistory-instans med resultaten
             var userHistory = new UserHistory
             {
                 ActionType = "Shapes",
@@ -103,16 +92,12 @@ namespace Milles_Project1Library.StrategyContext
                 Description = $"ShapeType: {shapeType}, Area: {area}, Perimeter: {perimeter}"
             };
 
-            // Spara i databasen
             _dbContext.UserHistory.Add(userHistory);
             _dbContext.SaveChanges();
         }
 
         private void SetShapeProperties(decimal[] dimensions)
         {
-            // Assume you set user input values on _shapeStrategy
-            // This can vary depending on the type of shape you're working with
-            // For example, you might have methods like SetSideLength, SetHeight, etc. in your IShapeStrategy interface
             _shapeStrategy.SetDimensions(dimensions);
         }
 

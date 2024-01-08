@@ -16,26 +16,21 @@ namespace Milles_Project1.Menus
 {
     public static class ShapesMenu
     {
-        public static void ShowShapesMenu(IShapeContext shapeContext)
+        public static void ShowShapesMenu(IShapeContext shapeContext, IShapeService shapeService)
         {
-
             int choice;
 
             do
             {
                 Console.Clear();
-                Console.WriteLine("╭────────────────────────────╮");
-                Console.WriteLine("│Shapes Menu                 │");
-                Console.WriteLine("│1. Create Shape             │"); //ska vara att göra beräkning
-                Console.WriteLine("│1. Read Shape               │"); //läsa alla beräkningar
-                Console.WriteLine("│1. Update Shape             │"); //uppdatera en beräkning
-                Console.WriteLine("│1. Delete Shape             │"); //radera en beräkning
-                Console.WriteLine("│1. Calculate Rectangle      │");
-                Console.WriteLine("│2. Calculate Parallellogram │");
-                Console.WriteLine("│3. Calculate Triangle       │");
-                Console.WriteLine("│4. Calculate Rhombus        │");
-                Console.WriteLine("│0. Return to MainMenu       │");
-                Console.WriteLine("╰────────────────────────────╯");
+                Console.WriteLine("╭────────────────────╮");
+                Console.WriteLine("│ Shapes Menu        │");
+                Console.WriteLine("│1. Create Shape     │");
+                Console.WriteLine("│2. Read Shapes      │");
+                Console.WriteLine("│3. Update Shape     │");
+                Console.WriteLine("│4. Delete Shape     │");
+                Console.WriteLine("│0. Return to Menu   │");
+                Console.WriteLine("╰────────────────────╯");
 
                 Console.Write("Enter your choice: ");
                 if (int.TryParse(Console.ReadLine(), out choice))
@@ -43,20 +38,17 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            shapeContext.SetShapeCalculator(new RectangleStrategy());
-                            shapeContext.CalculateAndDisplayResults();
+                            shapeService.CreateShape();
                             break;
                         case 2:
-                            shapeContext.SetShapeCalculator(new ParallelogramStrategy());
-                            shapeContext.CalculateAndDisplayResults();
+                            shapeService.ReadShapes();
+                            Console.ReadKey();
                             break;
                         case 3:
-                            shapeContext.SetShapeCalculator(new TriangleStrategy());
-                            shapeContext.CalculateAndDisplayResults();
+                            shapeService.UpdateShape();
                             break;
                         case 4:
-                            shapeContext.SetShapeCalculator(new RhombusStrategy());
-                            shapeContext.CalculateAndDisplayResults();
+                            shapeService.DeleteShape();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");

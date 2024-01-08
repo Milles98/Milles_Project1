@@ -18,18 +18,15 @@ namespace Milles_Project1Library.Services
         {
             var builder = new ContainerBuilder();
 
-            // Register your DbContext
             builder.Register(c =>
             {
                 var dbContext = DbConfiguration.StartDatabase();
                 return dbContext;
             }).As<ProjectDbContext>().InstancePerLifetimeScope();
 
-            // Register your services
             builder.RegisterType<CalculatorContext>().As<ICalculatorContext>();
             builder.RegisterType<ShapeContext>().As<IShapeContext>();
 
-            //register calculation strategy
             builder.RegisterType<AdditionStrategy>().As<ICalculatorStrategy>();
             builder.RegisterType<DivisionStrategy>().As<ICalculatorStrategy>();
             builder.RegisterType<ModulusStrategy>().As<ICalculatorStrategy>();
@@ -37,13 +34,13 @@ namespace Milles_Project1Library.Services
             builder.RegisterType<PowerOfStrategy>().As<ICalculatorStrategy>();
             builder.RegisterType<SubtractionStrategy>().As<ICalculatorStrategy>();
 
-            // Register your strategy implementations
             builder.RegisterType<RectangleStrategy>().As<IShapeStrategy>();
             builder.RegisterType<ParallelogramStrategy>().As<IShapeStrategy>();
             builder.RegisterType<TriangleStrategy>().As<IShapeStrategy>();
             builder.RegisterType<RhombusStrategy>().As<IShapeStrategy>();
 
             builder.RegisterType<CalculatorService>().As<ICalculatorService>();
+            builder.RegisterType<ShapeService>().As<IShapeService>();
 
             return builder.Build();
         }
