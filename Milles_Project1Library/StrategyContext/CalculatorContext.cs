@@ -31,14 +31,14 @@ namespace Milles_Project1Library.StrategyContext
                 Console.Write(prompt);
             } while (!decimal.TryParse(Console.ReadLine(), out input));
 
-            return input;
+            return Math.Round(input, 2);
         }
 
         public decimal ExecuteOperation(decimal num1, decimal num2)
         {
             decimal result = _strategy.Calculate(num1, num2);
 
-            return result;
+            return Math.Round(result, 2);
         }
 
         public void SetStrategy(ICalculatorStrategy strategy)
@@ -109,7 +109,6 @@ namespace Milles_Project1Library.StrategyContext
                 Operator = _strategy.GetType().Name
             };
 
-            // Save in the database
             _dbContext.Calculator.Add(calculation);
             _dbContext.SaveChanges();
         }

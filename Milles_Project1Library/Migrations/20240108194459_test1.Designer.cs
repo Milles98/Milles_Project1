@@ -12,8 +12,8 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240108184305_test")]
-    partial class test
+    [Migration("20240108194459_test1")]
+    partial class test1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,9 @@ namespace Milles_Project1Library.Migrations
                     b.Property<DateTime>("GameDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("GameStatisticsId")
+                        .HasColumnType("int");
+
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
@@ -84,6 +87,8 @@ namespace Milles_Project1Library.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("GameId");
+
+                    b.HasIndex("GameStatisticsId");
 
                     b.ToTable("Game");
                 });
@@ -117,6 +122,34 @@ namespace Milles_Project1Library.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("GameHistory");
+                });
+
+            modelBuilder.Entity("Milles_Project1Library.Models.GameStatistics", b =>
+                {
+                    b.Property<int>("StatisticsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatisticsId"));
+
+                    b.Property<double>("AverageWins")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TotalDraws")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalGamesPlayed")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalLosses")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalWins")
+                        .HasColumnType("int");
+
+                    b.HasKey("StatisticsId");
+
+                    b.ToTable("GameStatistics");
                 });
 
             modelBuilder.Entity("Milles_Project1Library.Models.Shape", b =>
@@ -186,6 +219,15 @@ namespace Milles_Project1Library.Migrations
                     b.HasKey("UserHistoryId");
 
                     b.ToTable("UserHistory");
+                });
+
+            modelBuilder.Entity("Milles_Project1Library.Models.Game", b =>
+                {
+                    b.HasOne("Milles_Project1Library.Models.GameStatistics", "GameStatistics")
+                        .WithMany()
+                        .HasForeignKey("GameStatisticsId");
+
+                    b.Navigation("GameStatistics");
                 });
 
             modelBuilder.Entity("Milles_Project1Library.Models.GameHistory", b =>

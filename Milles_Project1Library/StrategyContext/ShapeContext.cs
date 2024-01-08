@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Milles_Project1Library.Data;
+using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces;
 using Milles_Project1Library.Interfaces.ContextInterface;
 using Milles_Project1Library.Interfaces.StrategyInterface;
@@ -42,13 +43,14 @@ namespace Milles_Project1Library.StrategyContext
             decimal area = _shapeStrategy.CalculateArea();
             decimal perimeter = _shapeStrategy.CalculatePerimeter();
 
-            Console.WriteLine($"Area: {area}");
-            Console.WriteLine($"Perimeter: {perimeter}");
+            area = Math.Round(area, 2);
+            perimeter = Math.Round(perimeter, 2);
+
+            Message.DarkYellowMessage($"\nArea: {area} cm");
+            Message.DarkYellowMessage($"Perimeter: {perimeter} cm");
 
             SaveResultsToDatabase();
             SaveResultsToUserHistory(area, perimeter);
-
-            Console.ReadKey();
         }
 
         private void SaveResultsToDatabase()
@@ -63,6 +65,9 @@ namespace Milles_Project1Library.StrategyContext
 
             decimal area = _shapeStrategy.CalculateArea();
             decimal perimeter = _shapeStrategy.CalculatePerimeter();
+
+            area = Math.Round(area, 2);
+            perimeter = Math.Round(perimeter, 2);
 
             var resultShape = new Shape
             {
@@ -88,6 +93,9 @@ namespace Milles_Project1Library.StrategyContext
             }
 
             string shapeType = _shapeStrategy.ShapeType;
+
+            area = Math.Round(area, 2);
+            perimeter = Math.Round(perimeter, 2);
 
             var userHistory = new UserHistory
             {
@@ -116,7 +124,7 @@ namespace Milles_Project1Library.StrategyContext
                 for (int i = 0; i < dimensionCount; i++)
                 {
                     string dimensionName = GetDimensionName(i + 1);
-                    dimensions[i] = GetDoubleInput($"Enter {dimensionName}: ");
+                    dimensions[i] = GetDoubleInput($"Enter {dimensionName} (cm): ");
                 }
 
                 return dimensions;
