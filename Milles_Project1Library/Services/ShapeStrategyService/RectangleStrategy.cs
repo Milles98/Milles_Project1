@@ -9,26 +9,26 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 {
     public class RectangleStrategy : IShapeStrategy, IShapeDimensionsProvider
     {
-        private decimal _width;
-        private decimal _height;
+        public decimal Base { get; set; }
+        public decimal Height { get; set; }
         public string ShapeType => "Rectangle";
 
         public decimal CalculateArea()
         {
-            return _width * _height;
+            return Height * Base;
         }
 
         public decimal CalculatePerimeter()
         {
-            return 2 * (_width + _height);
+            return 2 * (Height + Base);
         }
 
         public void SetDimensions(params decimal[] dimensions)
         {
             if (dimensions.Length == 2)
             {
-                _width = dimensions[0];
-                _height = dimensions[1];
+                Height = dimensions[0];
+                Base = dimensions[1];
             }
             else
             {
