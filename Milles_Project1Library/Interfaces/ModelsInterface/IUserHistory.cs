@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using Milles_Project1Library.Interfaces.ModelsInterface;
 
-namespace Milles_Project1Library.Models
+namespace Milles_Project1Library.Interfaces.ModelsInterface
 {
-    public class UserHistory : IUserHistory
+    public interface IUserHistory
     {
-        [Key]
         public int UserHistoryId { get; set; }
         public string ActionType { get; set; } // Exempel: Shapes, Calculator, Game
         public string Action { get; set; } // Exempel: C, R, U, D, R (för att se tidigare spel)
         public DateTime DatePerformed { get; set; }
         public string Description { get; set; }
-
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
     }
 }

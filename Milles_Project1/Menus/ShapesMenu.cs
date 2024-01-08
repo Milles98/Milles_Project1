@@ -1,5 +1,4 @@
 ﻿using Milles_Project1Library.ExtraServices;
-using Milles_Project1Library.Interfaces;
 using Milles_Project1Library.Services.ShapeStrategyService;
 using Milles_Project1Library.StrategyContext;
 using System;
@@ -12,6 +11,7 @@ using Autofac;
 using Milles_Project1Library.Services;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.Interfaces.ServiceInterface;
+using Milles_Project1Library.Interfaces.ContextInterface;
 
 namespace Milles_Project1.Menus
 {

@@ -1,6 +1,7 @@
 ﻿using Milles_Project1Library.Data;
-using Milles_Project1Library.Interfaces;
+using Milles_Project1Library.Interfaces.ContextInterface;
 using Milles_Project1Library.Interfaces.ServiceInterface;
+using Milles_Project1Library.Interfaces.StrategyInterface;
 using Milles_Project1Library.Models;
 using Milles_Project1Library.Services.ShapeStrategyService;
 using System;

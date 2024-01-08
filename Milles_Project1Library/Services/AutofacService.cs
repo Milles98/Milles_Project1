@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Milles_Project1Library.StrategyContext;
-using Milles_Project1Library.Interfaces;
 using Milles_Project1Library.Services.ShapeStrategyService;
 using Milles_Project1Library.Services.CalculatorStrategyService;
 using Milles_Project1Library.Interfaces.ServiceInterface;
+using Milles_Project1Library.Interfaces.StrategyInterface;
+using Milles_Project1Library.Interfaces.ContextInterface;
 
 namespace Milles_Project1Library.Services
 {
