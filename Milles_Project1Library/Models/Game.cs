@@ -36,5 +36,7 @@ namespace Milles_Project1Library.Models
         public bool? IsActive { get; set; }
 
         public double AverageWins { get; set; }
+
+        public virtual List<GameHistory> GameHistories { get; set; }
     }
 }

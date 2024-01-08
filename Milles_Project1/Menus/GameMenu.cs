@@ -23,7 +23,7 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("│Rock Paper Scissors Menu  │");
                 Console.WriteLine("│1. Play Game              │");
                 Console.WriteLine("│2. Game Rules             │");
-                Console.WriteLine("│2. View Previous Games    │");
+                Console.WriteLine("│3. View Previous Games    │");
                 Console.WriteLine("│0. Return to MainMenu     │");
                 Console.WriteLine("╰──────────────────────────╯");
 
@@ -36,8 +36,10 @@ namespace Milles_Project1.Menus
                             gameService.PlayGame();
                             break;
                         case 2:
+                            gameService.GameRules();
                             break;
                         case 3:
+                            gameService.ViewPreviousGames();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");

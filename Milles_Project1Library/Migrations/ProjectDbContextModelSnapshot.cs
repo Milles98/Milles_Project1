@@ -85,6 +85,37 @@ namespace Milles_Project1Library.Migrations
                     b.ToTable("Game");
                 });
 
+            modelBuilder.Entity("Milles_Project1Library.Models.GameHistory", b =>
+                {
+                    b.Property<int>("GameHistoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GameHistoryId"));
+
+                    b.Property<DateTime>("GameEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoundsTaken")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Winner")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WinningMove")
+                        .HasColumnType("int");
+
+                    b.HasKey("GameHistoryId");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("GameHistory");
+                });
+
             modelBuilder.Entity("Milles_Project1Library.Models.Shape", b =>
                 {
                     b.Property<int>("ShapeId")
@@ -152,6 +183,22 @@ namespace Milles_Project1Library.Migrations
                     b.HasKey("UserHistoryId");
 
                     b.ToTable("UserHistory");
+                });
+
+            modelBuilder.Entity("Milles_Project1Library.Models.GameHistory", b =>
+                {
+                    b.HasOne("Milles_Project1Library.Models.Game", "Game")
+                        .WithMany("GameHistories")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("Milles_Project1Library.Models.Game", b =>
+                {
+                    b.Navigation("GameHistories");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
-﻿using Milles_Project1Library.ExtraServices;
+﻿using Microsoft.EntityFrameworkCore;
+using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Models;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,8 @@ namespace Milles_Project1Library.Interfaces.ServiceInterface
     public interface IGameService
     {
         public void PlayGame();
+        public void ViewPreviousGames();
+
+        public void GameRules();
     }
 }
