@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using Milles_Project1Library.Interfaces.ModelsInterface;
 
-namespace Milles_Project1Library.Models
+namespace Milles_Project1Library.Interfaces.ModelsInterface
 {
-    public class Shape : IShape
+    public interface IShape
     {
-        [Key]
         public int ShapeId { get; set; }
 
         public string ShapeType { get; set; }
@@ -27,6 +24,6 @@ namespace Milles_Project1Library.Models
 
         public DateTime CalculationDate { get; set; }
 
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
     }
 }

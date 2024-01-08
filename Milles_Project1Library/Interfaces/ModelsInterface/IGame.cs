@@ -1,29 +1,15 @@
-﻿using System;
+﻿using Milles_Project1Library.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using Milles_Project1Library.Interfaces.ModelsInterface;
 
-namespace Milles_Project1Library.Models
+namespace Milles_Project1Library.Interfaces.ModelsInterface
 {
-    public enum Move
+    public interface IGame
     {
-        Rock,
-        Paper,
-        Scissor
-    }
-
-    public enum GameResult
-    {
-        Win,
-        Loss,
-        Draw
-    }
-    public class Game : IGame
-    {
-        [Key]
         public int GameId { get; set; }
 
         public Move PlayerMove { get; set; }
@@ -37,7 +23,5 @@ namespace Milles_Project1Library.Models
         public bool? IsActive { get; set; }
 
         public double AverageWins { get; set; }
-
-        public virtual List<GameHistory> GameHistories { get; set; }
     }
 }

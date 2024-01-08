@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using Milles_Project1Library.Interfaces.ModelsInterface;
 
-namespace Milles_Project1Library.Models
+namespace Milles_Project1Library.Interfaces.ModelsInterface
 {
-    public class Calculator : ICalculator
+    public interface ICalculator
     {
-        [Key]
         public int CalculationId { get; set; }
 
         public decimal Number1 { get; set; }
@@ -22,6 +20,6 @@ namespace Milles_Project1Library.Models
 
         public DateTime CalculationDate { get; set; }
 
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
     }
 }
