@@ -9,29 +9,30 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 {
     public class TriangleStrategy : IShapeStrategy, IShapeDimensionsProvider
     {
-        private decimal[] sides = new decimal[3];
+        public decimal Base { get; set; }
+        public decimal Height { get; set; }
+        public decimal SideLength { get; set; }
         public string ShapeType => "Triangle";
 
         public decimal CalculateArea()
         {
-            // Heron's formula for area of a triangle
-            var s = CalculatePerimeter() / 2;
-            return (decimal)Math.Sqrt((double)(s * (s - sides[0]) * (s - sides[1]) * (s - sides[2])));
+            // Använd exempelvis Herons formel för att beräkna området av en triangel
+            decimal s = (Base + Height + SideLength) / 2;
+            return (decimal)Math.Sqrt((double)(s * (s - Base) * (s - Height) * (s - SideLength)));
         }
 
         public decimal CalculatePerimeter()
         {
-            return sides.Sum();
+            return Base + Height + SideLength;
         }
 
         public void SetDimensions(params decimal[] dimensions)
         {
             if (dimensions.Length == 3)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    sides[i] = dimensions[i];
-                }
+                Base = dimensions[0];
+                Height = dimensions[1];
+                SideLength = dimensions[2];
             }
             else
             {
