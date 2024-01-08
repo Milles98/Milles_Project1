@@ -38,3 +38,5 @@ Dag 4
 La till IShapeService, ShapeService och började implementera CRUD för Shapes.
 
 Sedan la jag till en GameService klass som skulle hålla alla metoder för spelet att fungera.
+Skapade en GameHistory entitet, la till relevanta attributer.
+Började skapa metoderna i GameService, exempelvis PlayGame, ViewPreviousGames, GameRules.
