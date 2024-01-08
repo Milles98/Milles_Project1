@@ -99,8 +99,14 @@ namespace Milles_Project1Library.Migrations
                     b.Property<decimal>("Area")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("Base")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Height")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -111,6 +117,9 @@ namespace Milles_Project1Library.Migrations
                     b.Property<string>("ShapeType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SideLength")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ShapeId");
 

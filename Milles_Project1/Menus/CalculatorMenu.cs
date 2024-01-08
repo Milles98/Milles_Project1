@@ -37,7 +37,7 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            calculatorContext.PerformCreateCalculation();
+                            calculatorService.PerformCreateCalculation();
                             break;
                         case 2:
                             calculatorService.ReadCalculation();

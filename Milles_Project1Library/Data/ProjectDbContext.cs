@@ -43,6 +43,15 @@ namespace Milles_Project1Library.Data
             modelBuilder.Entity<Shape>()
                 .Property(s => s.Perimeter)
                 .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Shape>()
+                .Property(s => s.Base)
+                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Shape>()
+                .Property(s => s.Height)
+                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Shape>()
+                .Property(s => s.SideLength)
+                .HasColumnType("decimal(18,2)");
 
             base.OnModelCreating(modelBuilder);
         }
