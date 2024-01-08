@@ -24,13 +24,14 @@ namespace Milles_Project1Library.Services
             int playerWins = 0;
             int computerWins = 0;
             int rounds = 0;
+            Game lastGame = null;
 
             do
             {
                 Console.Clear();
                 Console.WriteLine($"╭──────────────────────────╮");
                 Console.WriteLine($"│Rock Paper Scissors Game  │");
-                Console.WriteLine($"│ Round {rounds + 1}                  │");
+                Message.DarkYellowMessage($"│ Round {rounds + 1}                  │");
                 Console.WriteLine($"│ Player Wins: {playerWins}           │");
                 Console.WriteLine($"│ Computer Wins: {computerWins}         │");
                 Console.WriteLine($"╰──────────────────────────╯");
@@ -51,8 +52,6 @@ namespace Milles_Project1Library.Services
 
                         GameResult result = DetermineResult(playerMove, computerMove);
 
-                        SaveGame(playerMove, computerMove, result);
-
                         DisplayGameResult(playerMove, computerMove, result);
 
                         if (result == GameResult.Win)
@@ -63,6 +62,15 @@ namespace Milles_Project1Library.Services
                         {
                             computerWins++;
                         }
+
+                        lastGame = new Game
+                        {
+                            PlayerMove = playerMove,
+                            ComputerMove = computerMove,
+                            Result = result,
+                            GameDate = DateTime.Now,
+                            IsActive = true
+                        };
 
                         rounds++;
 
@@ -91,6 +99,12 @@ namespace Milles_Project1Library.Services
             string overallWinner = (playerWins >= 2) ? "Player" : "Computer";
 
             Message.InputSuccessMessage($"\nOverall Winner: {overallWinner}");
+
+            // Save only the last game played
+            if (lastGame != null)
+            {
+                SaveGameHistory(lastGame, rounds);
+            }
 
             Console.Write("\nDo you want to play again? (Y/N): ");
             string playAgainInput = Console.ReadLine();
@@ -127,20 +141,27 @@ namespace Milles_Project1Library.Services
             }
         }
 
-        private void SaveGame(Move playerMove, Move computerMove, GameResult result)
+        private void SaveGameHistory(Game game, int rounds)
         {
-            var newGame = new Game
+            // Save the Game record first
+            _dbContext.Game.Add(game);
+            _dbContext.SaveChanges();
+
+            // Create a new GameHistory record with the generated GameId
+            var newGameHistory = new GameHistory
             {
-                PlayerMove = playerMove,
-                ComputerMove = computerMove,
-                Result = result,
-                GameDate = DateTime.Now,
-                IsActive = true
+                GameId = game.GameId,
+                Winner = (game.Result == GameResult.Win) ? "Player" : (game.Result == GameResult.Loss) ? "Computer" : "Draw",
+                RoundsTaken = rounds,
+                WinningMove = (game.Result == GameResult.Win) ? game.PlayerMove : game.ComputerMove,
+                GameEndDate = DateTime.Now
             };
 
-            _dbContext.Game.Add(newGame);
+            // Save the GameHistory record
+            _dbContext.GameHistory.Add(newGameHistory);
             _dbContext.SaveChanges();
         }
+
 
         private void DisplayGameResult(Move playerMove, Move computerMove, GameResult result)
         {
@@ -161,6 +182,74 @@ namespace Milles_Project1Library.Services
                 default:
                     break;
             }
+        }
+
+        public void ViewPreviousGames()
+        {
+            Console.Clear();
+            Console.WriteLine("╭───────────────────────────────╮");
+            Console.WriteLine("│   View Previous Games         │");
+            Console.WriteLine("╰───────────────────────────────╯");
+
+            var previousGames = _dbContext.Game.OrderByDescending(g => g.GameDate).ToList();
+
+            if (previousGames.Any())
+            {
+                foreach (var game in previousGames)
+                {
+                    Console.WriteLine($"Game ID: {game.GameId}");
+                    Console.WriteLine($"Date: {game.GameDate}");
+                    Console.WriteLine($"Your Last Move: {game.PlayerMove}");
+                    Console.WriteLine($"Computer's Last Move: {game.ComputerMove}");
+                    Console.WriteLine($"Final Result: {game.Result}");
+
+                    var gameHistory = _dbContext.GameHistory.FirstOrDefault(gh => gh.GameId == game.GameId);
+
+                    if (gameHistory != null)
+                    {
+                        Console.WriteLine($"Winner: {gameHistory.Winner}");
+                        Console.WriteLine($"Rounds Taken: {gameHistory.RoundsTaken}");
+                        Console.WriteLine($"Winning Move: {gameHistory.WinningMove}");
+                        Console.WriteLine($"Game End Date: {gameHistory.GameEndDate}");
+                    }
+
+                    Console.WriteLine($"-----------------------------");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No previous games found.");
+            }
+
+            Console.WriteLine("\nPress Enter to continue...");
+            Console.ReadLine();
+        }
+
+        public void GameRules()
+        {
+            Console.Clear();
+            Console.WriteLine("╭───────────────────────────────╮");
+            Console.WriteLine("│      Rock-Paper-Scissors      │");
+            Console.WriteLine("│         How to Play           │");
+            Console.WriteLine("╰───────────────────────────────╯");
+
+            Console.WriteLine("Rock-Paper-Scissors is a game played to settle disputes between two people.");
+            Console.WriteLine("It's often taught to children to help them resolve arguments without adult intervention.");
+            Console.WriteLine("However, the game involves an element of skill that requires quick thinking and reasoning.");
+
+            Console.WriteLine("\nThe game is played with three possible hand signals:");
+            Console.WriteLine("- Rock: A closed fist");
+            Console.WriteLine("- Paper: A flat hand with fingers and thumb extended, palm facing downward");
+            Console.WriteLine("- Scissors: A fist with the index and middle fingers fully extended");
+
+            Console.WriteLine("\nGame Rules:");
+            Console.WriteLine("- Rock wins against scissors");
+            Console.WriteLine("- Paper wins against rock");
+            Console.WriteLine("- Scissors wins against paper");
+            Console.WriteLine("- If both players throw the same hand signal, it's considered a tie");
+
+            Console.WriteLine("\nPress Enter to continue...");
+            Console.ReadLine();
         }
     }
 }

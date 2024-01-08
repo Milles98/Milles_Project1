@@ -23,6 +23,7 @@ namespace Milles_Project1Library.Data
         public DbSet<Game> Game { get; set; }
         public DbSet<Shape> Shape { get; set; }
         public DbSet<UserHistory> UserHistory { get; set; }
+        public DbSet<GameHistory> GameHistory { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // För Calculator

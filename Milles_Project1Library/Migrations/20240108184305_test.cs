@@ -83,6 +83,34 @@ namespace Milles_Project1Library.Migrations
                 {
                     table.PrimaryKey("PK_UserHistory", x => x.UserHistoryId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "GameHistory",
+                columns: table => new
+                {
+                    GameHistoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GameId = table.Column<int>(type: "int", nullable: false),
+                    Winner = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoundsTaken = table.Column<int>(type: "int", nullable: false),
+                    WinningMove = table.Column<int>(type: "int", nullable: false),
+                    GameEndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GameHistory", x => x.GameHistoryId);
+                    table.ForeignKey(
+                        name: "FK_GameHistory_Game_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Game",
+                        principalColumn: "GameId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GameHistory_GameId",
+                table: "GameHistory",
+                column: "GameId");
         }
 
         /// <inheritdoc />
@@ -92,13 +120,16 @@ namespace Milles_Project1Library.Migrations
                 name: "Calculator");
 
             migrationBuilder.DropTable(
-                name: "Game");
+                name: "GameHistory");
 
             migrationBuilder.DropTable(
                 name: "Shape");
 
             migrationBuilder.DropTable(
                 name: "UserHistory");
+
+            migrationBuilder.DropTable(
+                name: "Game");
         }
     }
 }
