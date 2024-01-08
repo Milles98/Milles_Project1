@@ -1,5 +1,6 @@
 ﻿using Milles_Project1Library.Data;
 using Milles_Project1Library.Interfaces;
+using Milles_Project1Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,17 +33,17 @@ namespace Milles_Project1Library.Services
             Console.Clear();
             var shape = _dbContext.Shape.ToList();
 
-            Console.WriteLine("╭───────────────╮───────────────────╮───────────────╮─────────────╮───────────────────╮");
-            Console.WriteLine("│ Shape ID      | ShapeType         | Area          | Perimeter   | Date              │");
-            Console.WriteLine("├───────────────┼───────────────────┼───────────────┼─────────────┼───────────────────┤");
+            Console.WriteLine("╭──────────╮──────────────╮───────────────╮─────────────╮─────────────╮───────────╮───────────╮───────────────────╮");
+            Console.WriteLine("│ Shape ID | ShapeType    | Base          | Height      | SideLength  | Area      │ Perimeter │ Date              │");
+            Console.WriteLine("├──────────┼──────────────┼───────────────┼─────────────┼─────────────┼───────────┤───────────┤───────────────────┤");
 
             foreach (var s in shape)
             {
-                Console.WriteLine($"│{s.ShapeId,-15}│{s.ShapeType,-19}│{s.Area,-15}│{s.Perimeter,-13}│{s.CalculationDate,-13}│");
-                Console.WriteLine("├───────────────┼───────────────────┼───────────────┼─────────────┼───────────────────┤");
+                Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{s.Base,-15}│{s.Height,-13}│{s.SideLength,-13}│{s.Area,-11}│{s.Perimeter,-11}│{s.CalculationDate,-19}│");
+                Console.WriteLine("├──────────┼──────────────┼───────────────┼─────────────┼─────────────┼───────────┤───────────┤───────────────────┤");
             }
 
-            Console.WriteLine("╰───────────────╯───────────────────╯───────────────╯─────────────╯───────────────────╯");
+            Console.WriteLine("╰──────────╯──────────────╯───────────────╯─────────────╯─────────────╯───────────╯───────────╯───────────────────╯");
         }
 
         public void UpdateShape()
