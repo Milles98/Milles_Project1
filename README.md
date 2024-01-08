@@ -32,3 +32,7 @@ Jag uppdaterade min meny i CalculatorMenu, skapade en CalculatorService klass f�
 Jag uppdaterade CalculatorContext för att hantera CRUD som skulle anropas i CalculatorService klassen.
 
 Fixade även IsActive attribut som jag hade glömt till alla mina entiteter!
+
+Dag 4
+
+La till IShapeService, ShapeService och började implementera CRUD för Shapes.
