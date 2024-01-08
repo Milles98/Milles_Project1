@@ -255,7 +255,7 @@ namespace Milles_Project1Library.Services
             }
             else
             {
-                Console.WriteLine("No previous games found.");
+                Message.ErrorMessage("No previous games found.");
             }
 
             Console.WriteLine("\nPress Enter to continue...");

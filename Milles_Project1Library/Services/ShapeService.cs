@@ -1,4 +1,5 @@
 ﻿using Milles_Project1Library.Data;
+using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ContextInterface;
 using Milles_Project1Library.Interfaces.ServiceInterface;
 using Milles_Project1Library.Interfaces.StrategyInterface;
@@ -117,7 +118,7 @@ namespace Milles_Project1Library.Services
                     }
                     else
                     {
-                        Console.WriteLine("Invalid input for Base. The Base remains unchanged.");
+                        Message.ErrorMessage("Invalid input for Base. The Base remains unchanged.");
                     }
 
                     Console.Write("Enter the new value for Height: ");
@@ -129,7 +130,7 @@ namespace Milles_Project1Library.Services
                     }
                     else
                     {
-                        Console.WriteLine("Invalid input for Height. The Height remains unchanged.");
+                        Message.ErrorMessage("Invalid input for Height. The Height remains unchanged.");
                     }
 
                     Console.Write("Enter the new value for Side Length: ");
@@ -141,21 +142,21 @@ namespace Milles_Project1Library.Services
                     }
                     else
                     {
-                        Console.WriteLine("Invalid input for Side Length. The Side Length remains unchanged.");
+                        Message.ErrorMessage("Invalid input for Side Length. The Side Length remains unchanged.");
                     }
 
                     SaveResultsToDatabase(shape);
 
-                    Console.WriteLine("Shape updated successfully!");
+                    Message.InputSuccessMessage("Shape updated successfully!");
                 }
                 else
                 {
-                    Console.WriteLine("Shape not found.");
+                    Message.ErrorMessage("Shape not found.");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid input for Shape ID. Please enter a valid number.");
+                Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number.");
             }
 
             Console.ReadKey();
@@ -177,16 +178,16 @@ namespace Milles_Project1Library.Services
 
                     DeleteShapeFromDatabase(shape);
 
-                    Console.WriteLine("Shape deleted successfully!");
+                    Message.InputSuccessMessage("Shape deleted successfully!");
                 }
                 else
                 {
-                    Console.WriteLine("Shape not found.");
+                    Message.ErrorMessage("Shape not found.");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid input for Shape ID. Please enter a valid number.");
+                Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number.");
             }
 
             Console.ReadKey();
@@ -196,7 +197,7 @@ namespace Milles_Project1Library.Services
         {
             if (_shapeStrategy == null)
             {
-                Console.WriteLine("No shape calculator selected.");
+                Message.ErrorMessage("No shape calculator selected.");
                 return;
             }
 

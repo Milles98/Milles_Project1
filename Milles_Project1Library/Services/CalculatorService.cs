@@ -58,7 +58,7 @@ namespace Milles_Project1Library.Services
 
                     _calculatorContext.SaveCalculationToDatabase(num1, num2, result);
 
-                    Console.WriteLine("Calculation saved to database successfully!");
+                    Message.InputSuccessMessage("Calculation saved to database successfully!");
                 }
                 else
                 {
@@ -138,27 +138,27 @@ namespace Milles_Project1Library.Services
                             newNum2 = Math.Round(newNum2, 2);
 
                             UpdateCalculationInDatabase(calculation, newNum1, newNum2);
-                            Console.WriteLine("Calculation updated successfully!");
+                            Message.InputSuccessMessage("Calculation updated successfully!");
                             return;
                         }
                         else
                         {
-                            Console.WriteLine("Invalid input for Number2. Please enter a valid number.");
+                            Message.ErrorMessage("Invalid input for Number2. Please enter a valid number.");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Invalid input for Number1. Please enter a valid number.");
+                        Message.ErrorMessage("Invalid input for Number1. Please enter a valid number.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Calculation not found.");
+                    Message.ErrorMessage("Calculation not found.");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid input for Calculator ID. Please enter a valid number.");
+                Message.ErrorMessage("Invalid input for Calculator ID. Please enter a valid number.");
             }
 
             Console.ReadKey();
@@ -174,17 +174,17 @@ namespace Milles_Project1Library.Services
                 if (calculation != null)
                 {
                     DeleteCalculationFromDatabase(calculation);
-                    Console.WriteLine("Calculation deleted successfully!");
+                    Message.InputSuccessMessage("Calculation deleted successfully!");
                     return;
                 }
                 else
                 {
-                    Console.WriteLine("Calculation not found.");
+                    Message.ErrorMessage("Calculation not found.");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid input for Calculator ID. Please enter a valid number.");
+                Message.ErrorMessage("Invalid input for Calculator ID. Please enter a valid number.");
             }
 
             Console.ReadKey();
