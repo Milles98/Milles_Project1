@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Milles_Project1Library.Interfaces.ServiceInterface;
 
 namespace Milles_Project1
 {
@@ -32,10 +33,11 @@ namespace Milles_Project1
                 var calculatorService = scope.Resolve<ICalculatorService>();
                 var shapeService = scope.Resolve<IShapeService>();
                 var userHistoryService = scope.Resolve<IUserHistoryService>();
+                var gameService = scope.Resolve<IGameService>();
 
                 while (true)
                 {
-                    MainMenu.ShowMenu(dbContext, shapeContext, calculatorContext, calculatorService, shapeService, userHistoryService);
+                    MainMenu.ShowMenu(dbContext, shapeContext, calculatorContext, calculatorService, shapeService, userHistoryService, gameService);
                 }
             }
         }

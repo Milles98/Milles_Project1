@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Milles_Project1Library.Data;
+using Milles_Project1Library.Interfaces.ServiceInterface;
 
 namespace Milles_Project1.Menus
 {
     public static class GameMenu
     {
-        public static void ShowGameMenu(ProjectDbContext dbContext)
+        public static void ShowGameMenu(ProjectDbContext dbContext, IGameService gameService)
         {
             int choice;
 
@@ -22,6 +23,7 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("│Rock Paper Scissors Menu  │");
                 Console.WriteLine("│1. Play Game              │");
                 Console.WriteLine("│2. Game Rules             │");
+                Console.WriteLine("│2. View Previous Games    │");
                 Console.WriteLine("│0. Return to MainMenu     │");
                 Console.WriteLine("╰──────────────────────────╯");
 
@@ -31,6 +33,11 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
+                            gameService.PlayGame();
+                            break;
+                        case 2:
+                            break;
+                        case 3:
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");
