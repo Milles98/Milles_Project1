@@ -1,6 +1,7 @@
 ﻿using Milles_Project1Library.Data;
 using Milles_Project1Library.Interfaces;
 using Milles_Project1Library.Models;
+using Milles_Project1Library.Services.ShapeStrategyService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,58 @@ namespace Milles_Project1Library.Services
             _shapeContext = shapeContext;
         }
 
+        public IEnumerable<string> GetAvailableShapeTypes()
+        {
+            // Return a list of available shape types
+            return new List<string> { "Parallelogram", "Rectangle", "Rhombus", "Triangle" };
+        }
+
+        private IShapeStrategy GetShapeStrategy(string shapeType)
+        {
+            switch (shapeType.ToLower()) // Convert to lowercase for case-insensitive comparison
+            {
+                case "parallelogram":
+                    return new ParallelogramStrategy();
+                case "rectangle":
+                    return new RectangleStrategy();
+                case "rhombus":
+                    return new RhombusStrategy();
+                case "triangle":
+                    return new TriangleStrategy();
+                default:
+                    throw new ArgumentException($"Unsupported shape type: {shapeType}");
+            }
+        }
+
         public void CreateShape()
         {
             Console.Clear();
+
+            // Get available shape types
+            var availableShapeTypes = GetAvailableShapeTypes();
+
+            // Prompt the user to choose a shape type
+            Console.WriteLine("Choose a shape type:");
+
+            for (int i = 0; i < availableShapeTypes.Count(); i++)
+            {
+                Console.WriteLine($"{i + 1}. {availableShapeTypes.ElementAt(i)}");
+            }
+
+            int shapeTypeChoice;
+            do
+            {
+                Console.Write("Enter the number corresponding to the shape type: ");
+            } while (!int.TryParse(Console.ReadLine(), out shapeTypeChoice) || shapeTypeChoice < 1 || shapeTypeChoice > availableShapeTypes.Count());
+
+            string selectedShapeType = availableShapeTypes.ElementAt(shapeTypeChoice - 1);
+
+            // Set the shape calculator based on the selected shape type
+            _shapeContext.SetShapeCalculator(GetShapeStrategy(selectedShapeType));
+
+            // Calculate and display results
             _shapeContext.CalculateAndDisplayResults();
+
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
         }

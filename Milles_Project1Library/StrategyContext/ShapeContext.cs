@@ -65,6 +65,9 @@ namespace Milles_Project1Library.StrategyContext
             var resultShape = new Shape
             {
                 ShapeType = shapeType,
+                Base = _shapeStrategy.Base,
+                Height = _shapeStrategy.Height,
+                SideLength = _shapeStrategy.SideLength,
                 Area = area,
                 Perimeter = perimeter,
                 CalculationDate = DateTime.Now
