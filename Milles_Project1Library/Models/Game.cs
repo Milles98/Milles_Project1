@@ -7,21 +7,34 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Milles_Project1Library.Models
 {
+    public enum Move
+    {
+        Sten,
+        Sax,
+        Påse
+    }
+
+    public enum GameResult
+    {
+        Vinst,
+        Förlust,
+        Oavgjort
+    }
     public class Game
     {
         [Key]
         public int GameId { get; set; }
 
-        public string PlayerMove { get; set; }
+        public Move PlayerMove { get; set; }
 
-        public string ComputerMove { get; set; }
+        public Move ComputerMove { get; set; }
 
-        public string Result { get; set; }
+        public GameResult Result { get; set; }
 
         public DateTime GameDate { get; set; }
 
-        public double AverageWins { get; set; }
+        public bool? IsActive { get; set; }
 
-        public bool IsActive { get; set; }
+        public double AverageWins { get; set; }
     }
 }
