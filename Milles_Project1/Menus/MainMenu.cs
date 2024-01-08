@@ -12,8 +12,8 @@ namespace Milles_Project1.Menus
 {
     public static class MainMenu
     {
-        public static void ShowMenu(ProjectDbContext dbContext, IShapeContext shapeContext,
-            ICalculatorContext calculatorContext, ICalculatorService calculatorService, IShapeService shapeService)
+        public static void ShowMenu(ProjectDbContext dbContext, IShapeContext shapeContext, ICalculatorContext calculatorContext,
+            ICalculatorService calculatorService, IShapeService shapeService, IUserHistoryService userHistoryService)
         {
             int choice;
 
@@ -25,6 +25,7 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("│ 1. Shapes               │");
                 Console.WriteLine("│ 2. Calculator           │");
                 Console.WriteLine("│ 3. Rock Paper Scissors  │");
+                Console.WriteLine("│ 4. User History         │");
                 Console.WriteLine("│ 0. Exit Program         │");
                 Console.WriteLine("╰─────────────────────────╯");
 
@@ -41,6 +42,9 @@ namespace Milles_Project1.Menus
                             break;
                         case 3:
                             GameMenu.ShowGameMenu(dbContext);
+                            break;
+                        case 4:
+                            UserHistoryMenu.ShowUserHistoryMenu(dbContext, userHistoryService);
                             break;
                         case 0:
                             Console.WriteLine("Exiting program...");
