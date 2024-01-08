@@ -21,6 +21,6 @@ namespace Milles_Project1Library.Models
 
         public DateTime CalculationDate { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
