@@ -11,6 +11,7 @@ namespace Milles_Project1Library.Interfaces
 {
     public interface ICalculatorService
     {
+        public void PerformCreateCalculation();
         public void ReadCalculation();
 
         public void UpdateCalculation();

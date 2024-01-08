@@ -12,7 +12,7 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240107095121_test")]
+    [Migration("20240108065635_test")]
     partial class test
     {
         /// <inheritdoc />
@@ -102,8 +102,14 @@ namespace Milles_Project1Library.Migrations
                     b.Property<decimal>("Area")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("Base")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Height")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -114,6 +120,9 @@ namespace Milles_Project1Library.Migrations
                     b.Property<string>("ShapeType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SideLength")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ShapeId");
 
