@@ -115,13 +115,29 @@ namespace Milles_Project1Library.StrategyContext
 
                 for (int i = 0; i < dimensionCount; i++)
                 {
-                    dimensions[i] = GetDoubleInput($"Enter dimension {i + 1}:");
+                    string dimensionName = GetDimensionName(i + 1);
+                    dimensions[i] = GetDoubleInput($"Enter {dimensionName}: ");
                 }
 
                 return dimensions;
             }
 
             return Array.Empty<decimal>();
+        }
+
+        private string GetDimensionName(int dimensionIndex)
+        {
+            switch (dimensionIndex)
+            {
+                case 1:
+                    return "Base";
+                case 2:
+                    return "Height";
+                case 3:
+                    return "SideLength";
+                default:
+                    return "Dimension";
+            }
         }
 
         private decimal GetDoubleInput(string prompt)

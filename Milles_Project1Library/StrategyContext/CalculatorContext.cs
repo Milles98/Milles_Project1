@@ -93,23 +93,20 @@ namespace Milles_Project1Library.StrategyContext
 
         public void SaveCalculationToDatabase(decimal num1, decimal num2, decimal result)
         {
-            // Save calculation details
             SaveCalculationDetails(num1, num2, result);
 
-            // Save calculation history
             SaveCalculationHistory(result);
         }
 
         private void SaveCalculationDetails(decimal num1, decimal num2, decimal result)
         {
-            // Create a new instance of Calculator
             var calculation = new Calculator
             {
                 Number1 = num1,
                 Number2 = num2,
                 Result = result,
                 CalculationDate = DateTime.Now,
-                Operator = _strategy.GetType().Name // Assuming _strategy is set elsewhere in your code
+                Operator = _strategy.GetType().Name
             };
 
             // Save in the database
@@ -119,7 +116,6 @@ namespace Milles_Project1Library.StrategyContext
 
         private void SaveCalculationHistory(decimal result)
         {
-            // Create a new instance of CalculationHistory
             var calculationHistory = new UserHistory
             {
                 ActionType = "Calculator",
@@ -128,7 +124,6 @@ namespace Milles_Project1Library.StrategyContext
                 Description = $"Operation: {_strategy.GetType().Name}, Result: {result}"
             };
 
-            // Save in the database
             _dbContext.UserHistory.Add(calculationHistory);
             _dbContext.SaveChanges();
         }

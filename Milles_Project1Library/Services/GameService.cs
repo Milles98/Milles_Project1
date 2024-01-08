@@ -1,4 +1,5 @@
-﻿using Milles_Project1Library.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ServiceInterface;
 using Milles_Project1Library.Models;
@@ -100,9 +101,16 @@ namespace Milles_Project1Library.Services
 
             Message.InputSuccessMessage($"\nOverall Winner: {overallWinner}");
 
-            // Save only the last game played
             if (lastGame != null)
             {
+                var gameStatistics = _dbContext.GameStatistics.FirstOrDefault();
+                if (gameStatistics == null)
+                {
+                    gameStatistics = new GameStatistics();
+                    _dbContext.GameStatistics.Add(gameStatistics);
+                }
+
+                UpdateGameStatistics(lastGame.Result, gameStatistics);
                 SaveGameHistory(lastGame, rounds);
             }
 
@@ -113,6 +121,27 @@ namespace Milles_Project1Library.Services
             {
                 PlayGame();
             }
+        }
+
+        private void UpdateGameStatistics(GameResult result, GameStatistics statistics)
+        {
+            statistics.TotalGamesPlayed++;
+            if (result == GameResult.Win)
+            {
+                statistics.TotalWins++;
+            }
+            else if (result == GameResult.Loss)
+            {
+                statistics.TotalLosses++;
+            }
+            else
+            {
+                statistics.TotalDraws++;
+            }
+
+            statistics.AverageWins = (double)statistics.TotalWins / statistics.TotalGamesPlayed;
+
+            _dbContext.SaveChanges();
         }
 
         private Move GenerateComputerMove()
@@ -143,11 +172,9 @@ namespace Milles_Project1Library.Services
 
         private void SaveGameHistory(Game game, int rounds)
         {
-            // Save the Game record first
             _dbContext.Game.Add(game);
             _dbContext.SaveChanges();
 
-            // Create a new GameHistory record with the generated GameId
             var newGameHistory = new GameHistory
             {
                 GameId = game.GameId,
@@ -157,7 +184,6 @@ namespace Milles_Project1Library.Services
                 GameEndDate = DateTime.Now
             };
 
-            // Save the GameHistory record
             _dbContext.GameHistory.Add(newGameHistory);
             _dbContext.SaveChanges();
         }
@@ -191,30 +217,41 @@ namespace Milles_Project1Library.Services
             Console.WriteLine("│   View Previous Games         │");
             Console.WriteLine("╰───────────────────────────────╯");
 
-            var previousGames = _dbContext.Game.OrderByDescending(g => g.GameDate).ToList();
+            var previousGames = _dbContext.Game
+                .OrderByDescending(g => g.GameDate)
+                .Include(g => g.GameHistories)
+                .ToList();
 
             if (previousGames.Any())
             {
                 foreach (var game in previousGames)
                 {
                     Console.WriteLine($"Game ID: {game.GameId}");
-                    Console.WriteLine($"Date: {game.GameDate}");
-                    Console.WriteLine($"Your Last Move: {game.PlayerMove}");
-                    Console.WriteLine($"Computer's Last Move: {game.ComputerMove}");
+                    Console.WriteLine($"Your Move: {game.PlayerMove}");
+                    Console.WriteLine($"Computer's Move: {game.ComputerMove}");
                     Console.WriteLine($"Final Result: {game.Result}");
 
-                    var gameHistory = _dbContext.GameHistory.FirstOrDefault(gh => gh.GameId == game.GameId);
-
-                    if (gameHistory != null)
+                    if (game.GameHistories != null && game.GameHistories.Any())
                     {
-                        Console.WriteLine($"Winner: {gameHistory.Winner}");
-                        Console.WriteLine($"Rounds Taken: {gameHistory.RoundsTaken}");
-                        Console.WriteLine($"Winning Move: {gameHistory.WinningMove}");
-                        Console.WriteLine($"Game End Date: {gameHistory.GameEndDate}");
+                        Console.WriteLine($"Winner: {game.GameHistories.LastOrDefault()?.Winner}");
+                        Console.WriteLine($"Game End Date: {game.GameHistories.LastOrDefault()?.GameEndDate}");
                     }
 
                     Console.WriteLine($"-----------------------------");
                 }
+
+                var totalWins = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Player") ?? 0);
+                var totalLosses = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Computer") ?? 0);
+                var totalDraws = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Draw") ?? 0);
+
+                var totalGames = previousGames.Sum(g => g.GameHistories?.Count() ?? 0);
+
+                var averageWins = totalGames > 0 ? (double)totalWins / totalGames : 0;
+
+                Console.WriteLine($"Total Wins: {totalWins}");
+                Console.WriteLine($"Total Losses: {totalLosses}");
+                Console.WriteLine($"Total Draws: {totalDraws}");
+                Console.WriteLine($"Average Wins Against Computer: {averageWins:P}");
             }
             else
             {

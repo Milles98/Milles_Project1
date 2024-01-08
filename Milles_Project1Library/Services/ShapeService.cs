@@ -16,22 +16,23 @@ namespace Milles_Project1Library.Services
     {
         private readonly ProjectDbContext _dbContext;
         private readonly IShapeContext _shapeContext;
+        private readonly IShapeStrategy _shapeStrategy;
 
-        public ShapeService(ProjectDbContext dbContext, IShapeContext shapeContext)
+        public ShapeService(ProjectDbContext dbContext, IShapeContext shapeContext, IShapeStrategy shapeStrategy)
         {
             _dbContext = dbContext;
             _shapeContext = shapeContext;
+            _shapeStrategy = shapeStrategy;
         }
 
         public IEnumerable<string> GetAvailableShapeTypes()
         {
-            // Return a list of available shape types
             return new List<string> { "Parallelogram", "Rectangle", "Rhombus", "Triangle" };
         }
 
         private IShapeStrategy GetShapeStrategy(string shapeType)
         {
-            switch (shapeType.ToLower()) // Convert to lowercase for case-insensitive comparison
+            switch (shapeType.ToLower())
             {
                 case "parallelogram":
                     return new ParallelogramStrategy();
@@ -50,10 +51,8 @@ namespace Milles_Project1Library.Services
         {
             Console.Clear();
 
-            // Get available shape types
             var availableShapeTypes = GetAvailableShapeTypes();
 
-            // Prompt the user to choose a shape type
             Console.WriteLine("Choose a shape type:");
 
             for (int i = 0; i < availableShapeTypes.Count(); i++)
@@ -69,10 +68,8 @@ namespace Milles_Project1Library.Services
 
             string selectedShapeType = availableShapeTypes.ElementAt(shapeTypeChoice - 1);
 
-            // Set the shape calculator based on the selected shape type
             _shapeContext.SetShapeCalculator(GetShapeStrategy(selectedShapeType));
 
-            // Calculate and display results
             _shapeContext.CalculateAndDisplayResults();
 
             Console.WriteLine("Press any key to continue.");
@@ -100,6 +97,7 @@ namespace Milles_Project1Library.Services
         public void UpdateShape()
         {
             ReadShapes();
+
             Console.Write("\nEnter the Shape ID you want to update: ");
             if (int.TryParse(Console.ReadLine(), out int shapeId))
             {
@@ -107,12 +105,39 @@ namespace Milles_Project1Library.Services
 
                 if (shape != null)
                 {
-                    // Implementera logiken för att uppdatera en geometrisk form
                     Console.WriteLine($"Updating Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
 
-                    // Här kan du använda _shapeContext för att uppdatera egenskaper på den geometriska formen
-                    // T.ex. _shapeContext.SetShapeCalculator(new TriangleStrategy());
-                    // ... och andra metoder beroende på din implementation
+                    Console.Write("Enter the new value for Base: ");
+                    if (decimal.TryParse(Console.ReadLine(), out decimal newBase))
+                    {
+                        shape.Base = newBase;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input for Base. The Base remains unchanged.");
+                    }
+
+                    Console.Write("Enter the new value for Height: ");
+                    if (decimal.TryParse(Console.ReadLine(), out decimal newHeight))
+                    {
+                        shape.Height = newHeight;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input for Height. The Height remains unchanged.");
+                    }
+
+                    Console.Write("Enter the new value for Side Length: ");
+                    if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength))
+                    {
+                        shape.SideLength = newSideLength;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input for Side Length. The Side Length remains unchanged.");
+                    }
+
+                    SaveResultsToDatabase(shape);
 
                     Console.WriteLine("Shape updated successfully!");
                 }
@@ -132,18 +157,18 @@ namespace Milles_Project1Library.Services
         public void DeleteShape()
         {
             Console.Clear();
+            ReadShapes();
             Console.Write("Enter the Shape ID you want to delete: ");
+
             if (int.TryParse(Console.ReadLine(), out int shapeId))
             {
                 var shape = _dbContext.Shape.Find(shapeId);
 
                 if (shape != null)
                 {
-                    // Implementera logiken för att ta bort en geometrisk form
                     Console.WriteLine($"Deleting Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
 
-                    // Här kan du använda _shapeContext för att ta bort den geometriska formen från context/databasen
-                    // T.ex. _shapeContext.DeleteShape(shape);
+                    DeleteShapeFromDatabase(shape);
 
                     Console.WriteLine("Shape deleted successfully!");
                 }
@@ -158,6 +183,24 @@ namespace Milles_Project1Library.Services
             }
 
             Console.ReadKey();
+        }
+
+        public void SaveResultsToDatabase(Shape resultShape)
+        {
+            if (_shapeStrategy == null)
+            {
+                Console.WriteLine("No shape calculator selected.");
+                return;
+            }
+
+            _dbContext.Shape.Add(resultShape);
+            _dbContext.SaveChanges();
+        }
+
+        private void DeleteShapeFromDatabase(Shape shape)
+        {
+            _dbContext.Shape.Remove(shape);
+            _dbContext.SaveChanges();
         }
     }
 }
