@@ -45,32 +45,21 @@ namespace Milles_Project1Library.Data
 
         private void SeedShape<T>(decimal[] specificDimensions) where T : IShapeStrategy
         {
-            if (!IsShapeSeeded<T>())
+            var strategy = Activator.CreateInstance<T>();
+            strategy.SetDimensions(specificDimensions);
+
+            var resultShape = new Shape
             {
-                var strategy = Activator.CreateInstance<T>();
-                strategy.SetDimensions(specificDimensions);
+                ShapeType = strategy.ShapeType,
+                Base = Math.Round(strategy.Base, 2),
+                Height = Math.Round(strategy.Height, 2),
+                SideLength = Math.Round(strategy.SideLength, 2),
+                Area = Math.Round(strategy.CalculateArea(), 2),
+                Perimeter = Math.Round(strategy.CalculatePerimeter(), 2),
+                CalculationDate = DateTime.Now
+            };
 
-                var resultShape = new Shape
-                {
-                    ShapeType = strategy.ShapeType,
-                    Base = Math.Round(strategy.Base, 2),
-                    Height = Math.Round(strategy.Height, 2),
-                    SideLength = Math.Round(strategy.SideLength, 2),
-                    Area = Math.Round(strategy.CalculateArea(), 2),
-                    Perimeter = Math.Round(strategy.CalculatePerimeter(), 2),
-                    CalculationDate = DateTime.Now
-                };
-
-                _dbContext.Shape.Add(resultShape);
-            }
-        }
-
-        private bool IsShapeSeeded<T>() where T : IShapeStrategy
-        {
-            string typeName = typeof(T).Name;
-
-            return _dbContext.Shape
-                .Any(s => string.Equals(s.ShapeType.Trim(), typeName, StringComparison.OrdinalIgnoreCase));
+            _dbContext.Shape.Add(resultShape);
         }
 
         private void SeedCalculation(ICalculatorStrategy strategy, decimal num1, decimal num2)

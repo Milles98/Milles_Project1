@@ -53,8 +53,8 @@ namespace Milles_Project1Library.Services
                 {
                     SetStrategyFromOperationChoice(operationChoice);
 
-                    decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1: ");
-                    decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2: ");
+                    decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1: ", 1, 1000000);
+                    decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2: ", 1, 1000000);
 
                     if (IsNumberOutOfRange(num1) || IsNumberOutOfRange(num2))
                     {

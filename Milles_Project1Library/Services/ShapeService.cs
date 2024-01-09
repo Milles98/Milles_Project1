@@ -93,9 +93,9 @@ namespace Milles_Project1Library.Services
             Console.Clear();
             var shape = _dbContext.Shape.ToList();
 
-            Console.WriteLine("╭──────────╮──────────────╮───────────────╮─────────────╮─────────────╮───────────╮───────────╮───────────────────╮");
-            Console.WriteLine("│ Shape ID | ShapeType    | Base          | Height      | SideLength  | Area      │ Perimeter │ Date              │");
-            Console.WriteLine("├──────────┼──────────────┼───────────────┼─────────────┼─────────────┼───────────┤───────────┤───────────────────┤");
+            Console.WriteLine("╭──────────╮──────────────╮─────────────╮─────────────╮─────────────╮─────────────╮───────────╮───────────────────╮");
+            Console.WriteLine("│ Shape ID | ShapeType    | Base        | Height      | SideLength  | Area        │ Perimeter │ Date              │");
+            Console.WriteLine("├──────────┼──────────────┼─────────────┼─────────────┼─────────────┼─────────────┤───────────┤───────────────────┤");
 
             foreach (var s in shape)
             {
@@ -105,12 +105,12 @@ namespace Milles_Project1Library.Services
                 string areaWithUnit = $"{s.Area} cm²";
                 string perimeterWithUnit = $"{s.Perimeter} cm";
 
-                Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{baseWithUnit,-15}│{heightWithUnit,-13}│" +
-                    $"{sideLengthDisplay,-13}│{areaWithUnit,-11}│{perimeterWithUnit,-11}│{s.CalculationDate,-19}│");
-                Console.WriteLine("├──────────┼──────────────┼───────────────┼─────────────┼─────────────┼───────────┤───────────┤───────────────────┤");
+                Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{baseWithUnit,-13}│{heightWithUnit,-13}│" +
+                    $"{sideLengthDisplay,-13}│{areaWithUnit,-13}│{perimeterWithUnit,-11}│{s.CalculationDate,-19}│");
+                Console.WriteLine("├──────────┼──────────────┼─────────────┼─────────────┼─────────────┼─────────────┤───────────┤───────────────────┤");
             }
 
-            Console.WriteLine("╰──────────╯──────────────╯───────────────╯─────────────╯─────────────╯───────────╯───────────╯───────────────────╯");
+            Console.WriteLine("╰──────────╯──────────────╯─────────────╯─────────────╯─────────────╯─────────────╯───────────╯───────────────────╯");
         }
 
         public void UpdateShape()

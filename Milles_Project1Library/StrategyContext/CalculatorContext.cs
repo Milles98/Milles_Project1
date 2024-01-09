@@ -23,13 +23,28 @@ namespace Milles_Project1Library.StrategyContext
             _dbContext = dbContext;
         }
 
-        public decimal GetUserInput(string prompt)
+        public decimal GetUserInput(string prompt, decimal minValue, decimal maxValue)
+        {
+            return GetBoundedDoubleInput(prompt, minValue, maxValue);
+        }
+
+        private decimal GetBoundedDoubleInput(string prompt, decimal minValue, decimal maxValue)
         {
             decimal input;
+            bool isValidInput;
+
             do
             {
                 Console.Write(prompt);
-            } while (!decimal.TryParse(Console.ReadLine(), out input));
+                string userInput = Console.ReadLine();
+                isValidInput = decimal.TryParse(userInput, out input) && input >= minValue && input <= maxValue;
+
+                if (!isValidInput)
+                {
+                    Message.ErrorMessage($"Invalid input. Please enter a value between {minValue} and {maxValue}.");
+                }
+
+            } while (!isValidInput);
 
             return Math.Round(input, 2);
         }
@@ -90,12 +105,10 @@ namespace Milles_Project1Library.StrategyContext
             }
         }
 
-
         public void SaveCalculationToDatabase(decimal num1, decimal num2, decimal result)
         {
             SaveCalculationDetails(num1, num2, result);
 
-            SaveCalculationHistory(result);
         }
 
         private void SaveCalculationDetails(decimal num1, decimal num2, decimal result)
@@ -110,20 +123,6 @@ namespace Milles_Project1Library.StrategyContext
             };
 
             _dbContext.Calculator.Add(calculation);
-            _dbContext.SaveChanges();
-        }
-
-        private void SaveCalculationHistory(decimal result)
-        {
-            var calculationHistory = new UserHistory
-            {
-                ActionType = "Calculator",
-                Action = "C", // Exempel: C, R, U, D
-                DatePerformed = DateTime.Now,
-                Description = $"Operation: {_strategy.GetType().Name}, Result: {result}"
-            };
-
-            _dbContext.UserHistory.Add(calculationHistory);
             _dbContext.SaveChanges();
         }
 

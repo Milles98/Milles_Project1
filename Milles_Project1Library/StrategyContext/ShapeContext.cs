@@ -50,7 +50,6 @@ namespace Milles_Project1Library.StrategyContext
             Message.DarkYellowMessage($"Perimeter: {perimeter} cm");
 
             SaveResultsToDatabase();
-            SaveResultsToUserHistory(area, perimeter);
         }
 
         private void SaveResultsToDatabase()
@@ -84,31 +83,6 @@ namespace Milles_Project1Library.StrategyContext
             _dbContext.SaveChanges();
         }
 
-        private void SaveResultsToUserHistory(decimal area, decimal perimeter)
-        {
-            if (_shapeStrategy == null)
-            {
-                Console.WriteLine("No shape calculator selected.");
-                return;
-            }
-
-            string shapeType = _shapeStrategy.ShapeType;
-
-            area = Math.Round(area, 2);
-            perimeter = Math.Round(perimeter, 2);
-
-            var userHistory = new UserHistory
-            {
-                ActionType = "Shapes",
-                Action = "C", // Exempel: C, R, U, D
-                DatePerformed = DateTime.Now,
-                Description = $"ShapeType: {shapeType}, Area: {area}, Perimeter: {perimeter}"
-            };
-
-            _dbContext.UserHistory.Add(userHistory);
-            _dbContext.SaveChanges();
-        }
-
         private void SetShapeProperties(decimal[] dimensions)
         {
             _shapeStrategy.SetDimensions(dimensions);
@@ -124,7 +98,7 @@ namespace Milles_Project1Library.StrategyContext
                 for (int i = 0; i < dimensionCount; i++)
                 {
                     string dimensionName = GetDimensionName(i + 1);
-                    dimensions[i] = GetBoundedDoubleInput($"Enter {dimensionName} (cm): ", 1, 1000000);
+                    dimensions[i] = GetBoundedDoubleInput($"Enter {dimensionName} max 999(cm): ", 1, 999);
                 }
 
                 return dimensions;
@@ -160,7 +134,7 @@ namespace Milles_Project1Library.StrategyContext
 
                 if (!isValidInput)
                 {
-                    Console.WriteLine($"Invalid input. Please enter a value between {minValue} and {maxValue}.");
+                    Message.ErrorMessage($"Invalid input. Please enter a value between {minValue} and {maxValue}.");
                 }
 
             } while (!isValidInput);
