@@ -34,9 +34,11 @@ namespace Milles_Project1
                 var shapeService = scope.Resolve<IShapeService>();
                 var userHistoryService = scope.Resolve<IUserHistoryService>();
                 var gameService = scope.Resolve<IGameService>();
+                var dataSeeding = scope.Resolve<DataSeeding>();
 
                 while (true)
                 {
+                    dataSeeding.Seed();
                     MainMenu.ShowMenu(dbContext, shapeContext, calculatorContext, calculatorService, shapeService, userHistoryService, gameService);
                 }
             }

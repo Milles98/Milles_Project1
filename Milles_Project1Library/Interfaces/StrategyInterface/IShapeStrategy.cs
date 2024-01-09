@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Interfaces.StrategyInterface
 {
-    public interface IShapeStrategy
+    public interface IShapeStrategy : IShapeDimensionsProvider
     {
         decimal CalculateArea();
         decimal CalculatePerimeter();
