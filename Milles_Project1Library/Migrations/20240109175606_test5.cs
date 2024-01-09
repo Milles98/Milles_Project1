@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Milles_Project1Library.Migrations
 {
     /// <inheritdoc />
-    public partial class test4 : Migration
+    public partial class test5 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -64,23 +64,6 @@ namespace Milles_Project1Library.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Shape", x => x.ShapeId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserHistory",
-                columns: table => new
-                {
-                    UserHistoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ActionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Action = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DatePerformed = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserHistory", x => x.UserHistoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,9 +135,6 @@ namespace Milles_Project1Library.Migrations
 
             migrationBuilder.DropTable(
                 name: "Shape");
-
-            migrationBuilder.DropTable(
-                name: "UserHistory");
 
             migrationBuilder.DropTable(
                 name: "Game");

@@ -17,7 +17,7 @@ namespace Milles_Project1.Menus
 {
     public static class ShapesMenu
     {
-        public static void ShowShapesMenu(IShapeContext shapeContext, IShapeService shapeService)
+        public static void ShowShapesMenu(IShapeService shapeService)
         {
             int choice;
 
@@ -26,10 +26,10 @@ namespace Milles_Project1.Menus
                 Console.Clear();
                 Console.WriteLine("╭────────────────────╮");
                 Console.WriteLine("│ Shapes Menu        │");
-                Console.WriteLine("│1. Create Shape     │");
-                Console.WriteLine("│2. Read Shapes      │");
-                Console.WriteLine("│3. Update Shape     │");
-                Console.WriteLine("│4. Delete Shape     │");
+                Console.WriteLine("│1. Create           │");
+                Console.WriteLine("│2. Read             │");
+                Console.WriteLine("│3. Update           │");
+                Console.WriteLine("│4. Delete           │");
                 Console.WriteLine("│0. Return to Menu   │");
                 Console.WriteLine("╰────────────────────╯");
 

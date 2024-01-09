@@ -43,7 +43,6 @@ namespace Milles_Project1Library.Services
 
             builder.RegisterType<CalculatorService>().As<ICalculatorService>();
             builder.RegisterType<ShapeService>().As<IShapeService>();
-            builder.RegisterType<UserHistoryService>().As<IUserHistoryService>();
             builder.RegisterType<GameService>().As<IGameService>();
             builder.RegisterType<DataSeeding>().AsSelf();
 

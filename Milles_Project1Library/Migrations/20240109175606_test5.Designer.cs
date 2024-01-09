@@ -12,8 +12,8 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240109145036_test4")]
-    partial class test4
+    [Migration("20240109175606_test5")]
+    partial class test5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -188,37 +188,6 @@ namespace Milles_Project1Library.Migrations
                     b.HasKey("ShapeId");
 
                     b.ToTable("Shape");
-                });
-
-            modelBuilder.Entity("Milles_Project1Library.Models.UserHistory", b =>
-                {
-                    b.Property<int>("UserHistoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserHistoryId"));
-
-                    b.Property<string>("Action")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ActionType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DatePerformed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("UserHistoryId");
-
-                    b.ToTable("UserHistory");
                 });
 
             modelBuilder.Entity("Milles_Project1Library.Models.Game", b =>
