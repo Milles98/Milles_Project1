@@ -47,10 +47,23 @@ namespace Milles_Project1Library.Services
                     decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1: ");
                     decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2: ");
 
+                    if (IsNumberOutOfRange(num1) || IsNumberOutOfRange(num2))
+                    {
+                        Message.ErrorMessage("Invalid input. Please enter numbers within a reasonable range.");
+                        return;
+                    }
+
                     num1 = Math.Round(num1, 2);
                     num2 = Math.Round(num2, 2);
 
                     decimal result = _calculatorContext.ExecuteOperation(num1, num2);
+
+                    if (result == 0)
+                    {
+                        Message.ErrorMessage("Result is 0. The input may be too large or too small. Please try again with different values.");
+                        Console.ReadKey();
+                        return;
+                    }
 
                     result = Math.Round(result, 2);
 
@@ -58,7 +71,7 @@ namespace Milles_Project1Library.Services
 
                     _calculatorContext.SaveCalculationToDatabase(num1, num2, result);
 
-                    Message.InputSuccessMessage("Calculation saved to database successfully!");
+                    Message.InputSuccessMessage("Calculation saved to the database successfully!");
                 }
                 else
                 {
@@ -72,6 +85,13 @@ namespace Milles_Project1Library.Services
 
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
+        }
+
+        private bool IsNumberOutOfRange(decimal number)
+        {
+            const decimal MaxAllowedValue = 1000000;
+
+            return Math.Abs(number) > MaxAllowedValue;
         }
 
         private void SetStrategyFromOperationChoice(int operationChoice)
@@ -192,13 +212,35 @@ namespace Milles_Project1Library.Services
 
         public void UpdateCalculationInDatabase(Calculator calculation, decimal newNum1, decimal newNum2)
         {
+            newNum1 = Math.Round(newNum1, 2);
+            newNum2 = Math.Round(newNum2, 2);
+
+            if (IsNumberOutOfRange(newNum1) || IsNumberOutOfRange(newNum2))
+            {
+                Message.ErrorMessage("Invalid input. Please enter numbers within a reasonable range.");
+                return;
+            }
+
             calculation.Number1 = newNum1;
             calculation.Number2 = newNum2;
-            calculation.Result = _calculatorContext.ExecuteOperation(newNum1, newNum2);
+            decimal result = _calculatorContext.ExecuteOperation(newNum1, newNum2);
 
-            calculation.Result = Math.Round(calculation.Result, 2);
+            if (IsResultOutOfRange(result))
+            {
+                Message.ErrorMessage("Result is too large. Please try again with smaller numbers.");
+                return;
+            }
+
+            calculation.Result = Math.Round(result, 2);
 
             _calculatorContext.SaveCalculationToDatabase(newNum1, newNum2, calculation.Result);
+        }
+
+        private bool IsResultOutOfRange(decimal result)
+        {
+            const decimal MaxAllowedResult = 1000000;
+
+            return Math.Abs(result) > MaxAllowedResult;
         }
 
         public void DeleteCalculationFromDatabase(Calculator calculation)
