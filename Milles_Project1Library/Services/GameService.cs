@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Autofac;
+using Microsoft.EntityFrameworkCore;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ServiceInterface;
@@ -15,9 +16,9 @@ namespace Milles_Project1Library.Services
     {
         private readonly ProjectDbContext _dbContext;
 
-        public GameService(ProjectDbContext dbContext)
+        public GameService(ILifetimeScope lifetimeScope)
         {
-            _dbContext = dbContext;
+            _dbContext = lifetimeScope.Resolve<ProjectDbContext>();
         }
 
         public void PlayGame()

@@ -16,7 +16,7 @@ namespace Milles_Project1.Menus
 {
     public static class CalculatorMenu
     {
-        public static void ShowCalculatorMenu(ICalculatorContext calculatorContext, ICalculatorService calculatorService)
+        public static void ShowCalculatorMenu(ICalculatorService calculatorService)
         {
             int choice;
 
@@ -25,10 +25,10 @@ namespace Milles_Project1.Menus
                 Console.Clear();
                 Console.WriteLine("╭──────────────────────╮");
                 Console.WriteLine("│Calculator Menu       │");
-                Console.WriteLine("│1. Create Calculator  │"); //ska vara att göra beräkning
-                Console.WriteLine("│2. Read Calculator    │"); //läsa alla beräkningar
-                Console.WriteLine("│3. Update Calculator  │"); //uppdatera en beräkning
-                Console.WriteLine("│4. Delete Calculator  │"); //radera en beräkning
+                Console.WriteLine("│1. Create             │"); //ska vara att göra beräkning
+                Console.WriteLine("│2. Read               │"); //läsa alla beräkningar
+                Console.WriteLine("│3. Update             │"); //uppdatera en beräkning
+                Console.WriteLine("│4. Delete             │"); //radera en beräkning
                 Console.WriteLine("│0. Return to MainMenu │");
                 Console.WriteLine("╰──────────────────────╯");
 

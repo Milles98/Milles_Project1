@@ -13,8 +13,7 @@ namespace Milles_Project1.Menus
 {
     public static class MainMenu
     {
-        public static void ShowMenu(ProjectDbContext dbContext, IShapeContext shapeContext, ICalculatorContext calculatorContext,
-            ICalculatorService calculatorService, IShapeService shapeService, IUserHistoryService userHistoryService, IGameService gameService)
+        public static void ShowMenu(ICalculatorService calculatorService, IShapeService shapeService, IGameService gameService)
         {
             int choice;
 
@@ -26,7 +25,6 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("│ 1. Shapes               │");
                 Console.WriteLine("│ 2. Calculator           │");
                 Console.WriteLine("│ 3. Rock Paper Scissors  │");
-                Console.WriteLine("│ 4. User History         │");
                 Console.WriteLine("│ 0. Exit Program         │");
                 Console.WriteLine("╰─────────────────────────╯");
 
@@ -36,16 +34,13 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            ShapesMenu.ShowShapesMenu(shapeContext, shapeService);
+                            ShapesMenu.ShowShapesMenu(shapeService);
                             break;
                         case 2:
-                            CalculatorMenu.ShowCalculatorMenu(calculatorContext, calculatorService);
+                            CalculatorMenu.ShowCalculatorMenu(calculatorService);
                             break;
                         case 3:
-                            GameMenu.ShowGameMenu(dbContext, gameService);
-                            break;
-                        case 4:
-                            UserHistoryMenu.ShowUserHistoryMenu(dbContext, userHistoryService);
+                            GameMenu.ShowGameMenu(gameService);
                             break;
                         case 0:
                             Console.WriteLine("Exiting program...");

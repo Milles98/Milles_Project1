@@ -1,4 +1,5 @@
-﻿using Milles_Project1Library.Data;
+﻿using Autofac;
+using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ContextInterface;
 using Milles_Project1Library.Interfaces.StrategyInterface;
@@ -17,10 +18,10 @@ namespace Milles_Project1Library.StrategyContext
         private ICalculatorStrategy _strategy;
         private readonly ProjectDbContext _dbContext;
 
-        public CalculatorContext(ICalculatorStrategy strategy, ProjectDbContext dbContext)
+        public CalculatorContext(ILifetimeScope lifetimeScope)
         {
-            _strategy = strategy;
-            _dbContext = dbContext;
+            _dbContext = lifetimeScope.Resolve<ProjectDbContext>();
+            _strategy = lifetimeScope.Resolve<ICalculatorStrategy>();
         }
 
         public decimal GetUserInput(string prompt, decimal minValue, decimal maxValue)

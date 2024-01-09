@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Autofac;
+using Microsoft.EntityFrameworkCore;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces;
@@ -18,9 +19,10 @@ namespace Milles_Project1Library.StrategyContext
         private IShapeStrategy _shapeStrategy;
         private readonly ProjectDbContext _dbContext;
 
-        public ShapeContext(ProjectDbContext dbContext)
+        public ShapeContext(ILifetimeScope lifetimeScope)
         {
-            this._dbContext = dbContext;
+            _dbContext = lifetimeScope.Resolve<ProjectDbContext>();
+            _shapeStrategy = lifetimeScope.Resolve<IShapeStrategy>();
         }
 
         public void SetShapeCalculator(IShapeStrategy shapeStrategy)

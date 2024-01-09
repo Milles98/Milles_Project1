@@ -1,4 +1,5 @@
-﻿using Milles_Project1Library.Data;
+﻿using Autofac;
+using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ContextInterface;
 using Milles_Project1Library.Interfaces.ServiceInterface;
@@ -19,11 +20,11 @@ namespace Milles_Project1Library.Services
         private readonly IShapeContext _shapeContext;
         private readonly IShapeStrategy _shapeStrategy;
 
-        public ShapeService(ProjectDbContext dbContext, IShapeContext shapeContext, IShapeStrategy shapeStrategy)
+        public ShapeService(ILifetimeScope lifetimeScope)
         {
-            _dbContext = dbContext;
-            _shapeContext = shapeContext;
-            _shapeStrategy = shapeStrategy;
+            _dbContext = lifetimeScope.Resolve<ProjectDbContext>();
+            _shapeContext = lifetimeScope.Resolve<IShapeContext>();
+            _shapeStrategy = lifetimeScope.Resolve<IShapeStrategy>();
         }
 
         public IEnumerable<string> GetAvailableShapeTypes()

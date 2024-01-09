@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Autofac;
+using Microsoft.EntityFrameworkCore;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ContextInterface;
@@ -21,14 +22,17 @@ namespace Milles_Project1Library.Services
         private readonly ICalculatorContext _calculatorContext;
         private ICalculatorStrategy _strategy;
 
-        public CalculatorService(ProjectDbContext dbContext, ICalculatorContext calculatorContext)
+        public CalculatorService(ILifetimeScope lifetimeScope)
         {
-            _dbContext = dbContext;
-            _calculatorContext = calculatorContext;
+            _dbContext = lifetimeScope.Resolve<ProjectDbContext>();
+            _calculatorContext = lifetimeScope.Resolve<ICalculatorContext>();
+            _strategy = lifetimeScope.Resolve<ICalculatorStrategy>();
+
         }
 
         public void PerformCreateCalculation()
         {
+            Console.Clear();
             Console.WriteLine("Choose an operation:");
             Console.WriteLine("1. (+) Addition");
             Console.WriteLine("2. (-) Subtraction");
@@ -36,7 +40,7 @@ namespace Milles_Project1Library.Services
             Console.WriteLine("4. (/) Division");
             Console.WriteLine("5. (√) Power of");
             Console.WriteLine("6. (%) Modulus");
-            Console.WriteLine("Press 'e' to exit.");
+            Console.WriteLine("Press 'e' to exit.\n");
 
             Console.Write("Enter your choice: ");
             string userInput = Console.ReadLine();
@@ -53,8 +57,8 @@ namespace Milles_Project1Library.Services
                 {
                     SetStrategyFromOperationChoice(operationChoice);
 
-                    decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1: ", 1, 1000000);
-                    decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2: ", 1, 1000000);
+                    decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1 (max 1000000): ", 1, 1000000);
+                    decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2 (max 1000000): ", 1, 1000000);
 
                     if (IsNumberOutOfRange(num1) || IsNumberOutOfRange(num2))
                     {
@@ -69,7 +73,6 @@ namespace Milles_Project1Library.Services
 
                     if (result == 0)
                     {
-                        Message.ErrorMessage("Result is 0. The input may be too large or too small. Please try again with different values.");
                         Console.ReadKey();
                         return;
                     }

@@ -27,19 +27,15 @@ namespace Milles_Project1
         {
             using (var scope = _container.BeginLifetimeScope())
             {
-                var dbContext = scope.Resolve<ProjectDbContext>();
-                var shapeContext = scope.Resolve<IShapeContext>();
-                var calculatorContext = scope.Resolve<ICalculatorContext>();
                 var calculatorService = scope.Resolve<ICalculatorService>();
                 var shapeService = scope.Resolve<IShapeService>();
-                var userHistoryService = scope.Resolve<IUserHistoryService>();
                 var gameService = scope.Resolve<IGameService>();
                 var dataSeeding = scope.Resolve<DataSeeding>();
 
                 while (true)
                 {
                     dataSeeding.Seed();
-                    MainMenu.ShowMenu(dbContext, shapeContext, calculatorContext, calculatorService, shapeService, userHistoryService, gameService);
+                    MainMenu.ShowMenu(calculatorService, shapeService, gameService);
                 }
             }
         }

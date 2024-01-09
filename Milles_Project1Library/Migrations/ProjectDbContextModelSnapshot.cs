@@ -187,37 +187,6 @@ namespace Milles_Project1Library.Migrations
                     b.ToTable("Shape");
                 });
 
-            modelBuilder.Entity("Milles_Project1Library.Models.UserHistory", b =>
-                {
-                    b.Property<int>("UserHistoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserHistoryId"));
-
-                    b.Property<string>("Action")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ActionType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DatePerformed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("UserHistoryId");
-
-                    b.ToTable("UserHistory");
-                });
-
             modelBuilder.Entity("Milles_Project1Library.Models.Game", b =>
                 {
                     b.HasOne("Milles_Project1Library.Models.GameStatistics", "GameStatistics")

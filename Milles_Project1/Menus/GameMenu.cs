@@ -12,7 +12,7 @@ namespace Milles_Project1.Menus
 {
     public static class GameMenu
     {
-        public static void ShowGameMenu(ProjectDbContext dbContext, IGameService gameService)
+        public static void ShowGameMenu(IGameService gameService)
         {
             int choice;
 
