@@ -9,27 +9,26 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Services.ShapeStrategyService
 {
-    public class RhombusStrategy : IShapeStrategy, IShapeDimensionsProvider
+    public class Rectangle : IShapeStrategy, IShapeDimensionsProvider
     {
         public decimal Base { get; set; }
         public decimal Height { get; set; }
         public decimal SideLength { get; set; }
-        public string ShapeType => "Rhombus";
+        public string ShapeType => "Rectangle";
 
         public void SetDimensions(params decimal[] dimensions)
         {
             if (dimensions.Length == 2)
             {
-                Base = dimensions[0];
-                Height = dimensions[1];
+                Height = dimensions[0];
+                Base = dimensions[1];
 
             }
             else
             {
-                Message.ErrorMessage("Incorrect dimensions for a rhombus");
+                Message.ErrorMessage("Incorrect dimensions for a rectangle");
             }
         }
-
 
         public int GetDimensionCount()
         {
@@ -38,12 +37,12 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 
         public decimal CalculateArea()
         {
-            return (Base * Height) / 2;
+            return Height * Base;
         }
 
         public decimal CalculatePerimeter()
         {
-            return 4 * (decimal)Math.Sqrt((double)(Base * Base + Height * Height) / 4);
+            return 2 * (Height + Base);
         }
     }
 

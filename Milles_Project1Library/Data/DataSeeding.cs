@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Autofac;
+using Microsoft.EntityFrameworkCore;
 using Milles_Project1Library.Interfaces;
 using Milles_Project1Library.Interfaces.StrategyInterface;
 using Milles_Project1Library.Models;
@@ -16,9 +17,9 @@ namespace Milles_Project1Library.Data
     {
         private readonly ProjectDbContext _dbContext;
 
-        public DataSeeding(ProjectDbContext dbContext)
+        public DataSeeding(ILifetimeScope lifetimeScope)
         {
-            _dbContext = dbContext;
+            _dbContext = lifetimeScope.Resolve<ProjectDbContext>();
         }
 
         public void Seed()
@@ -27,17 +28,17 @@ namespace Milles_Project1Library.Data
 
             if (!_dbContext.Shape.Any())
             {
-                SeedShape<RectangleStrategy>(new decimal[] { 4.0M, 6.0M });
-                SeedShape<ParallelogramStrategy>(new decimal[] { 5.0M, 7.0M, 30.0M });
-                SeedShape<TriangleStrategy>(new decimal[] { 3.0M, 4.0M, 5.0M });
-                SeedShape<RhombusStrategy>(new decimal[] { 8.0M, 60.0M });
+                SeedShape<Rectangle>(new decimal[] { 4.0M, 6.0M });
+                SeedShape<Parallelogram>(new decimal[] { 5.0M, 7.0M, 30.0M });
+                SeedShape<Triangle>(new decimal[] { 3.0M, 4.0M, 5.0M });
+                SeedShape<Rhombus>(new decimal[] { 8.0M, 60.0M });
 
-                SeedCalculation(new AdditionStrategy(), 5.0M, 3.0M);
-                SeedCalculation(new SubtractionStrategy(), 8.0M, 4.0M);
-                SeedCalculation(new MultiplicationStrategy(), 2.0M, 7.0M);
-                SeedCalculation(new DivisionStrategy(), 10.0M, 2.0M);
-                SeedCalculation(new PowerOfStrategy(), 3.0M, 2.0M);
-                SeedCalculation(new ModulusStrategy(), 9.0M, 4.0M);
+                SeedCalculation(new Addition(), 5.0M, 3.0M);
+                SeedCalculation(new Subtraction(), 8.0M, 4.0M);
+                SeedCalculation(new Multiplication(), 2.0M, 7.0M);
+                SeedCalculation(new Division(), 10.0M, 2.0M);
+                SeedCalculation(new PowerOf(), 3.0M, 2.0M);
+                SeedCalculation(new Modulus(), 9.0M, 4.0M);
 
                 _dbContext.SaveChanges();
             }

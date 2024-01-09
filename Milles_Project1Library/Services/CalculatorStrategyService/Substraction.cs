@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Services.CalculatorStrategyService
 {
-    public class SubtractionStrategy : ICalculatorStrategy
+    public class Subtraction : ICalculatorStrategy
     {
         public decimal Calculate(decimal num1, decimal num2)
         {

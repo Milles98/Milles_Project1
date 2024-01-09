@@ -33,8 +33,8 @@ namespace Milles_Project1Library.Services
                 Console.Clear();
                 Console.WriteLine($"╭──────────────────────────╮");
                 Console.WriteLine($"│Rock Paper Scissors Game  │");
-                Console.WriteLine($"│ Player Wins: {playerWins}           │");
-                Console.WriteLine($"│ Computer Wins: {computerWins}         │");
+                Message.InputSuccessMessage($"│ Player Wins: {playerWins}           │");
+                Message.ErrorMessage($"│ Computer Wins: {computerWins}         │");
                 Console.WriteLine($"╰──────────────────────────╯");
 
                 Message.DarkYellowMessage($"Round {rounds + 1}");
@@ -219,7 +219,7 @@ namespace Milles_Project1Library.Services
             Console.WriteLine("╰───────────────────────────────╯");
 
             var previousGames = _dbContext.Game
-                .OrderByDescending(g => g.GameDate)
+                .OrderBy(g => g.GameDate)
                 .Include(g => g.GameHistories)
                 .ToList();
 

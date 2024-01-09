@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Services.CalculatorStrategyService
 {
-    public class AdditionStrategy : ICalculatorStrategy
+    public class Modulus : ICalculatorStrategy
     {
         public decimal Calculate(decimal num1, decimal num2)
         {
-            return num1 + num2;
+            return num1 % num2;
         }
     }
 }
