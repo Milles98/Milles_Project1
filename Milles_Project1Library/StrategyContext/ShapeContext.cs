@@ -102,7 +102,7 @@ namespace Milles_Project1Library.StrategyContext
                 for (int i = 0; i < dimensionCount; i++)
                 {
                     string dimensionName = GetDimensionName(i + 1);
-                    dimensions[i] = GetBoundedDoubleInput($"Enter {dimensionName} max 999(cm): ", 1, 999);
+                    dimensions[i] = GetBoundedDoubleInput($"Enter {dimensionName} (1-999) cm: ", 1, 999);
                 }
 
                 return dimensions;
