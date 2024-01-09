@@ -46,3 +46,5 @@ Dag 5
 Jag utvecklade felhanteringen för calculations, speciellt upphöjt till delen. Jag hade gjort alla nummer och resultat till decimal och det
 gav problem med overflow och för stora nummer. Tillslut hittade jag en lösning, om numret är för högt eller lågt blir resultatet 0, om resultatet är 0 så får användaren
 felmeddelande om att det antingen var för stort eller för litet.
+
+Jag funderade ut hur min seeding skulle se ut och skapade en DataSeeding klass som skulle innehålla relevant seeding. Skapade först seeding för de 4 shapes.
