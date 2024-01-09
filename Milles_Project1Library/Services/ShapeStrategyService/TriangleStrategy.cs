@@ -17,9 +17,17 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 
         public decimal CalculateArea()
         {
-            // Använd exempelvis Herons formel för att beräkna området av en triangel
             decimal s = (Base + Height + SideLength) / 2;
-            return (decimal)Math.Sqrt((double)(s * (s - Base) * (s - Height) * (s - SideLength)));
+            double area = Math.Sqrt((double)(s * (s - Base) * (s - Height) * (s - SideLength)));
+
+            if (area >= (double)decimal.MinValue && area <= (double)decimal.MaxValue)
+            {
+                return new decimal(area);
+            }
+            else
+            {
+                throw new OverflowException("Calculated area is outside the valid range for a decimal.");
+            }
         }
 
         public decimal CalculatePerimeter()

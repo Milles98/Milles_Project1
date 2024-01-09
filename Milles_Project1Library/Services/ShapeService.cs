@@ -61,20 +61,31 @@ namespace Milles_Project1Library.Services
                 Console.WriteLine($"{i + 1}. {availableShapeTypes.ElementAt(i)}");
             }
 
-            int shapeTypeChoice;
-            do
+            Console.Write("Enter the number corresponding to the shape type or press 'e' to exit: ");
+            string userInput = Console.ReadLine();
+
+            if (userInput?.ToLower() == "e")
             {
-                Console.Write("Enter the number corresponding to the shape type: ");
-            } while (!int.TryParse(Console.ReadLine(), out shapeTypeChoice) || shapeTypeChoice < 1 || shapeTypeChoice > availableShapeTypes.Count());
+                Console.WriteLine("Exiting shape creation.");
+                return;
+            }
 
-            string selectedShapeType = availableShapeTypes.ElementAt(shapeTypeChoice - 1);
+            if (int.TryParse(userInput, out int shapeTypeChoice) && shapeTypeChoice >= 1 && shapeTypeChoice <= availableShapeTypes.Count())
+            {
+                string selectedShapeType = availableShapeTypes.ElementAt(shapeTypeChoice - 1);
 
-            _shapeContext.SetShapeCalculator(GetShapeStrategy(selectedShapeType));
+                _shapeContext.SetShapeCalculator(GetShapeStrategy(selectedShapeType));
 
-            _shapeContext.CalculateAndDisplayResults();
+                _shapeContext.CalculateAndDisplayResults();
 
-            Console.WriteLine("Press any key to continue.");
-            Console.ReadKey();
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+            }
+            else
+            {
+                Message.ErrorMessage("Invalid input. Please enter a valid number or 'e' to exit.");
+                Console.ReadKey();
+            }
         }
 
         public void ReadShapes()
@@ -106,8 +117,16 @@ namespace Milles_Project1Library.Services
         {
             ReadShapes();
 
-            Console.Write("\nEnter the Shape ID you want to update: ");
-            if (int.TryParse(Console.ReadLine(), out int shapeId))
+            Console.Write("\nEnter the Shape ID you want to update or press 'e' to exit: ");
+            string userInput = Console.ReadLine();
+
+            if (userInput?.ToLower() == "e")
+            {
+                Console.WriteLine("Exiting update operation.");
+                return;
+            }
+
+            if (int.TryParse(userInput, out int shapeId))
             {
                 var shape = _dbContext.Shape.Find(shapeId);
 
@@ -119,7 +138,6 @@ namespace Milles_Project1Library.Services
                     if (decimal.TryParse(Console.ReadLine(), out decimal newBase))
                     {
                         newBase = Math.Round(newBase, 2);
-
                         shape.Base = newBase;
                     }
                     else
@@ -131,7 +149,6 @@ namespace Milles_Project1Library.Services
                     if (decimal.TryParse(Console.ReadLine(), out decimal newHeight))
                     {
                         newHeight = Math.Round(newHeight, 2);
-
                         shape.Height = newHeight;
                     }
                     else
@@ -143,7 +160,6 @@ namespace Milles_Project1Library.Services
                     if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength))
                     {
                         newSideLength = Math.Round(newSideLength, 2);
-
                         shape.SideLength = newSideLength;
                     }
                     else
@@ -151,7 +167,7 @@ namespace Milles_Project1Library.Services
                         Message.ErrorMessage("Invalid input for Side Length. The Side Length remains unchanged.");
                     }
 
-                    SaveResultsToDatabase(shape);
+                    SaveChangesToDatabase();
 
                     Message.InputSuccessMessage("Shape updated successfully!");
                 }
@@ -162,19 +178,39 @@ namespace Milles_Project1Library.Services
             }
             else
             {
-                Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number.");
+                Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
             }
 
             Console.ReadKey();
+        }
+
+        private void SaveChangesToDatabase()
+        {
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Message.ErrorMessage($"Error saving changes to the database: {ex.Message}");
+            }
         }
 
         public void DeleteShape()
         {
             Console.Clear();
             ReadShapes();
-            Console.Write("Enter the Shape ID you want to delete: ");
 
-            if (int.TryParse(Console.ReadLine(), out int shapeId))
+            Console.Write("Enter the Shape ID you want to delete or press 'e' to exit: ");
+            string userInput = Console.ReadLine();
+
+            if (userInput?.ToLower() == "e")
+            {
+                Console.WriteLine("Exiting shape deletion.");
+                return;
+            }
+
+            if (int.TryParse(userInput, out int shapeId))
             {
                 var shape = _dbContext.Shape.Find(shapeId);
 
@@ -193,22 +229,10 @@ namespace Milles_Project1Library.Services
             }
             else
             {
-                Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number.");
+                Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
             }
 
             Console.ReadKey();
-        }
-
-        public void SaveResultsToDatabase(Shape resultShape)
-        {
-            if (_shapeStrategy == null)
-            {
-                Message.ErrorMessage("No shape calculator selected.");
-                return;
-            }
-
-            _dbContext.Shape.Add(resultShape);
-            _dbContext.SaveChanges();
         }
 
         private void DeleteShapeFromDatabase(Shape shape)
