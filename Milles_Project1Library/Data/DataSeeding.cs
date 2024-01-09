@@ -33,48 +33,34 @@ namespace Milles_Project1Library.Data
         private void SeedRectangle()
         {
             var strategy = new RectangleStrategy();
-            SetRandomDimensions(strategy);
+            SetSpecificDimensions(strategy, new decimal[] { 4.0M, 6.0M });
             SaveResult(strategy);
         }
 
         private void SeedParallelogram()
         {
             var strategy = new ParallelogramStrategy();
-            SetRandomDimensions(strategy);
+            SetSpecificDimensions(strategy, new decimal[] { 5.0M, 7.0M, 30.0M });
             SaveResult(strategy);
         }
 
         private void SeedTriangle()
         {
             var strategy = new TriangleStrategy();
-            SetRandomDimensions(strategy);
+            SetSpecificDimensions(strategy, new decimal[] { 3.0M, 4.0M, 5.0M });
             SaveResult(strategy);
         }
 
         private void SeedRhombus()
         {
             var strategy = new RhombusStrategy();
-            SetRandomDimensions(strategy);
+            SetSpecificDimensions(strategy, new decimal[] { 8.0M, 60.0M });
             SaveResult(strategy);
         }
 
-        private void SetRandomDimensions(IShapeStrategy strategy)
+        private void SetSpecificDimensions(IShapeStrategy strategy, decimal[] specificDimensions)
         {
-            decimal[] randomDimensions = GenerateRandomDimensions(strategy.GetDimensionCount());
-            strategy.SetDimensions(randomDimensions);
-        }
-
-        private decimal[] GenerateRandomDimensions(int dimensionCount)
-        {
-            Random random = new Random();
-            decimal[] randomDimensions = new decimal[dimensionCount];
-
-            for (int i = 0; i < dimensionCount; i++)
-            {
-                randomDimensions[i] = (decimal)random.NextDouble() * 2;
-            }
-
-            return randomDimensions;
+            strategy.SetDimensions(specificDimensions);
         }
 
         private void SaveResult(IShapeStrategy strategy)

@@ -36,9 +36,18 @@ namespace Milles_Project1Library.Services
             Console.WriteLine("4. (/) Division");
             Console.WriteLine("5. (√) Power of");
             Console.WriteLine("6. (%) Modulus");
+            Console.WriteLine("Press 'e' to exit.");
 
             Console.Write("Enter your choice: ");
-            if (int.TryParse(Console.ReadLine(), out int operationChoice))
+            string userInput = Console.ReadLine();
+
+            if (userInput?.ToLower() == "e")
+            {
+                Console.WriteLine("Exiting calculation.");
+                return;
+            }
+
+            if (int.TryParse(userInput, out int operationChoice))
             {
                 if (operationChoice >= 1 && operationChoice <= 6)
                 {
@@ -80,7 +89,7 @@ namespace Milles_Project1Library.Services
             }
             else
             {
-                Message.ErrorMessage("Invalid input. Please enter a number.");
+                Message.ErrorMessage("Invalid input. Please enter a number or 'e' to exit.");
             }
 
             Console.WriteLine("Press any key to continue.");

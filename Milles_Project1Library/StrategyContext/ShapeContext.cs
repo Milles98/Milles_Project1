@@ -124,7 +124,7 @@ namespace Milles_Project1Library.StrategyContext
                 for (int i = 0; i < dimensionCount; i++)
                 {
                     string dimensionName = GetDimensionName(i + 1);
-                    dimensions[i] = GetDoubleInput($"Enter {dimensionName} (cm): ");
+                    dimensions[i] = GetBoundedDoubleInput($"Enter {dimensionName} (cm): ", 1, 1000000);
                 }
 
                 return dimensions;
@@ -148,24 +148,30 @@ namespace Milles_Project1Library.StrategyContext
             }
         }
 
-        private decimal GetDoubleInput(string prompt)
+        private decimal GetBoundedDoubleInput(string prompt, decimal minValue, decimal maxValue)
         {
-            decimal result;
-            bool validInput;
+            decimal input;
+            bool isValidInput;
 
             do
             {
-                Console.Write(prompt);
-                validInput = decimal.TryParse(Console.ReadLine(), out result);
+                string userInput = GetInput(prompt);
+                isValidInput = decimal.TryParse(userInput, out input) && input >= minValue && input <= maxValue;
 
-                if (!validInput)
+                if (!isValidInput)
                 {
-                    Console.WriteLine("Invalid input. Please enter a valid number.");
+                    Console.WriteLine($"Invalid input. Please enter a value between {minValue} and {maxValue}.");
                 }
 
-            } while (!validInput);
+            } while (!isValidInput);
 
-            return result;
+            return input;
+        }
+
+        private string GetInput(string prompt)
+        {
+            Console.Write(prompt);
+            return Console.ReadLine();
         }
     }
 }
