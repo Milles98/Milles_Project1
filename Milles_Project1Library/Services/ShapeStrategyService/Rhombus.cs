@@ -9,51 +9,41 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Services.ShapeStrategyService
 {
-    public class TriangleStrategy : IShapeStrategy, IShapeDimensionsProvider
+    public class Rhombus : IShapeStrategy, IShapeDimensionsProvider
     {
         public decimal Base { get; set; }
         public decimal Height { get; set; }
         public decimal SideLength { get; set; }
-        public string ShapeType => "Triangle";
+        public string ShapeType => "Rhombus";
 
         public void SetDimensions(params decimal[] dimensions)
         {
-            if (dimensions.Length == 3)
+            if (dimensions.Length == 2)
             {
                 Base = dimensions[0];
                 Height = dimensions[1];
-                SideLength = dimensions[2];
 
             }
             else
             {
-                Message.ErrorMessage("Incorrect dimensions for a triangle");
+                Message.ErrorMessage("Incorrect dimensions for a rhombus");
             }
         }
 
+
         public int GetDimensionCount()
         {
-            return 3;
+            return 2;
         }
 
         public decimal CalculateArea()
         {
-            decimal s = (Base + Height + SideLength) / 2;
-            double area = Math.Sqrt((double)(s * (s - Base) * (s - Height) * (s - SideLength)));
-
-            if (area >= (double)decimal.MinValue && area <= (double)decimal.MaxValue)
-            {
-                return new decimal(area);
-            }
-            else
-            {
-                throw new OverflowException("Calculated area is outside the valid range for a decimal.");
-            }
+            return (Base * Height) / 2;
         }
 
         public decimal CalculatePerimeter()
         {
-            return Base + Height + SideLength;
+            return 4 * (decimal)Math.Sqrt((double)(Base * Base + Height * Height) / 4);
         }
     }
 

@@ -111,22 +111,22 @@ namespace Milles_Project1Library.Services
             switch (operationChoice)
             {
                 case 1:
-                    _strategy = new AdditionStrategy();
+                    _strategy = new Addition();
                     break;
                 case 2:
-                    _strategy = new SubtractionStrategy();
+                    _strategy = new Subtraction();
                     break;
                 case 3:
-                    _strategy = new MultiplicationStrategy();
+                    _strategy = new Multiplication();
                     break;
                 case 4:
-                    _strategy = new DivisionStrategy();
+                    _strategy = new Division();
                     break;
                 case 5:
-                    _strategy = new PowerOfStrategy();
+                    _strategy = new PowerOf();
                     break;
                 case 6:
-                    _strategy = new ModulusStrategy();
+                    _strategy = new Modulus();
                     break;
             }
 
@@ -149,6 +149,8 @@ namespace Milles_Project1Library.Services
             }
 
             Console.WriteLine("╰───────────────╯───────────────────────╯───────────────╯─────────────╯─────────────╯───────────────────╯");
+
+            Console.WriteLine("Press any key to continue.");
         }
 
         public void UpdateCalculation()

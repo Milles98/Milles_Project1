@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Services.CalculatorStrategyService
 {
-    public class PowerOfStrategy : ICalculatorStrategy
+    public class PowerOf : ICalculatorStrategy
     {
         public decimal Calculate(decimal num1, decimal num2)
         {

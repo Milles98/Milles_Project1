@@ -37,13 +37,13 @@ namespace Milles_Project1Library.Services
             switch (shapeType.ToLower())
             {
                 case "parallelogram":
-                    return new ParallelogramStrategy();
+                    return new Parallelogram();
                 case "rectangle":
-                    return new RectangleStrategy();
+                    return new Rectangle();
                 case "rhombus":
-                    return new RhombusStrategy();
+                    return new Rhombus();
                 case "triangle":
-                    return new TriangleStrategy();
+                    return new Triangle();
                 default:
                     throw new ArgumentException($"Unsupported shape type: {shapeType}");
             }
@@ -112,6 +112,8 @@ namespace Milles_Project1Library.Services
             }
 
             Console.WriteLine("╰──────────╯──────────────╯─────────────╯─────────────╯─────────────╯─────────────╯───────────╯───────────────────╯");
+
+            Console.WriteLine("Press any key to continue.");
         }
 
         public void UpdateShape()
