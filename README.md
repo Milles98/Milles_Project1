@@ -40,3 +40,9 @@ La till IShapeService, ShapeService och började implementera CRUD för Shapes.
 Sedan la jag till en GameService klass som skulle hålla alla metoder för spelet att fungera.
 Skapade en GameHistory entitet, la till relevanta attributer.
 Började skapa metoderna i GameService, exempelvis PlayGame, ViewPreviousGames, GameRules.
+
+Dag 5
+
+Jag utvecklade felhanteringen för calculations, speciellt upphöjt till delen. Jag hade gjort alla nummer och resultat till decimal och det
+gav problem med overflow och för stora nummer. Tillslut hittade jag en lösning, om numret är för högt eller lågt blir resultatet 0, om resultatet är 0 så får användaren
+felmeddelande om att det antingen var för stort eller för litet.
