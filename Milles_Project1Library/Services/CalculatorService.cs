@@ -135,17 +135,17 @@ namespace Milles_Project1Library.Services
             Console.Clear();
             var calculation = _dbContext.Calculator.ToList();
 
-            Console.WriteLine("╭───────────────╮───────────────────╮───────────────╮─────────────╮─────────────╮───────────────────╮");
-            Console.WriteLine("│ Calculation ID| Operator          | Number 1      | Number 2    | Result      | Date              │");
-            Console.WriteLine("├───────────────┼───────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤");
+            Console.WriteLine("╭───────────────╮───────────────────────╮───────────────╮─────────────╮─────────────╮───────────────────╮");
+            Console.WriteLine("│ Calculation ID| Operator              | Number 1      | Number 2    | Result      | Date              │");
+            Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤");
 
             foreach (var c in calculation)
             {
-                Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-19}│{c.Number1,-15}│{c.Number2,-13}│{c.Result,-13}│{c.CalculationDate,-13}│");
-                Console.WriteLine("├───────────────┼───────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤");
+                Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15}│{c.Number2,-13}│{c.Result,-13}│{c.CalculationDate,-13}│");
+                Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤");
             }
 
-            Console.WriteLine("╰───────────────╯───────────────────╯───────────────╯─────────────╯─────────────╯───────────────────╯");
+            Console.WriteLine("╰───────────────╯───────────────────────╯───────────────╯─────────────╯─────────────╯───────────────────╯");
         }
 
         public void UpdateCalculation()
