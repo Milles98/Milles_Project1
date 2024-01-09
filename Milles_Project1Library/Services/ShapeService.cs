@@ -51,41 +51,44 @@ namespace Milles_Project1Library.Services
 
         public void CreateShape()
         {
-            Console.Clear();
-
-            var availableShapeTypes = GetAvailableShapeTypes();
-
-            Console.WriteLine("Choose a shape type:");
-
-            for (int i = 0; i < availableShapeTypes.Count(); i++)
+            while (true)
             {
-                Console.WriteLine($"{i + 1}. {availableShapeTypes.ElementAt(i)}");
-            }
+                Console.Clear();
 
-            Console.Write("Enter the number corresponding to the shape type or press 'e' to exit: ");
-            string userInput = Console.ReadLine();
+                var availableShapeTypes = GetAvailableShapeTypes();
 
-            if (userInput?.ToLower() == "e")
-            {
-                Console.WriteLine("Exiting shape creation.");
-                return;
-            }
+                Console.WriteLine("Choose a shape type:");
 
-            if (int.TryParse(userInput, out int shapeTypeChoice) && shapeTypeChoice >= 1 && shapeTypeChoice <= availableShapeTypes.Count())
-            {
-                string selectedShapeType = availableShapeTypes.ElementAt(shapeTypeChoice - 1);
+                for (int i = 0; i < availableShapeTypes.Count(); i++)
+                {
+                    Console.WriteLine($"{i + 1}. {availableShapeTypes.ElementAt(i)}");
+                }
 
-                _shapeContext.SetShapeCalculator(GetShapeStrategy(selectedShapeType));
+                Console.Write("Enter the number corresponding to the shape type or press 'e' to exit: ");
+                string userInput = Console.ReadLine();
 
-                _shapeContext.CalculateAndDisplayResults();
+                if (userInput?.ToLower() == "e")
+                {
+                    Console.WriteLine("Exiting shape creation.");
+                    return;
+                }
 
-                Console.WriteLine("Press any key to continue.");
-                Console.ReadKey();
-            }
-            else
-            {
-                Message.ErrorMessage("Invalid input. Please enter a valid number or 'e' to exit.");
-                Console.ReadKey();
+                if (int.TryParse(userInput, out int shapeTypeChoice) && shapeTypeChoice >= 1 && shapeTypeChoice <= availableShapeTypes.Count())
+                {
+                    string selectedShapeType = availableShapeTypes.ElementAt(shapeTypeChoice - 1);
+
+                    _shapeContext.SetShapeCalculator(GetShapeStrategy(selectedShapeType));
+
+                    _shapeContext.CalculateAndDisplayResults();
+
+                    Console.WriteLine("Press any key to continue.");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Message.ErrorMessage("Invalid input. Please enter a valid number or 'e' to exit.");
+                    Console.ReadKey();
+                }
             }
         }
 
@@ -118,74 +121,81 @@ namespace Milles_Project1Library.Services
 
         public void UpdateShape()
         {
-            ReadShapes();
-
-            Console.Write("\nEnter the Shape ID you want to update or press 'e' to exit: ");
-            string userInput = Console.ReadLine();
-
-            if (userInput?.ToLower() == "e")
+            while (true)
             {
-                Console.WriteLine("Exiting update operation.");
-                return;
-            }
+                ReadShapes();
 
-            if (int.TryParse(userInput, out int shapeId))
-            {
-                var shape = _dbContext.Shape.Find(shapeId);
+                Console.Write("\nEnter the Shape ID you want to update or press 'e' to exit: ");
+                string userInput = Console.ReadLine();
 
-                if (shape != null)
+                if (userInput?.ToLower() == "e")
                 {
-                    Console.WriteLine($"Updating Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
+                    Console.WriteLine("Exiting update operation.");
+                    return;
+                }
 
-                    Console.Write("Enter the new value for Base: ");
-                    if (decimal.TryParse(Console.ReadLine(), out decimal newBase))
+                if (int.TryParse(userInput, out int shapeId))
+                {
+                    var shape = _dbContext.Shape.Find(shapeId);
+
+                    if (shape != null)
                     {
-                        newBase = Math.Round(newBase, 2);
-                        shape.Base = newBase;
+                        Console.WriteLine($"Updating Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
+
+                        Console.Write($"Enter the new value for Base (1-999) cm: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal newBase) && newBase >= 1 && newBase <= 999)
+                        {
+                            newBase = Math.Round(newBase, 2);
+                            shape.Base = newBase;
+                        }
+                        else
+                        {
+                            Message.ErrorMessage("Invalid input for Base. The Base remains unchanged. Please enter a value between 1 and 999.");
+                            continue;
+                        }
+
+                        Console.Write($"Enter the new value for Height (1-999) cm: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal newHeight) && newHeight >= 1 && newHeight <= 999)
+                        {
+                            newHeight = Math.Round(newHeight, 2);
+                            shape.Height = newHeight;
+                        }
+                        else
+                        {
+                            Message.ErrorMessage("Invalid input for Height. The Height remains unchanged. Please enter a value between 1 and 999.");
+                            continue;
+                        }
+
+                        Console.Write($"Enter the new value for Side Length (1-999) cm: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength) && newSideLength >= 1 && newSideLength <= 999)
+                        {
+                            newSideLength = Math.Round(newSideLength, 2);
+                            shape.SideLength = newSideLength;
+                        }
+                        else
+                        {
+                            Message.ErrorMessage("Invalid input for Side Length. The Side Length remains unchanged. Please enter a value between 1 and 999.");
+                            continue;
+                        }
+
+                        SaveChangesToDatabase();
+
+                        Message.InputSuccessMessage("Shape updated successfully!");
                     }
                     else
                     {
-                        Message.ErrorMessage("Invalid input for Base. The Base remains unchanged.");
+                        Message.ErrorMessage("Shape not found.");
                     }
-
-                    Console.Write("Enter the new value for Height: ");
-                    if (decimal.TryParse(Console.ReadLine(), out decimal newHeight))
-                    {
-                        newHeight = Math.Round(newHeight, 2);
-                        shape.Height = newHeight;
-                    }
-                    else
-                    {
-                        Message.ErrorMessage("Invalid input for Height. The Height remains unchanged.");
-                    }
-
-                    Console.Write("Enter the new value for Side Length: ");
-                    if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength))
-                    {
-                        newSideLength = Math.Round(newSideLength, 2);
-                        shape.SideLength = newSideLength;
-                    }
-                    else
-                    {
-                        Message.ErrorMessage("Invalid input for Side Length. The Side Length remains unchanged.");
-                    }
-
-                    SaveChangesToDatabase();
-
-                    Message.InputSuccessMessage("Shape updated successfully!");
                 }
                 else
                 {
-                    Message.ErrorMessage("Shape not found.");
+                    Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
                 }
-            }
-            else
-            {
-                Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
-            }
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
         }
+
 
         private void SaveChangesToDatabase()
         {
@@ -201,41 +211,44 @@ namespace Milles_Project1Library.Services
 
         public void DeleteShape()
         {
-            Console.Clear();
-            ReadShapes();
-
-            Console.Write("Enter the Shape ID you want to delete or press 'e' to exit: ");
-            string userInput = Console.ReadLine();
-
-            if (userInput?.ToLower() == "e")
+            while (true)
             {
-                Console.WriteLine("Exiting shape deletion.");
-                return;
-            }
+                Console.Clear();
+                ReadShapes();
 
-            if (int.TryParse(userInput, out int shapeId))
-            {
-                var shape = _dbContext.Shape.Find(shapeId);
+                Console.Write("Enter the Shape ID you want to delete or press 'e' to exit: ");
+                string userInput = Console.ReadLine();
 
-                if (shape != null)
+                if (userInput?.ToLower() == "e")
                 {
-                    Console.WriteLine($"Deleting Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
+                    Console.WriteLine("Exiting shape deletion.");
+                    return;
+                }
 
-                    DeleteShapeFromDatabase(shape);
+                if (int.TryParse(userInput, out int shapeId))
+                {
+                    var shape = _dbContext.Shape.Find(shapeId);
 
-                    Message.InputSuccessMessage("Shape deleted successfully!");
+                    if (shape != null)
+                    {
+                        Console.WriteLine($"Deleting Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
+
+                        DeleteShapeFromDatabase(shape);
+
+                        Message.InputSuccessMessage("Shape deleted successfully!");
+                    }
+                    else
+                    {
+                        Message.ErrorMessage("Shape not found.");
+                    }
                 }
                 else
                 {
-                    Message.ErrorMessage("Shape not found.");
+                    Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
                 }
-            }
-            else
-            {
-                Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
-            }
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
         }
 
         private void DeleteShapeFromDatabase(Shape shape)

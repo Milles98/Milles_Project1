@@ -26,7 +26,6 @@ namespace Milles_Project1Library.Data
         public DbSet<GameStatistics> GameStatistics { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // För Calculator
             modelBuilder.Entity<Calculator>()
                 .Property(c => c.Number1)
                 .HasColumnType("decimal(18,2)");
@@ -37,7 +36,6 @@ namespace Milles_Project1Library.Data
                 .Property(c => c.Result)
                 .HasColumnType("decimal(18,2)");
 
-            // För Shape
             modelBuilder.Entity<Shape>()
                 .Property(s => s.Area)
                 .HasColumnType("decimal(18,2)");
