@@ -88,8 +88,14 @@ namespace Milles_Project1Library.Services
 
             foreach (var s in shape)
             {
-                string sideLengthDisplay = s.SideLength == 0 ? "N/A" : s.SideLength.ToString("F2");
-                Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{s.Base,-15}│{s.Height,-13}│{sideLengthDisplay,-13}│{s.Area,-11}│{s.Perimeter,-11}│{s.CalculationDate,-19}│");
+                string sideLengthDisplay = s.SideLength == 0 ? "N/A" : $"{s.SideLength:F2} cm";
+                string baseWithUnit = $"{s.Base} cm";
+                string heightWithUnit = $"{s.Height} cm";
+                string areaWithUnit = $"{s.Area} cm²";
+                string perimeterWithUnit = $"{s.Perimeter} cm";
+
+                Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{baseWithUnit,-15}│{heightWithUnit,-13}│" +
+                    $"{sideLengthDisplay,-13}│{areaWithUnit,-11}│{perimeterWithUnit,-11}│{s.CalculationDate,-19}│");
                 Console.WriteLine("├──────────┼──────────────┼───────────────┼─────────────┼─────────────┼───────────┤───────────┤───────────────────┤");
             }
 
