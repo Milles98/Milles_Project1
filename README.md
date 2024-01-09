@@ -48,3 +48,5 @@ gav problem med overflow och för stora nummer. Tillslut hittade jag en lösning
 felmeddelande om att det antingen var för stort eller för litet.
 
 Jag funderade ut hur min seeding skulle se ut och skapade en DataSeeding klass som skulle innehålla relevant seeding. Skapade först seeding för de 4 shapes.
+
+Efter det skapade jag seedingen för alla 6 operatorer i calculations.
