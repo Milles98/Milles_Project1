@@ -12,8 +12,8 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240109180655_test5")]
-    partial class test5
+    [Migration("20240110075946_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,17 +40,17 @@ namespace Milles_Project1Library.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Number1")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<decimal>("Number2")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<string>("Operator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Result")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(9,2)");
 
                     b.HasKey("CalculationId");
 
@@ -161,29 +161,29 @@ namespace Milles_Project1Library.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShapeId"));
 
                     b.Property<decimal>("Area")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<decimal>("Base")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Height")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Perimeter")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("ShapeType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("SideLength")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("ShapeId");
 

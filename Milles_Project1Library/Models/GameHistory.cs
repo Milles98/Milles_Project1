@@ -1,10 +1,5 @@
 ﻿using Milles_Project1Library.Interfaces.ModelsInterface;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Milles_Project1Library.Models
 {

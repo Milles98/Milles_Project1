@@ -1,12 +1,4 @@
 ﻿using Milles_Project1Library.Services;
-using Autofac;
-using Milles_Project1.Menus;
-using Milles_Project1Library.Data;
-using Milles_Project1Library.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Milles_Project1
 {

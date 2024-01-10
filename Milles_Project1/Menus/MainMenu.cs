@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Milles_Project1Library.Data;
-using Milles_Project1Library.ExtraServices;
-using Autofac;
+﻿using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ServiceInterface;
-using Milles_Project1Library.Interfaces.ContextInterface;
 
 namespace Milles_Project1.Menus
 {
@@ -20,6 +12,8 @@ namespace Milles_Project1.Menus
             do
             {
                 Console.Clear();
+                Message.ProjectMessage();
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("╭─────────────────────────╮");
                 Console.WriteLine("│ Main Menu               │");
                 Console.WriteLine("│ 1. Shapes               │");
@@ -27,6 +21,7 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("│ 3. Rock Paper Scissors  │");
                 Console.WriteLine("│ 0. Exit Program         │");
                 Console.WriteLine("╰─────────────────────────╯");
+                Console.ResetColor();
 
                 Console.Write("Enter your choice: ");
                 if (int.TryParse(Console.ReadLine(), out choice))

@@ -1,9 +1,4 @@
 ﻿using Milles_Project1Library.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autofac;
 using Milles_Project1Library.StrategyContext;
 using Milles_Project1Library.Services.ShapeStrategyService;
