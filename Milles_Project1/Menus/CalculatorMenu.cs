@@ -25,10 +25,10 @@ namespace Milles_Project1.Menus
                 Console.Clear();
                 Console.WriteLine("╭──────────────────────╮");
                 Console.WriteLine("│Calculator Menu       │");
-                Console.WriteLine("│1. Create             │"); //ska vara att göra beräkning
-                Console.WriteLine("│2. Read               │"); //läsa alla beräkningar
-                Console.WriteLine("│3. Update             │"); //uppdatera en beräkning
-                Console.WriteLine("│4. Delete             │"); //radera en beräkning
+                Console.WriteLine("│1. Create             │");
+                Console.WriteLine("│2. Read               │");
+                Console.WriteLine("│3. Update             │");
+                Console.WriteLine("│4. Delete             │");
                 Console.WriteLine("│0. Return to MainMenu │");
                 Console.WriteLine("╰──────────────────────╯");
 
@@ -42,6 +42,7 @@ namespace Milles_Project1.Menus
                             break;
                         case 2:
                             calculatorService.ReadCalculation();
+                            Console.WriteLine("Press any key to continue.");
                             Console.ReadKey();
                             break;
                         case 3:

@@ -32,71 +32,74 @@ namespace Milles_Project1Library.Services
 
         public void PerformCreateCalculation()
         {
-            Console.Clear();
-            Console.WriteLine("Choose an operation:");
-            Console.WriteLine("1. (+) Addition");
-            Console.WriteLine("2. (-) Subtraction");
-            Console.WriteLine("3. (*) Multiplication");
-            Console.WriteLine("4. (/) Division");
-            Console.WriteLine("5. (√) Power of");
-            Console.WriteLine("6. (%) Modulus");
-            Console.WriteLine("Press 'e' to exit.\n");
-
-            Console.Write("Enter your choice: ");
-            string userInput = Console.ReadLine();
-
-            if (userInput?.ToLower() == "e")
+            while (true)
             {
-                Console.WriteLine("Exiting calculation.");
-                return;
-            }
+                Console.Clear();
+                Console.WriteLine("Choose an operation:");
+                Console.WriteLine("1. (+) Addition");
+                Console.WriteLine("2. (-) Subtraction");
+                Console.WriteLine("3. (*) Multiplication");
+                Console.WriteLine("4. (/) Division");
+                Console.WriteLine("5. (√) Power of");
+                Console.WriteLine("6. (%) Modulus");
+                Console.WriteLine("Press 'e' to exit.\n");
 
-            if (int.TryParse(userInput, out int operationChoice))
-            {
-                if (operationChoice >= 1 && operationChoice <= 6)
+                Console.Write("Enter your choice: ");
+                string userInput = Console.ReadLine();
+
+                if (userInput?.ToLower() == "e")
                 {
-                    SetStrategyFromOperationChoice(operationChoice);
+                    Console.WriteLine("Exiting calculation.");
+                    return;
+                }
 
-                    decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1 (max 1000000): ", 1, 1000000);
-                    decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2 (max 1000000): ", 1, 1000000);
-
-                    if (IsNumberOutOfRange(num1) || IsNumberOutOfRange(num2))
+                if (int.TryParse(userInput, out int operationChoice))
+                {
+                    if (operationChoice >= 1 && operationChoice <= 6)
                     {
-                        Message.ErrorMessage("Invalid input. Please enter numbers within a reasonable range.");
-                        return;
+                        SetStrategyFromOperationChoice(operationChoice);
+
+                        decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1 (max 1000000): ", 1, 1000000);
+                        decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2 (max 1000000): ", 1, 1000000);
+
+                        if (IsNumberOutOfRange(num1) || IsNumberOutOfRange(num2))
+                        {
+                            Message.ErrorMessage("Invalid input. Please enter numbers within a reasonable range.");
+                            return;
+                        }
+
+                        num1 = Math.Round(num1, 2);
+                        num2 = Math.Round(num2, 2);
+
+                        decimal result = _calculatorContext.ExecuteOperation(num1, num2);
+
+                        if (result == 0)
+                        {
+                            Console.ReadKey();
+                            return;
+                        }
+
+                        result = Math.Round(result, 2);
+
+                        Console.WriteLine($"Result: {result}");
+
+                        _calculatorContext.SaveCalculationToDatabase(num1, num2, result);
+
+                        Message.InputSuccessMessage("Calculation saved to the database successfully!");
                     }
-
-                    num1 = Math.Round(num1, 2);
-                    num2 = Math.Round(num2, 2);
-
-                    decimal result = _calculatorContext.ExecuteOperation(num1, num2);
-
-                    if (result == 0)
+                    else
                     {
-                        Console.ReadKey();
-                        return;
+                        Message.ErrorMessage("Invalid operation choice. Please choose a valid operation.");
                     }
-
-                    result = Math.Round(result, 2);
-
-                    Console.WriteLine($"Result: {result}");
-
-                    _calculatorContext.SaveCalculationToDatabase(num1, num2, result);
-
-                    Message.InputSuccessMessage("Calculation saved to the database successfully!");
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid operation choice. Please choose a valid operation.");
+                    Message.ErrorMessage("Invalid input. Please enter a number or 'e' to exit.");
                 }
-            }
-            else
-            {
-                Message.ErrorMessage("Invalid input. Please enter a number or 'e' to exit.");
-            }
 
-            Console.WriteLine("Press any key to continue.");
-            Console.ReadKey();
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+            }
         }
 
         private bool IsNumberOutOfRange(decimal number)
@@ -149,79 +152,97 @@ namespace Milles_Project1Library.Services
             }
 
             Console.WriteLine("╰───────────────╯───────────────────────╯───────────────╯─────────────╯─────────────╯───────────────────╯");
-
-            Console.WriteLine("Press any key to continue.");
         }
 
         public void UpdateCalculation()
         {
-            Console.Write("Enter the Calculator ID you want to update: ");
-            if (int.TryParse(Console.ReadLine(), out int calculatorId))
+            while (true)
             {
-                var calculation = _dbContext.Calculator.Find(calculatorId);
+                ReadCalculation();
 
-                if (calculation != null)
+                Console.Write("Enter the Calculator ID you want to update or press 'e' to exit: ");
+                string userInput = Console.ReadLine();
+
+                if (userInput?.ToLower() == "e")
                 {
-                    Console.Write("Enter the new value for Number1: ");
-                    if (decimal.TryParse(Console.ReadLine(), out decimal newNum1))
-                    {
-                        Console.Write("Enter the new value for Number2: ");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal newNum2))
-                        {
-                            newNum1 = Math.Round(newNum1, 2);
-                            newNum2 = Math.Round(newNum2, 2);
+                    Console.WriteLine("Exiting update operation.");
+                    break;
+                }
 
-                            UpdateCalculationInDatabase(calculation, newNum1, newNum2);
-                            Message.InputSuccessMessage("Calculation updated successfully!");
-                            return;
+                if (int.TryParse(userInput, out int calculatorId))
+                {
+                    var calculation = _dbContext.Calculator.Find(calculatorId);
+
+                    if (calculation != null)
+                    {
+                        Console.Write("Enter the new value for Number1 (1-1000000): ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
+                        {
+                            Console.Write("Enter the new value for Number2 (1-1000000): ");
+                            if (decimal.TryParse(Console.ReadLine(), out decimal newNum2) && newNum2 >= 1 && newNum2 <= 1000000)
+                            {
+                                newNum1 = Math.Round(newNum1, 2);
+                                newNum2 = Math.Round(newNum2, 2);
+
+                                UpdateCalculationInDatabase(calculation, newNum1, newNum2);
+                                Message.InputSuccessMessage("Calculation updated successfully!");
+                                break;
+                            }
+                            else
+                            {
+                                Message.ErrorMessage("Invalid input for Number2. Please enter a valid number between 1 and 1000000.");
+                            }
                         }
                         else
                         {
-                            Message.ErrorMessage("Invalid input for Number2. Please enter a valid number.");
+                            Message.ErrorMessage("Invalid input for Number1. Please enter a valid number between 1 and 1000000.");
                         }
                     }
                     else
                     {
-                        Message.ErrorMessage("Invalid input for Number1. Please enter a valid number.");
+                        Message.ErrorMessage("Calculation not found.");
                     }
                 }
                 else
                 {
-                    Message.ErrorMessage("Calculation not found.");
+                    Message.ErrorMessage("Invalid input for Calculator ID. Please enter a valid number or 'e' to exit.");
                 }
-            }
-            else
-            {
-                Message.ErrorMessage("Invalid input for Calculator ID. Please enter a valid number.");
-            }
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
         }
+
 
         public void DeleteCalculation()
         {
-            Console.Write("Enter the Calculator ID you want to delete: ");
-            if (int.TryParse(Console.ReadLine(), out int calculatorId))
+            while (true)
             {
-                var calculation = _dbContext.Calculator.Find(calculatorId);
-
-                if (calculation != null)
+                ReadCalculation();
+                Console.Write("Enter the Calculator ID you want to delete: ");
+                if (int.TryParse(Console.ReadLine(), out int calculatorId))
                 {
-                    DeleteCalculationFromDatabase(calculation);
-                    Message.InputSuccessMessage("Calculation deleted successfully!");
-                    return;
+                    var calculation = _dbContext.Calculator.Find(calculatorId);
+
+                    if (calculation != null)
+                    {
+                        DeleteCalculationFromDatabase(calculation);
+                        Message.InputSuccessMessage("Calculation deleted successfully!");
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
+                        return;
+                    }
+                    else
+                    {
+                        Message.ErrorMessage("Calculation not found.");
+                    }
                 }
                 else
                 {
-                    Message.ErrorMessage("Calculation not found.");
+                    Message.ErrorMessage("Invalid input for Calculator ID. Please enter a valid number.");
                 }
-            }
-            else
-            {
-                Message.ErrorMessage("Invalid input for Calculator ID. Please enter a valid number.");
-            }
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
         }
 
         public void UpdateCalculationInDatabase(Calculator calculation, decimal newNum1, decimal newNum2)
