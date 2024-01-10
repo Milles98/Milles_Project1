@@ -12,7 +12,7 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240110093407_test")]
+    [Migration("20240110114332_test")]
     partial class test
     {
         /// <inheritdoc />
