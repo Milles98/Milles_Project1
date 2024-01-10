@@ -7,7 +7,6 @@ namespace Milles_Project1Library.Interfaces.ContextInterface
     {
         decimal ExecuteOperation(decimal num1, decimal num2);
         decimal GetUserInput(string prompt, decimal minValue, decimal maxValue);
-        void CalculateAndDisplayResults();
         void SetStrategy(ICalculatorStrategy strategy);
         public void CreateCalculation(decimal num1, decimal num2);
         public IEnumerable<Calculator> ReadCalculation();

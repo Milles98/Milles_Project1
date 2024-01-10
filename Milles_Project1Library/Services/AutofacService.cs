@@ -44,9 +44,9 @@ namespace Milles_Project1Library.Services
             builder.RegisterType<GameService>().As<IGameService>();
             builder.RegisterType<DataSeeding>().AsSelf();
 
-            builder.RegisterType<CalculatorMenuFactory>().Named<IMenuFactory>("CalculatorMenuFactory");
-            builder.RegisterType<GameMenuFactory>().Named<IMenuFactory>("GameMenuFactory");
-            builder.RegisterType<ShapeMenuFactory>().Named<IMenuFactory>("ShapeMenuFactory");
+            builder.RegisterType<CalculatorMenuFactory>().Named<IMenuFactory>("CalculatorMenuFactory").SingleInstance();
+            builder.RegisterType<GameMenuFactory>().Named<IMenuFactory>("GameMenuFactory").SingleInstance();
+            builder.RegisterType<ShapeMenuFactory>().Named<IMenuFactory>("ShapeMenuFactory").SingleInstance();
 
             return builder.Build();
         }

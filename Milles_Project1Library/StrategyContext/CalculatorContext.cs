@@ -133,33 +133,5 @@ namespace Milles_Project1Library.StrategyContext
             _dbContext.Calculator.Add(calculation);
             _dbContext.SaveChanges();
         }
-
-        public void CalculateAndDisplayResults()
-        {
-            Console.Write("Enter the first number: ");
-            if (decimal.TryParse(Console.ReadLine(), out decimal num1))
-            {
-                Console.Write("Enter the second number: ");
-                if (decimal.TryParse(Console.ReadLine(), out decimal num2))
-                {
-                    decimal result = ExecuteOperation(num1, num2);
-                    Console.WriteLine($"Result: {result}");
-                    SaveCalculationToDatabase(num1, num2, result);
-                }
-                else
-                {
-                    Message.RedMessage("Invalid input for the second number. Please enter a valid number.");
-                    Thread.Sleep(1000);
-                }
-            }
-            else
-            {
-                Message.RedMessage("Invalid input for the first number. Please enter a valid number.");
-                Thread.Sleep(1000);
-            }
-
-            Console.WriteLine("Press any button to continue.");
-            Console.ReadKey();
-        }
     }
 }

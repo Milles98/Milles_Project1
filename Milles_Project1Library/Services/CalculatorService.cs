@@ -190,6 +190,7 @@ namespace Milles_Project1Library.Services
 
                                 UpdateCalculationInDatabase(calculation, newNum1, newNum2);
                                 Message.GreenMessage("Calculation updated successfully!");
+                                Console.ReadKey();
                                 break;
                             }
                             else
