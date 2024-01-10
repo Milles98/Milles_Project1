@@ -23,9 +23,10 @@ namespace Milles_Project1
                 var gameService = scope.Resolve<IGameService>();
                 var dataSeeding = scope.Resolve<DataSeeding>();
 
+                dataSeeding.Seed();
+
                 while (true)
                 {
-                    dataSeeding.Seed();
                     MainMenu.ShowMenu(calculatorService, shapeService, gameService);
                 }
             }
