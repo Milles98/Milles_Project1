@@ -42,6 +42,10 @@ namespace Milles_Project1Library.StrategyContext
             area = Math.Round(area, 2);
             perimeter = Math.Round(perimeter, 2);
 
+            if (area == 0 || perimeter == 0)
+            {
+                return;
+            }
             Message.DarkYellowMessage($"\nArea: {area} cm");
             Message.DarkYellowMessage($"Perimeter: {perimeter} cm");
 
@@ -96,7 +100,25 @@ namespace Milles_Project1Library.StrategyContext
                 for (int i = 0; i < dimensionCount; i++)
                 {
                     string dimensionName = GetDimensionName(i + 1);
-                    dimensions[i] = GetBoundedDoubleInput($"Enter {dimensionName} (1-999) cm: ", 1, 999);
+
+                    Console.Write($"Enter {dimensionName} (1-999) cm or 'e' to exit: ");
+                    string userInput = Console.ReadLine();
+
+                    if (userInput.ToLower() == "e")
+                    {
+                        dimensions[0] = 0;
+                        dimensions[1] = 0;
+                        return dimensions;
+                    }
+                    else if (decimal.TryParse(userInput, out decimal dimensionValue) && dimensionValue >= 1 && dimensionValue <= 999)
+                    {
+                        dimensions[i] = dimensionValue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Please enter a valid decimal between 1 and 999 or 'e' to exit.");
+                        i--;
+                    }
                 }
 
                 return dimensions;

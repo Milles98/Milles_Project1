@@ -28,7 +28,7 @@ namespace Milles_Project1Library.Services
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Choose an operation:");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("╭──────────────────────╮");
                 Console.WriteLine("│1. (+) Addition       │");
                 Console.WriteLine("│2. (-) Subtraction    │");
@@ -38,6 +38,7 @@ namespace Milles_Project1Library.Services
                 Console.WriteLine("│6. (%) Modulus        │");
                 Console.WriteLine("│Press 'e' to exit.    │");
                 Console.WriteLine("╰──────────────────────╯");
+                Console.ResetColor();
 
                 Console.Write("\nEnter your choice: ");
                 string userInput = Console.ReadLine();

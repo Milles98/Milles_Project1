@@ -243,7 +243,7 @@ namespace Milles_Project1Library.Services
                         Console.WriteLine($"Game End Date: {game.GameHistories.LastOrDefault()?.GameEndDate}");
                     }
 
-                    Console.WriteLine($"-----------------------------");
+                    Console.WriteLine("──────────────────────────────────────");
                 }
 
                 var totalWins = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Player") ?? 0);
@@ -258,6 +258,7 @@ namespace Milles_Project1Library.Services
                 Message.RedMessage($"Total Losses: {totalLosses}");
                 Message.DarkYellowMessage($"Total Draws: {totalDraws}");
                 Console.WriteLine($"Average Wins Against Computer: {averageWins:P}");
+                Console.WriteLine("──────────────────────────────────────");
             }
             else
             {
