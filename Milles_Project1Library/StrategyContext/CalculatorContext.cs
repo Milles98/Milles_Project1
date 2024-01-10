@@ -23,7 +23,7 @@ namespace Milles_Project1Library.StrategyContext
             return GetBoundedDoubleInput(prompt, minValue, maxValue);
         }
 
-        public decimal GetBoundedDoubleInput(string prompt, decimal minValue, decimal maxValue)
+        private decimal GetBoundedDoubleInput(string prompt, decimal minValue, decimal maxValue)
         {
             decimal input = 0;
             bool isValidInput = false;
@@ -56,8 +56,6 @@ namespace Milles_Project1Library.StrategyContext
 
             return Math.Round(input, 2);
         }
-
-
 
         public decimal ExecuteOperation(decimal num1, decimal num2)
         {
