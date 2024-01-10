@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Milles_Project1Library.Data;
-using Milles_Project1Library.Interfaces.FactoryInterface;
 using Milles_Project1Library.Menus;
 
 namespace Milles_Project1

@@ -9,10 +9,11 @@ using Milles_Project1Library.Interfaces.ContextInterface;
 using Milles_Project1Library.Factory;
 using Milles_Project1Library.Interfaces.FactoryInterface;
 using Milles_Project1Library.FactoryMenus;
+using Milles_Project1Library.Services;
 
-namespace Milles_Project1Library.Services
+namespace Milles_Project1Library
 {
-    public static class AutofacService
+    public static class Autofac
     {
         public static IContainer RegisteredContainers()
         {
