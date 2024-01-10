@@ -62,3 +62,6 @@ att den kommer att kontinuerligt försöka seeda. Jag bestämde mig för att fly
 
 Letade efter fel i consolen och hittade en smidig lösning med mina shapes och strategies, möjligheten jag ville var att kunden ska kunna gå ur shape uträkningen mitt i ett tal
 löste det till slut genom att sätta tidigare dimensioner till 0 som i sin tur skrevs i en if sats som säkerställde att inget sparas om något relevant värde är 0.
+
+Jag bestämde mig för att gå ur min comfortzone och försökte implementera factory pattern till mina menyer. Det var hackigt att få det att funka med autofac, fick många errors.
+Tillslut fick jag ta bort min meny från huvudprojektet och lägga det i mitt library där jag registrerar mina autofacs. Efter mycket felsökning och debugging lyckades jag få factory pattern att fungera!
