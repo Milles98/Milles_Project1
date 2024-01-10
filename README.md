@@ -59,3 +59,6 @@ om användaren önskar det.
 
 Började kolla runt efter mindre fel i appen och märkte att min seeding var i min huvudloop, det kanske inte är så illa i sig eftersom den inte seedar det som redan finns men det innebär
 att den kommer att kontinuerligt försöka seeda. Jag bestämde mig för att flytta ut den ur loopen så att den enbart körs en gång när appen startar och aldrig igen.
+
+Letade efter fel i consolen och hittade en smidig lösning med mina shapes och strategies, möjligheten jag ville var att kunden ska kunna gå ur shape uträkningen mitt i ett tal
+löste det till slut genom att sätta tidigare dimensioner till 0 som i sin tur skrevs i en if sats som säkerställde att inget sparas om något relevant värde är 0.
