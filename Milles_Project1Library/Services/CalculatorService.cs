@@ -54,7 +54,7 @@ namespace Milles_Project1Library.Services
                     {
                         SetStrategyFromOperationChoice(operationChoice);
 
-                        decimal num1 = _calculatorContext.GetUserInput($"Enter the value for Number1 (max 1000000) or 'e' to exit: ", 1, 1000000);
+                        decimal num1 = _calculatorContext.GetUserInput($"Enter the value for Number1 (max 1,000,000) or 'e' to exit: ", 1, 1000000);
 
                         if (num1 == -1)
                         {
@@ -64,7 +64,7 @@ namespace Milles_Project1Library.Services
 
                         num1 = Math.Round(num1, 2);
 
-                        decimal num2 = _calculatorContext.GetUserInput($"Enter the value for Number2 (max 1000000) or 'e' to exit: ", 1, 1000000);
+                        decimal num2 = _calculatorContext.GetUserInput($"Enter the value for Number2 (max 1,000,000) or 'e' to exit: ", 1, 1000000);
 
                         if (num2 == -1)
                         {
@@ -178,10 +178,10 @@ namespace Milles_Project1Library.Services
 
                     if (calculation != null)
                     {
-                        Console.Write("Enter the new value for Number1 (1-1000000): ");
+                        Console.Write("Enter the new value for Number1 (1 - 1,000,000): ");
                         if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
                         {
-                            Console.Write("Enter the new value for Number2 (1-1000000): ");
+                            Console.Write("Enter the new value for Number2 (1 - 1,000,000): ");
                             if (decimal.TryParse(Console.ReadLine(), out decimal newNum2) && newNum2 >= 1 && newNum2 <= 1000000)
                             {
                                 newNum1 = Math.Round(newNum1, 2);
@@ -221,13 +221,21 @@ namespace Milles_Project1Library.Services
             while (true)
             {
                 ReadCalculation();
-                Console.Write("Enter the Calculator ID you want to delete: ");
-                if (int.TryParse(Console.ReadLine(), out int calculatorId))
+                Console.Write("Enter the Calculator ID you want to delete or press 'e' to exit: ");
+                string userInput = Console.ReadLine();
+
+                if (userInput?.ToLower() == "e")
+                {
+                    Console.WriteLine("Exiting calculator deletion.");
+                    return;
+                }
+                if (int.TryParse(userInput, out int calculatorId))
                 {
                     var calculation = _dbContext.Calculator.Find(calculatorId);
 
                     if (calculation != null)
                     {
+                        Console.WriteLine($"Deleting Calculator ID: {calculation.CalculationId}");
                         DeleteCalculationFromDatabase(calculation);
                         Message.GreenMessage("Calculation deleted successfully!");
                         Console.WriteLine("Press any key to continue.");
