@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using Milles_Project1.Menus;
 using Milles_Project1Library.Data;
-using Milles_Project1Library.Interfaces.ServiceInterface;
+using Milles_Project1Library.Interfaces.FactoryInterface;
+using Milles_Project1Library.Menus;
 
 namespace Milles_Project1
 {
@@ -16,19 +16,13 @@ namespace Milles_Project1
 
         public void RunApplication()
         {
-            using (var scope = _container.BeginLifetimeScope())
+            var dataSeeding = _container.Resolve<DataSeeding>();
+
+            dataSeeding.Seed();
+
+            while (true)
             {
-                var calculatorService = scope.Resolve<ICalculatorService>();
-                var shapeService = scope.Resolve<IShapeService>();
-                var gameService = scope.Resolve<IGameService>();
-                var dataSeeding = scope.Resolve<DataSeeding>();
-
-                dataSeeding.Seed();
-
-                while (true)
-                {
-                    MainMenu.ShowMenu(calculatorService, shapeService, gameService);
-                }
+                MainMenu.ShowMenu(_container);
             }
         }
     }

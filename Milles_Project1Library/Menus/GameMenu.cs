@@ -1,11 +1,19 @@
 ﻿using Milles_Project1Library.ExtraServices;
+using Milles_Project1Library.Interfaces.FactoryInterface;
 using Milles_Project1Library.Interfaces.ServiceInterface;
 
-namespace Milles_Project1.Menus
+namespace Milles_Project1Library.Menus
 {
-    public static class GameMenu
+    public class GameMenu : IMenu
     {
-        public static void ShowGameMenu(IGameService gameService)
+        private readonly IGameService _gameService;
+
+        public GameMenu(IGameService gameService)
+        {
+            _gameService = gameService;
+        }
+
+        public void ShowMenu()
         {
             int choice;
 
@@ -29,13 +37,13 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            gameService.PlayGame();
+                            _gameService.PlayGame();
                             break;
                         case 2:
-                            gameService.GameRules();
+                            _gameService.GameRules();
                             break;
                         case 3:
-                            gameService.ViewPreviousGames();
+                            _gameService.ViewPreviousGames();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");
@@ -53,6 +61,10 @@ namespace Milles_Project1.Menus
                 }
 
             } while (choice != 0);
+        }
+        public Type GetMenuType()
+        {
+            return this.GetType();
         }
     }
 }

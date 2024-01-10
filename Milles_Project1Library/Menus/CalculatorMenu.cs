@@ -1,11 +1,24 @@
 ﻿using Milles_Project1Library.ExtraServices;
+using Milles_Project1Library.Interfaces.FactoryInterface;
 using Milles_Project1Library.Interfaces.ServiceInterface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Milles_Project1.Menus
+namespace Milles_Project1Library.Menus
 {
-    public static class CalculatorMenu
+    public class CalculatorMenu : IMenu
     {
-        public static void ShowCalculatorMenu(ICalculatorService calculatorService)
+        private readonly ICalculatorService _calculatorService;
+
+        public CalculatorMenu(ICalculatorService calculatorService)
+        {
+            _calculatorService = calculatorService;
+        }
+
+        public void ShowMenu()
         {
             int choice;
 
@@ -30,18 +43,18 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            calculatorService.PerformCreateCalculation();
+                            _calculatorService.PerformCreateCalculation();
                             break;
                         case 2:
-                            calculatorService.ReadCalculation();
+                            _calculatorService.ReadCalculation();
                             Console.WriteLine("Press any key to continue.");
                             Console.ReadKey();
                             break;
                         case 3:
-                            calculatorService.UpdateCalculation();
+                            _calculatorService.UpdateCalculation();
                             break;
                         case 4:
-                            calculatorService.DeleteCalculation();
+                            _calculatorService.DeleteCalculation();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");
@@ -59,6 +72,10 @@ namespace Milles_Project1.Menus
                 }
 
             } while (choice != 0);
+        }
+        public Type GetMenuType()
+        {
+            return this.GetType();
         }
     }
 }

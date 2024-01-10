@@ -1,11 +1,12 @@
 ﻿using Milles_Project1Library.ExtraServices;
-using Milles_Project1Library.Interfaces.ServiceInterface;
+using Milles_Project1Library.Interfaces.FactoryInterface;
+using Autofac;
 
-namespace Milles_Project1.Menus
+namespace Milles_Project1Library.Menus
 {
     public static class MainMenu
     {
-        public static void ShowMenu(ICalculatorService calculatorService, IShapeService shapeService, IGameService gameService)
+        public static void ShowMenu(IContainer container)
         {
             int choice;
 
@@ -29,13 +30,25 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            ShapesMenu.ShowShapesMenu(shapeService);
+                            var shapesMenu = container.ResolveNamed<IMenuFactory>("ShapeMenuFactory").CreateMenu();
+                            if (shapesMenu.GetMenuType() == typeof(ShapesMenu))
+                            {
+                                ((ShapesMenu)shapesMenu).ShowMenu();
+                            }
                             break;
                         case 2:
-                            CalculatorMenu.ShowCalculatorMenu(calculatorService);
+                            var calculatorMenu = container.ResolveNamed<IMenuFactory>("CalculatorMenuFactory").CreateMenu();
+                            if (calculatorMenu.GetMenuType() == typeof(CalculatorMenu))
+                            {
+                                ((CalculatorMenu)calculatorMenu).ShowMenu();
+                            }
                             break;
                         case 3:
-                            GameMenu.ShowGameMenu(gameService);
+                            var gameMenu = container.ResolveNamed<IMenuFactory>("GameMenuFactory").CreateMenu();
+                            if (gameMenu.GetMenuType() == typeof(GameMenu))
+                            {
+                                ((GameMenu)gameMenu).ShowMenu();
+                            }
                             break;
                         case 0:
                             Console.WriteLine("Exiting program...");

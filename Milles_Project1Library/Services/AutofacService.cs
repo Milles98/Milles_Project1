@@ -6,6 +6,9 @@ using Milles_Project1Library.Services.CalculatorStrategyService;
 using Milles_Project1Library.Interfaces.ServiceInterface;
 using Milles_Project1Library.Interfaces.StrategyInterface;
 using Milles_Project1Library.Interfaces.ContextInterface;
+using Milles_Project1Library.Factory;
+using Milles_Project1Library.Interfaces.FactoryInterface;
+using Milles_Project1Library.FactoryMenus;
 
 namespace Milles_Project1Library.Services
 {
@@ -40,6 +43,10 @@ namespace Milles_Project1Library.Services
             builder.RegisterType<ShapeService>().As<IShapeService>();
             builder.RegisterType<GameService>().As<IGameService>();
             builder.RegisterType<DataSeeding>().AsSelf();
+
+            builder.RegisterType<CalculatorMenuFactory>().Named<IMenuFactory>("CalculatorMenuFactory");
+            builder.RegisterType<GameMenuFactory>().Named<IMenuFactory>("GameMenuFactory");
+            builder.RegisterType<ShapeMenuFactory>().Named<IMenuFactory>("ShapeMenuFactory");
 
             return builder.Build();
         }
