@@ -1,11 +1,4 @@
 ﻿using Milles_Project1Library.ExtraServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
-using Milles_Project1Library.Data;
 using Milles_Project1Library.Interfaces.ServiceInterface;
 
 namespace Milles_Project1.Menus
@@ -19,6 +12,8 @@ namespace Milles_Project1.Menus
             do
             {
                 Console.Clear();
+                Message.ProjectMessage();
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("╭──────────────────────────╮");
                 Console.WriteLine("│Rock Paper Scissors Menu  │");
                 Console.WriteLine("│1. Play Game              │");
@@ -26,6 +21,7 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("│3. View Previous Games    │");
                 Console.WriteLine("│0. Return to MainMenu     │");
                 Console.WriteLine("╰──────────────────────────╯");
+                Console.ResetColor();
 
                 Console.Write("Enter your choice: ");
                 if (int.TryParse(Console.ReadLine(), out choice))

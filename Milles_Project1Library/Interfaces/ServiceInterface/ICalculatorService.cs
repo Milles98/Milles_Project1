@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Milles_Project1Library.Models;
-using Milles_Project1Library.StrategyContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Milles_Project1Library.Models;
 
 namespace Milles_Project1Library.Interfaces.ServiceInterface
 {

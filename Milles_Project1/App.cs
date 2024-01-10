@@ -1,16 +1,7 @@
 ﻿using Autofac;
 using Milles_Project1.Menus;
 using Milles_Project1Library.Data;
-using Milles_Project1Library.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Milles_Project1Library.Interfaces.ServiceInterface;
-using Milles_Project1Library.Interfaces.ContextInterface;
 
 namespace Milles_Project1
 {

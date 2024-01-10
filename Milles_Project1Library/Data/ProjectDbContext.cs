@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Milles_Project1Library.Models;
 
 namespace Milles_Project1Library.Data
@@ -28,29 +23,29 @@ namespace Milles_Project1Library.Data
         {
             modelBuilder.Entity<Calculator>()
                 .Property(c => c.Number1)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(9,2)");
             modelBuilder.Entity<Calculator>()
                 .Property(c => c.Number2)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(9,2)");
             modelBuilder.Entity<Calculator>()
                 .Property(c => c.Result)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(9,2)");
 
             modelBuilder.Entity<Shape>()
                 .Property(s => s.Area)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(5,2)");
             modelBuilder.Entity<Shape>()
                 .Property(s => s.Perimeter)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(5,2)");
             modelBuilder.Entity<Shape>()
                 .Property(s => s.Base)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(5,2)");
             modelBuilder.Entity<Shape>()
                 .Property(s => s.Height)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(5,2)");
             modelBuilder.Entity<Shape>()
                 .Property(s => s.SideLength)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(5,2)");
 
             base.OnModelCreating(modelBuilder);
         }

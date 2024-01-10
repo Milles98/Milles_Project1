@@ -1,17 +1,5 @@
 ﻿using Milles_Project1Library.ExtraServices;
-using Milles_Project1Library.Services.ShapeStrategyService;
-using Milles_Project1Library.StrategyContext;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
-using Milles_Project1Library.Services;
-using Milles_Project1Library.Data;
 using Milles_Project1Library.Interfaces.ServiceInterface;
-using Milles_Project1Library.Interfaces.ContextInterface;
 
 namespace Milles_Project1.Menus
 {
@@ -24,6 +12,8 @@ namespace Milles_Project1.Menus
             do
             {
                 Console.Clear();
+                Message.ProjectMessage();
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("╭────────────────────╮");
                 Console.WriteLine("│ Shapes Menu        │");
                 Console.WriteLine("│1. Create           │");
@@ -32,6 +22,7 @@ namespace Milles_Project1.Menus
                 Console.WriteLine("│4. Delete           │");
                 Console.WriteLine("│0. Return to Menu   │");
                 Console.WriteLine("╰────────────────────╯");
+                Console.ResetColor();
 
                 Console.Write("Enter your choice: ");
                 if (int.TryParse(Console.ReadLine(), out choice))
