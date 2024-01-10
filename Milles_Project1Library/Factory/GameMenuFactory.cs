@@ -1,5 +1,4 @@
-﻿using Autofac;
-using Milles_Project1Library.Interfaces.FactoryInterface;
+﻿using Milles_Project1Library.Interfaces.FactoryInterface;
 using Milles_Project1Library.Interfaces.ServiceInterface;
 using Milles_Project1Library.Menus;
 
