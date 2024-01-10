@@ -29,15 +29,17 @@ namespace Milles_Project1Library.Services
             {
                 Console.Clear();
                 Console.WriteLine("Choose an operation:");
-                Console.WriteLine("1. (+) Addition");
-                Console.WriteLine("2. (-) Subtraction");
-                Console.WriteLine("3. (*) Multiplication");
-                Console.WriteLine("4. (/) Division");
-                Console.WriteLine("5. (√) Power of");
-                Console.WriteLine("6. (%) Modulus");
-                Console.WriteLine("Press 'e' to exit.\n");
+                Console.WriteLine("╭──────────────────────╮");
+                Console.WriteLine("│1. (+) Addition       │");
+                Console.WriteLine("│2. (-) Subtraction    │");
+                Console.WriteLine("│3. (*) Multiplication │");
+                Console.WriteLine("│4. (/) Division       │");
+                Console.WriteLine("│5. (√) Power of       │");
+                Console.WriteLine("│6. (%) Modulus        │");
+                Console.WriteLine("│Press 'e' to exit.    │");
+                Console.WriteLine("╰──────────────────────╯");
 
-                Console.Write("Enter your choice: ");
+                Console.Write("\nEnter your choice: ");
                 string userInput = Console.ReadLine();
 
                 if (userInput?.ToLower() == "e")

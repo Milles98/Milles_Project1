@@ -52,12 +52,14 @@ namespace Milles_Project1Library.Services
 
                 var availableShapeTypes = GetAvailableShapeTypes();
 
-                Console.WriteLine("Choose a shape type:");
 
+                Console.WriteLine("╭──────────────────────╮");
+                Console.WriteLine("│Choose a shape type:  │");
                 for (int i = 0; i < availableShapeTypes.Count(); i++)
                 {
-                    Console.WriteLine($"{i + 1}. {availableShapeTypes.ElementAt(i)}");
+                    Console.WriteLine($"│{i + 1}. {availableShapeTypes.ElementAt(i),-19}│");
                 }
+                Console.WriteLine("╰──────────────────────╯");
 
                 Console.Write("Enter the number corresponding to the shape type or press 'e' to exit: ");
                 string userInput = Console.ReadLine();

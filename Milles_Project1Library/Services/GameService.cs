@@ -32,11 +32,13 @@ namespace Milles_Project1Library.Services
                 Message.RedMessage($"│ Computer Wins: {computerWins}         │");
                 Console.WriteLine($"╰──────────────────────────╯");
 
-                Message.DarkYellowMessage($"Round {rounds + 1}");
-                Console.WriteLine("1. Rock");
-                Console.WriteLine("2. Paper");
-                Console.WriteLine("3. Scissors");
-                Console.WriteLine("0. End the Game");
+                Console.WriteLine($"╭──────────────────────────╮");
+                Message.DarkYellowMessage($"│Round {rounds + 1}                   │");
+                Console.WriteLine("│1. Rock                   │");
+                Console.WriteLine("│2. Paper                  │");
+                Console.WriteLine("│3. Scissors               │");
+                Console.WriteLine("│0. End the Game           │");
+                Console.WriteLine($"╰──────────────────────────╯");
 
                 Console.Write("\nEnter your move (1-3): ");
                 if (int.TryParse(Console.ReadLine(), out int playerChoice))
@@ -95,7 +97,9 @@ namespace Milles_Project1Library.Services
 
             string winner = (playerWins >= 2) ? "Player" : "Computer";
 
+            Message.GreenMessage("──────────────────");
             Message.GreenMessage($"Winner: {winner}");
+            Message.GreenMessage("──────────────────");
 
             if (lastGame != null)
             {
@@ -193,13 +197,19 @@ namespace Milles_Project1Library.Services
             switch (result)
             {
                 case GameResult.Win:
-                    Message.GreenMessage("You Win!");
+                    Message.GreenMessage($"╭────────╮");
+                    Message.GreenMessage("│You Win!│");
+                    Message.GreenMessage($"╰────────╯");
                     break;
                 case GameResult.Loss:
-                    Message.RedMessage("Computer Wins!");
+                    Message.RedMessage($"╭──────────────╮");
+                    Message.RedMessage("│Computer Wins!│");
+                    Message.RedMessage($"╰──────────────╯");
                     break;
                 case GameResult.Draw:
-                    Message.DarkYellowMessage("It's a Draw!");
+                    Message.DarkYellowMessage($"╭────────────╮");
+                    Message.DarkYellowMessage("│It's a Draw!│");
+                    Message.DarkYellowMessage($"╰────────────╯");
                     break;
                 default:
                     break;

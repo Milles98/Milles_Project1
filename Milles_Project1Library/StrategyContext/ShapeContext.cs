@@ -78,7 +78,7 @@ namespace Milles_Project1Library.StrategyContext
             _dbContext.Shape.Add(resultShape);
             _dbContext.SaveChanges();
 
-            Message.GreenMessage("Shape calculation successfully saved to database!");
+            Message.GreenMessage("\nShape calculation successfully saved to database!");
         }
 
         private void SetShapeProperties(decimal[] dimensions)
