@@ -50,3 +50,12 @@ felmeddelande om att det antingen var för stort eller för litet.
 Jag funderade ut hur min seeding skulle se ut och skapade en DataSeeding klass som skulle innehålla relevant seeding. Skapade först seeding för de 4 shapes.
 
 Efter det skapade jag seedingen för alla 6 operatorer i calculations.
+
+Dag 6
+
+La till färger på alla menyerna, tyckte att darkcyan passade bra.
+Utvecklade calculator create delen, tyckte att det hade varit skönt att kunna lämna beräkningen mitt i och bestämde mig för att inkludera en exit option som kan ta en tillbaka till calculator menyn
+om användaren önskar det.
+
+Började kolla runt efter mindre fel i appen och märkte att min seeding var i min huvudloop, det kanske inte är så illa i sig eftersom den inte seedar det som redan finns men det innebär
+att den kommer att kontinuerligt försöka seeda. Jag bestämde mig för att flytta ut den ur loopen så att den enbart körs en gång när appen startar och aldrig igen.
