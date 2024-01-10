@@ -1,11 +1,19 @@
 ﻿using Milles_Project1Library.ExtraServices;
+using Milles_Project1Library.Interfaces.FactoryInterface;
 using Milles_Project1Library.Interfaces.ServiceInterface;
 
-namespace Milles_Project1.Menus
+namespace Milles_Project1Library.Menus
 {
-    public static class ShapesMenu
+    public class ShapesMenu : IMenu
     {
-        public static void ShowShapesMenu(IShapeService shapeService)
+        private readonly IShapeService _shapeService;
+
+        public ShapesMenu(IShapeService shapeService)
+        {
+            _shapeService = shapeService;
+        }
+
+        public void ShowMenu()
         {
             int choice;
 
@@ -30,18 +38,18 @@ namespace Milles_Project1.Menus
                     switch (choice)
                     {
                         case 1:
-                            shapeService.CreateShape();
+                            _shapeService.CreateShape();
                             break;
                         case 2:
-                            shapeService.ReadShapes();
+                            _shapeService.ReadShapes();
                             Console.WriteLine("Press any key to continue.");
                             Console.ReadKey();
                             break;
                         case 3:
-                            shapeService.UpdateShape();
+                            _shapeService.UpdateShape();
                             break;
                         case 4:
-                            shapeService.DeleteShape();
+                            _shapeService.DeleteShape();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");
@@ -59,6 +67,10 @@ namespace Milles_Project1.Menus
                 }
 
             } while (choice != 0);
+        }
+        public Type GetMenuType()
+        {
+            return this.GetType();
         }
     }
 }
