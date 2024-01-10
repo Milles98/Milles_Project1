@@ -41,14 +41,14 @@ namespace Milles_Project1.Menus
                             Console.WriteLine("Returning to MainMenu...");
                             break;
                         default:
-                            Message.ErrorMessage("Invalid choice. Please try again.");
+                            Message.RedMessage("Invalid choice. Please try again.");
                             Thread.Sleep(1000);
                             break;
                     }
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input. Please enter a number.");
+                    Message.RedMessage("Invalid input. Please enter a number.");
                     Thread.Sleep(1000);
                 }
 

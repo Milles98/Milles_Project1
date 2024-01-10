@@ -42,7 +42,7 @@ namespace Milles_Project1Library.StrategyContext
 
                 if (!decimal.TryParse(userInput, out input))
                 {
-                    Message.ErrorMessage("Invalid input. Please enter a valid number.");
+                    Message.RedMessage("Invalid input. Please enter a valid number.");
                     continue;
                 }
 
@@ -50,7 +50,7 @@ namespace Milles_Project1Library.StrategyContext
 
                 if (!isValidInput)
                 {
-                    Message.ErrorMessage($"Invalid input. Please enter a value between {minValue} and {maxValue} or 'e' to exit.");
+                    Message.RedMessage($"Invalid input. Please enter a value between {minValue} and {maxValue} or 'e' to exit.");
                 }
             } while (!isValidInput);
 
@@ -94,7 +94,7 @@ namespace Milles_Project1Library.StrategyContext
             }
             else
             {
-                Message.ErrorMessage("Calculation not found.");
+                Message.RedMessage("Calculation not found.");
             }
         }
 
@@ -109,7 +109,7 @@ namespace Milles_Project1Library.StrategyContext
             }
             else
             {
-                Message.ErrorMessage("Calculation not found.");
+                Message.RedMessage("Calculation not found.");
             }
         }
 
@@ -148,13 +148,13 @@ namespace Milles_Project1Library.StrategyContext
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input for the second number. Please enter a valid number.");
+                    Message.RedMessage("Invalid input for the second number. Please enter a valid number.");
                     Thread.Sleep(1000);
                 }
             }
             else
             {
-                Message.ErrorMessage("Invalid input for the first number. Please enter a valid number.");
+                Message.RedMessage("Invalid input for the first number. Please enter a valid number.");
                 Thread.Sleep(1000);
             }
 

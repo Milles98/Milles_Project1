@@ -81,7 +81,7 @@ namespace Milles_Project1Library.Services
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input. Please enter a valid number or 'e' to exit.");
+                    Message.RedMessage("Invalid input. Please enter a valid number or 'e' to exit.");
                     Console.ReadKey();
                 }
             }
@@ -143,7 +143,7 @@ namespace Milles_Project1Library.Services
                         }
                         else
                         {
-                            Message.ErrorMessage("Invalid input for Base. The Base remains unchanged. Please enter a value between 1 and 999.");
+                            Message.RedMessage("Invalid input for Base. The Base remains unchanged. Please enter a value between 1 and 999.");
                             continue;
                         }
 
@@ -155,7 +155,7 @@ namespace Milles_Project1Library.Services
                         }
                         else
                         {
-                            Message.ErrorMessage("Invalid input for Height. The Height remains unchanged. Please enter a value between 1 and 999.");
+                            Message.RedMessage("Invalid input for Height. The Height remains unchanged. Please enter a value between 1 and 999.");
                             continue;
                         }
 
@@ -167,22 +167,22 @@ namespace Milles_Project1Library.Services
                         }
                         else
                         {
-                            Message.ErrorMessage("Invalid input for Side Length. The Side Length remains unchanged. Please enter a value between 1 and 999.");
+                            Message.RedMessage("Invalid input for Side Length. The Side Length remains unchanged. Please enter a value between 1 and 999.");
                             continue;
                         }
 
                         SaveChangesToDatabase();
 
-                        Message.InputSuccessMessage("Shape updated successfully!");
+                        Message.GreenMessage("Shape updated successfully!");
                     }
                     else
                     {
-                        Message.ErrorMessage("Shape not found.");
+                        Message.RedMessage("Shape not found.");
                     }
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
+                    Message.RedMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
                 }
 
                 Console.ReadKey();
@@ -198,7 +198,7 @@ namespace Milles_Project1Library.Services
             }
             catch (Exception ex)
             {
-                Message.ErrorMessage($"Error saving changes to the database: {ex.Message}");
+                Message.RedMessage($"Error saving changes to the database: {ex.Message}");
             }
         }
 
@@ -228,16 +228,16 @@ namespace Milles_Project1Library.Services
 
                         DeleteShapeFromDatabase(shape);
 
-                        Message.InputSuccessMessage("Shape deleted successfully!");
+                        Message.GreenMessage("Shape deleted successfully!");
                     }
                     else
                     {
-                        Message.ErrorMessage("Shape not found.");
+                        Message.RedMessage("Shape not found.");
                     }
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
+                    Message.RedMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
                 }
 
                 Console.ReadKey();

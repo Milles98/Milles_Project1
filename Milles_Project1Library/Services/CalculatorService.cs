@@ -87,18 +87,18 @@ namespace Milles_Project1Library.Services
 
                         _calculatorContext.SaveCalculationToDatabase(num1, num2, result);
 
-                        Message.InputSuccessMessage("Calculation saved to the database successfully!");
+                        Message.GreenMessage("Calculation saved to the database successfully!");
 
                         Console.ReadKey();
                     }
                     else
                     {
-                        Message.ErrorMessage("Invalid operation choice. Please choose a valid operation.");
+                        Message.RedMessage("Invalid operation choice. Please choose a valid operation.");
                     }
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input. Please enter a number or 'e' to exit.");
+                    Message.RedMessage("Invalid input. Please enter a number or 'e' to exit.");
                 }
             }
         }
@@ -186,27 +186,27 @@ namespace Milles_Project1Library.Services
                                 newNum2 = Math.Round(newNum2, 2);
 
                                 UpdateCalculationInDatabase(calculation, newNum1, newNum2);
-                                Message.InputSuccessMessage("Calculation updated successfully!");
+                                Message.GreenMessage("Calculation updated successfully!");
                                 break;
                             }
                             else
                             {
-                                Message.ErrorMessage("Invalid input for Number2. Please enter a valid number between 1 and 1000000.");
+                                Message.RedMessage("Invalid input for Number2. Please enter a valid number between 1 and 1000000.");
                             }
                         }
                         else
                         {
-                            Message.ErrorMessage("Invalid input for Number1. Please enter a valid number between 1 and 1000000.");
+                            Message.RedMessage("Invalid input for Number1. Please enter a valid number between 1 and 1000000.");
                         }
                     }
                     else
                     {
-                        Message.ErrorMessage("Calculation not found.");
+                        Message.RedMessage("Calculation not found.");
                     }
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input for Calculator ID. Please enter a valid number or 'e' to exit.");
+                    Message.RedMessage("Invalid input for Calculator ID. Please enter a valid number or 'e' to exit.");
                 }
 
                 Console.ReadKey();
@@ -227,19 +227,19 @@ namespace Milles_Project1Library.Services
                     if (calculation != null)
                     {
                         DeleteCalculationFromDatabase(calculation);
-                        Message.InputSuccessMessage("Calculation deleted successfully!");
+                        Message.GreenMessage("Calculation deleted successfully!");
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                         return;
                     }
                     else
                     {
-                        Message.ErrorMessage("Calculation not found.");
+                        Message.RedMessage("Calculation not found.");
                     }
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input for Calculator ID. Please enter a valid number.");
+                    Message.RedMessage("Invalid input for Calculator ID. Please enter a valid number.");
                 }
 
                 Console.ReadKey();
@@ -253,7 +253,7 @@ namespace Milles_Project1Library.Services
 
             if (IsNumberOutOfRange(newNum1) || IsNumberOutOfRange(newNum2))
             {
-                Message.ErrorMessage("Invalid input. Please enter numbers within a reasonable range.");
+                Message.RedMessage("Invalid input. Please enter numbers within a reasonable range.");
                 return;
             }
 
@@ -263,7 +263,7 @@ namespace Milles_Project1Library.Services
 
             if (IsResultOutOfRange(result))
             {
-                Message.ErrorMessage("Result is too large. Please try again with smaller numbers.");
+                Message.RedMessage("Result is too large. Please try again with smaller numbers.");
                 return;
             }
 

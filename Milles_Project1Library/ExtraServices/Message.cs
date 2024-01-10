@@ -2,14 +2,14 @@
 {
     public static class Message
     {
-        public static void ErrorMessage(string message)
+        public static void RedMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();
         }
 
-        public static void InputSuccessMessage(string message)
+        public static void GreenMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(message);
