@@ -141,31 +141,5 @@ namespace Milles_Project1Library.StrategyContext
                     return "Dimension";
             }
         }
-
-        private decimal GetBoundedDoubleInput(string prompt, decimal minValue, decimal maxValue)
-        {
-            decimal input;
-            bool isValidInput;
-
-            do
-            {
-                string userInput = GetInput(prompt);
-                isValidInput = decimal.TryParse(userInput, out input) && input >= minValue && input <= maxValue;
-
-                if (!isValidInput)
-                {
-                    Message.RedMessage($"Invalid input. Please enter a value between {minValue} and {maxValue}.");
-                }
-
-            } while (!isValidInput);
-
-            return input;
-        }
-
-        private string GetInput(string prompt)
-        {
-            Console.Write(prompt);
-            return Console.ReadLine();
-        }
     }
 }
