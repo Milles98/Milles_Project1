@@ -52,22 +52,31 @@ namespace Milles_Project1Library.Services
                     {
                         SetStrategyFromOperationChoice(operationChoice);
 
-                        decimal num1 = _calculatorContext.GetUserInput("Enter the value for Number1 (max 1000000): ", 1, 1000000);
-                        decimal num2 = _calculatorContext.GetUserInput("Enter the value for Number2 (max 1000000): ", 1, 1000000);
+                        decimal num1 = _calculatorContext.GetUserInput($"Enter the value for Number1 (max 1000000) or 'e' to exit: ", 1, 1000000);
 
-                        if (IsNumberOutOfRange(num1) || IsNumberOutOfRange(num2))
+                        if (num1 == -1)
                         {
-                            Message.ErrorMessage("Invalid input. Please enter numbers within a reasonable range.");
+                            Console.WriteLine("Exiting calculation.");
                             return;
                         }
 
                         num1 = Math.Round(num1, 2);
+
+                        decimal num2 = _calculatorContext.GetUserInput($"Enter the value for Number2 (max 1000000) or 'e' to exit: ", 1, 1000000);
+
+                        if (num2 == -1)
+                        {
+                            Console.WriteLine("Exiting calculation.");
+                            return;
+                        }
+
                         num2 = Math.Round(num2, 2);
 
                         decimal result = _calculatorContext.ExecuteOperation(num1, num2);
 
                         if (result == 0)
                         {
+                            Console.WriteLine("Press any key to go back to calculator menu.");
                             Console.ReadKey();
                             return;
                         }
@@ -79,6 +88,8 @@ namespace Milles_Project1Library.Services
                         _calculatorContext.SaveCalculationToDatabase(num1, num2, result);
 
                         Message.InputSuccessMessage("Calculation saved to the database successfully!");
+
+                        Console.ReadKey();
                     }
                     else
                     {
@@ -89,9 +100,6 @@ namespace Milles_Project1Library.Services
                 {
                     Message.ErrorMessage("Invalid input. Please enter a number or 'e' to exit.");
                 }
-
-                Console.WriteLine("Press any key to continue.");
-                Console.ReadKey();
             }
         }
 

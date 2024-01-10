@@ -17,10 +17,10 @@ namespace Milles_Project1Library.Migrations
                 {
                     CalculationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Number1 = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
-                    Number2 = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
+                    Number1 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Number2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Operator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Result = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
+                    Result = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -53,11 +53,11 @@ namespace Milles_Project1Library.Migrations
                     ShapeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ShapeType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Base = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Height = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    SideLength = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Area = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Perimeter = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Base = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Height = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SideLength = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Area = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Perimeter = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },

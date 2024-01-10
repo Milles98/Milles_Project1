@@ -23,26 +23,41 @@ namespace Milles_Project1Library.StrategyContext
             return GetBoundedDoubleInput(prompt, minValue, maxValue);
         }
 
-        private decimal GetBoundedDoubleInput(string prompt, decimal minValue, decimal maxValue)
+        public decimal GetBoundedDoubleInput(string prompt, decimal minValue, decimal maxValue)
         {
-            decimal input;
-            bool isValidInput;
+            decimal input = 0;
+            bool isValidInput = false;
+            string userInput = "";
 
             do
             {
                 Console.Write(prompt);
-                string userInput = Console.ReadLine();
-                isValidInput = decimal.TryParse(userInput, out input) && input >= minValue && input <= maxValue;
+                userInput = Console.ReadLine();
+
+                if (userInput.ToLower() == "e")
+                {
+                    Console.WriteLine("Exiting calculation.");
+                    return -1;
+                }
+
+                if (!decimal.TryParse(userInput, out input))
+                {
+                    Message.ErrorMessage("Invalid input. Please enter a valid number.");
+                    continue;
+                }
+
+                isValidInput = input >= minValue && input <= maxValue;
 
                 if (!isValidInput)
                 {
-                    Message.ErrorMessage($"Invalid input. Please enter a value between {minValue} and {maxValue}.");
+                    Message.ErrorMessage($"Invalid input. Please enter a value between {minValue} and {maxValue} or 'e' to exit.");
                 }
-
             } while (!isValidInput);
 
             return Math.Round(input, 2);
         }
+
+
 
         public decimal ExecuteOperation(decimal num1, decimal num2)
         {
