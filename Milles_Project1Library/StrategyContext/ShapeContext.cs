@@ -78,7 +78,7 @@ namespace Milles_Project1Library.StrategyContext
             _dbContext.Shape.Add(resultShape);
             _dbContext.SaveChanges();
 
-            Message.InputSuccessMessage("Shape calculation successfully saved to database!");
+            Message.GreenMessage("Shape calculation successfully saved to database!");
         }
 
         private void SetShapeProperties(decimal[] dimensions)
@@ -132,7 +132,7 @@ namespace Milles_Project1Library.StrategyContext
 
                 if (!isValidInput)
                 {
-                    Message.ErrorMessage($"Invalid input. Please enter a value between {minValue} and {maxValue}.");
+                    Message.RedMessage($"Invalid input. Please enter a value between {minValue} and {maxValue}.");
                 }
 
             } while (!isValidInput);

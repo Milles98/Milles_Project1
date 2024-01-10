@@ -22,7 +22,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
             }
             else
             {
-                Message.ErrorMessage("Incorrect dimensions for a parallelogram");
+                Message.RedMessage("Incorrect dimensions for a parallelogram");
             }
         }
 

@@ -28,8 +28,8 @@ namespace Milles_Project1Library.Services
                 Console.Clear();
                 Console.WriteLine($"╭──────────────────────────╮");
                 Console.WriteLine($"│Rock Paper Scissors Game  │");
-                Message.InputSuccessMessage($"│ Player Wins: {playerWins}           │");
-                Message.ErrorMessage($"│ Computer Wins: {computerWins}         │");
+                Message.GreenMessage($"│ Player Wins: {playerWins}           │");
+                Message.RedMessage($"│ Computer Wins: {computerWins}         │");
                 Console.WriteLine($"╰──────────────────────────╯");
 
                 Message.DarkYellowMessage($"Round {rounds + 1}");
@@ -81,13 +81,13 @@ namespace Milles_Project1Library.Services
                     }
                     else
                     {
-                        Message.ErrorMessage("Invalid choice. Please enter a number between 1 and 3.");
+                        Message.RedMessage("Invalid choice. Please enter a number between 1 and 3.");
                         Thread.Sleep(1000);
                     }
                 }
                 else
                 {
-                    Message.ErrorMessage("Invalid input. Please enter a number.");
+                    Message.RedMessage("Invalid input. Please enter a number.");
                     Thread.Sleep(1000);
                 }
 
@@ -95,7 +95,7 @@ namespace Milles_Project1Library.Services
 
             string winner = (playerWins >= 2) ? "Player" : "Computer";
 
-            Message.InputSuccessMessage($"Winner: {winner}");
+            Message.GreenMessage($"Winner: {winner}");
 
             if (lastGame != null)
             {
@@ -193,10 +193,10 @@ namespace Milles_Project1Library.Services
             switch (result)
             {
                 case GameResult.Win:
-                    Message.InputSuccessMessage("You Win!");
+                    Message.GreenMessage("You Win!");
                     break;
                 case GameResult.Loss:
-                    Message.ErrorMessage("Computer Wins!");
+                    Message.RedMessage("Computer Wins!");
                     break;
                 case GameResult.Draw:
                     Message.DarkYellowMessage("It's a Draw!");
@@ -244,14 +244,14 @@ namespace Milles_Project1Library.Services
 
                 var averageWins = totalGames > 0 ? (double)totalWins / totalGames : 0;
 
-                Message.InputSuccessMessage($"Total Wins: {totalWins}");
-                Message.ErrorMessage($"Total Losses: {totalLosses}");
+                Message.GreenMessage($"Total Wins: {totalWins}");
+                Message.RedMessage($"Total Losses: {totalLosses}");
                 Message.DarkYellowMessage($"Total Draws: {totalDraws}");
                 Console.WriteLine($"Average Wins Against Computer: {averageWins:P}");
             }
             else
             {
-                Message.ErrorMessage("No previous games found.");
+                Message.RedMessage("No previous games found.");
             }
 
             Console.WriteLine("\nPress Enter to continue...");

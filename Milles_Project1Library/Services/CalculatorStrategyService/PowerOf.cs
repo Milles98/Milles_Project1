@@ -9,7 +9,7 @@ namespace Milles_Project1Library.Services.CalculatorStrategyService
         {
             if (IsResultOutOfRange(num1, num2))
             {
-                Message.ErrorMessage("Result is too large. Please try again with smaller numbers.");
+                Message.RedMessage("Result is too large. Please try again with smaller numbers.");
                 return 0;
             }
 
