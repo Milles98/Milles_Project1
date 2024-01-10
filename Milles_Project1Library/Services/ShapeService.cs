@@ -115,8 +115,6 @@ namespace Milles_Project1Library.Services
             }
 
             Console.WriteLine("╰──────────╯──────────────╯─────────────╯─────────────╯─────────────╯─────────────╯───────────╯───────────────────╯");
-
-            Console.WriteLine("Press any key to continue.");
         }
 
         public void UpdateShape()
