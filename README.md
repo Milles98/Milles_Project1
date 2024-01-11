@@ -67,3 +67,10 @@ Jag bestämde mig för att gå ur min comfortzone och försökte implementera fa
 Tillslut fick jag ta bort min meny från huvudprojektet och lägga det i mitt library där jag registrerar mina autofacs. Efter mycket felsökning och debugging lyckades jag få factory pattern att fungera!
 
 Implementerade Singleton pattern genom Autofacs inbygga "SingleInstance" för menyerna.
+
+Dag 7
+
+Korrigerade min CalculatorStrategy, hade råkat lägga in upphöjt till när det skulle vara roten ur. Uppdaterade även (R) på calculator & shapes för att visa 2 decimaler.
+
+Uppdaterade Shape och Calculator delete metoderna, hade placeholder som permanently deletade, nu fixat så att det är enligt standard dvs IsActive = 0 om något blir deletat.
+Fixade relaterade metoder så att de var anpassade till detta och så att inga oväntade fel kan ske.
