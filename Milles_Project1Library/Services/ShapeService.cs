@@ -102,10 +102,10 @@ namespace Milles_Project1Library.Services
             foreach (var s in shape)
             {
                 string sideLengthDisplay = s.SideLength == 0 ? "N/A" : $"{s.SideLength:F2} cm";
-                string baseWithUnit = $"{s.Base} cm";
-                string heightWithUnit = $"{s.Height} cm";
-                string areaWithUnit = $"{s.Area} cm²";
-                string perimeterWithUnit = $"{s.Perimeter} cm";
+                string baseWithUnit = $"{s.Base:F2} cm";
+                string heightWithUnit = $"{s.Height:F2} cm";
+                string areaWithUnit = $"{s.Area:F2} cm²";
+                string perimeterWithUnit = $"{s.Perimeter:F2} cm";
 
                 Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{baseWithUnit,-13}│{heightWithUnit,-13}│" +
                     $"{sideLengthDisplay,-13}│{areaWithUnit,-13}│{perimeterWithUnit,-11}│{s.CalculationDate,-19}│");

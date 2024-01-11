@@ -34,7 +34,7 @@ namespace Milles_Project1Library.Services
                 Console.WriteLine("│2. (-) Subtraction    │");
                 Console.WriteLine("│3. (*) Multiplication │");
                 Console.WriteLine("│4. (/) Division       │");
-                Console.WriteLine("│5. (√) Power of       │");
+                Console.WriteLine("│5. (√) Square Root    │");
                 Console.WriteLine("│6. (%) Modulus        │");
                 Console.WriteLine("│Press 'e' to exit.    │");
                 Console.WriteLine("╰──────────────────────╯");
@@ -54,6 +54,19 @@ namespace Milles_Project1Library.Services
                     if (operationChoice >= 1 && operationChoice <= 6)
                     {
                         SetStrategyFromOperationChoice(operationChoice);
+
+                        if (operationChoice == 5)
+                        {
+                            decimal squareRoot = _calculatorContext.GetUserInput($"Enter the value for Number1 (max 1,000,000) or 'e' to exit: ", 1, 1000000);
+                            squareRoot = Math.Round(squareRoot, 2);
+                            decimal squareResult = _calculatorContext.ExecuteOperation(squareRoot, 0);
+                            squareResult = Math.Round(squareResult, 2);
+                            Console.WriteLine($"Result: {squareResult}");
+                            _calculatorContext.SaveCalculationToDatabase(squareRoot, 0, squareResult);
+                            Message.GreenMessage("Calculation saved to the database successfully!");
+                            Console.ReadKey();
+                            return;
+                        }
 
                         decimal num1 = _calculatorContext.GetUserInput($"Enter the value for Number1 (max 1,000,000) or 'e' to exit: ", 1, 1000000);
 
@@ -130,7 +143,7 @@ namespace Milles_Project1Library.Services
                     _strategy = new Division();
                     break;
                 case 5:
-                    _strategy = new PowerOf();
+                    _strategy = new SquareRoot();
                     break;
                 case 6:
                     _strategy = new Modulus();
@@ -151,7 +164,8 @@ namespace Milles_Project1Library.Services
 
             foreach (var c in calculation)
             {
-                Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15}│{c.Number2,-13}│{c.Result,-13}│{c.CalculationDate,-13}│");
+                string number2 = c.Number2 == 0 ? "N/A" : $"{c.Number2:F2}";
+                Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-13:F2}│{c.CalculationDate,-13}│");
                 Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤");
             }
 

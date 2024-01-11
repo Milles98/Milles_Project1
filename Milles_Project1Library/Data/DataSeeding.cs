@@ -31,7 +31,7 @@ namespace Milles_Project1Library.Data
                 SeedCalculation(new Subtraction(), 8.0M, 4.0M);
                 SeedCalculation(new Multiplication(), 2.0M, 7.0M);
                 SeedCalculation(new Division(), 10.0M, 2.0M);
-                SeedCalculation(new PowerOf(), 3.0M, 2.0M);
+                SeedCalculation(new SquareRoot(), 3.0M, 2.0M);
                 SeedCalculation(new Modulus(), 9.0M, 4.0M);
 
                 _dbContext.SaveChanges();
