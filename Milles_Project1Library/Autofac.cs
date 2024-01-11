@@ -32,7 +32,7 @@ namespace Milles_Project1Library
             builder.RegisterType<Division>().As<ICalculatorStrategy>();
             builder.RegisterType<Modulus>().As<ICalculatorStrategy>();
             builder.RegisterType<Multiplication>().As<ICalculatorStrategy>();
-            builder.RegisterType<PowerOf>().As<ICalculatorStrategy>();
+            builder.RegisterType<SquareRoot>().As<ICalculatorStrategy>();
             builder.RegisterType<Subtraction>().As<ICalculatorStrategy>();
 
             builder.RegisterType<Rectangle>().As<IShapeStrategy>();
