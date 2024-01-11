@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
+using Milles_Project1Library.Interfaces;
 using Milles_Project1Library.Interfaces.StrategyInterface;
 using Milles_Project1Library.Models;
 using Milles_Project1Library.Services.CalculatorStrategyService;
@@ -7,7 +8,7 @@ using Milles_Project1Library.Services.ShapeStrategyService;
 
 namespace Milles_Project1Library.Data
 {
-    public class DataSeeding
+    public class DataSeeding : IDataSeeding
     {
         private readonly ProjectDbContext _dbContext;
 

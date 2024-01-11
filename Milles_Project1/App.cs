@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Milles_Project1Library.Data;
+using Milles_Project1Library.Interfaces;
 using Milles_Project1Library.Menus;
 
 namespace Milles_Project1
@@ -15,7 +16,7 @@ namespace Milles_Project1
 
         public void RunApplication()
         {
-            var dataSeeding = _container.Resolve<DataSeeding>();
+            var dataSeeding = _container.Resolve<IDataSeeding>();
 
             dataSeeding.Seed();
 

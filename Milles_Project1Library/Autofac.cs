@@ -10,6 +10,7 @@ using Milles_Project1Library.Factory;
 using Milles_Project1Library.Interfaces.FactoryInterface;
 using Milles_Project1Library.FactoryMenus;
 using Milles_Project1Library.Services;
+using Milles_Project1Library.Interfaces;
 
 namespace Milles_Project1Library
 {
@@ -43,7 +44,7 @@ namespace Milles_Project1Library
             builder.RegisterType<CalculatorService>().As<ICalculatorService>();
             builder.RegisterType<ShapeService>().As<IShapeService>();
             builder.RegisterType<GameService>().As<IGameService>();
-            builder.RegisterType<DataSeeding>().AsSelf();
+            builder.RegisterType<DataSeeding>().As<IDataSeeding>();
 
             builder.RegisterType<CalculatorMenuFactory>().Named<IMenuFactory>("CalculatorMenuFactory").SingleInstance();
             builder.RegisterType<GameMenuFactory>().Named<IMenuFactory>("GameMenuFactory").SingleInstance();
