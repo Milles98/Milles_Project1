@@ -13,13 +13,13 @@ namespace Milles_Project1Library.Services
     {
         private readonly ProjectDbContext _dbContext;
         private readonly IShapeContext _shapeContext;
-        private readonly IShapeStrategy _shapeStrategy;
+        //private readonly IShapeStrategy _shapeStrategy;
 
         public ShapeService(ILifetimeScope lifetimeScope)
         {
             _dbContext = lifetimeScope.Resolve<ProjectDbContext>();
             _shapeContext = lifetimeScope.Resolve<IShapeContext>();
-            _shapeStrategy = lifetimeScope.Resolve<IShapeStrategy>();
+            //_shapeStrategy = lifetimeScope.Resolve<IShapeStrategy>();
         }
 
         public IEnumerable<string> GetAvailableShapeTypes()
@@ -95,9 +95,9 @@ namespace Milles_Project1Library.Services
             Console.Clear();
             var shape = _dbContext.Shape.ToList();
 
-            Console.WriteLine("╭──────────╮──────────────╮─────────────╮─────────────╮─────────────╮─────────────╮───────────╮───────────────────╮");
-            Console.WriteLine("│ Shape ID | ShapeType    | Base        | Height      | SideLength  | Area        │ Perimeter │ Date              │");
-            Console.WriteLine("├──────────┼──────────────┼─────────────┼─────────────┼─────────────┼─────────────┤───────────┤───────────────────┤");
+            Console.WriteLine("╭──────────╮──────────────╮───────────╮───────────╮────────────╮───────────────╮───────────╮───────────────────╮──────╮");
+            Console.WriteLine("│ Shape ID | ShapeType    | Base      | Height    | SideLength | Area          │ Perimeter │ Date              │Active│");
+            Console.WriteLine("├──────────┼──────────────┼───────────┼───────────┼────────────┼───────────────┤───────────┤───────────────────┤──────┤");
 
             foreach (var s in shape)
             {
@@ -106,13 +106,21 @@ namespace Milles_Project1Library.Services
                 string heightWithUnit = $"{s.Height:F2} cm";
                 string areaWithUnit = $"{s.Area:F2} cm²";
                 string perimeterWithUnit = $"{s.Perimeter:F2} cm";
+                if (s.IsActive)
+                {
 
-                Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{baseWithUnit,-13}│{heightWithUnit,-13}│" +
-                    $"{sideLengthDisplay,-13}│{areaWithUnit,-13}│{perimeterWithUnit,-11}│{s.CalculationDate,-19}│");
-                Console.WriteLine("├──────────┼──────────────┼─────────────┼─────────────┼─────────────┼─────────────┤───────────┤───────────────────┤");
+                    Console.WriteLine($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{baseWithUnit,-11}│{heightWithUnit,-11}│" +
+                        $"{sideLengthDisplay,-12}│{areaWithUnit,-15}│{perimeterWithUnit,-11}│{s.CalculationDate,-19}│{s.IsActive,-6}│");
+                }
+                else
+                {
+                    Message.RedMessage($"│{s.ShapeId,-10}│{s.ShapeType,-14}│{baseWithUnit,-11}│{heightWithUnit,-11}│" +
+                                            $"{sideLengthDisplay,-12}│{areaWithUnit,-15}│{perimeterWithUnit,-11}│{s.CalculationDate,-19}│{s.IsActive,-6}│");
+                }
+                Console.WriteLine("├──────────┼──────────────┼───────────┼───────────┼────────────┼───────────────┤───────────┤───────────────────┤──────┤");
             }
 
-            Console.WriteLine("╰──────────╯──────────────╯─────────────╯─────────────╯─────────────╯─────────────╯───────────╯───────────────────╯");
+            Console.WriteLine("╰──────────╯──────────────╯───────────╯───────────╯────────────╯───────────────╯───────────╯───────────────────╯──────╯");
         }
 
         public void UpdateShape()
@@ -134,43 +142,43 @@ namespace Milles_Project1Library.Services
                 {
                     var shape = _dbContext.Shape.Find(shapeId);
 
-                    if (shape != null)
+                    if (shape != null && shape.IsActive)
                     {
                         Console.WriteLine($"Updating Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
 
-                        Console.Write($"Enter the new value for Base (1-999) cm: ");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal newBase) && newBase >= 1 && newBase <= 999)
+                        Console.Write($"Enter the new value for Base (1 - 1000) cm: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal newBase) && newBase >= 1 && newBase <= 1000)
                         {
                             newBase = Math.Round(newBase, 2);
                             shape.Base = newBase;
                         }
                         else
                         {
-                            Message.RedMessage("Invalid input for Base. The Base remains unchanged. Please enter a value between 1 and 999.");
+                            Message.RedMessage("Invalid input for Base. The Base remains unchanged. Please enter a value between 1 and 1000.");
                             continue;
                         }
 
-                        Console.Write($"Enter the new value for Height (1-999) cm: ");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal newHeight) && newHeight >= 1 && newHeight <= 999)
+                        Console.Write($"Enter the new value for Height (1 - 1000) cm: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal newHeight) && newHeight >= 1 && newHeight <= 1000)
                         {
                             newHeight = Math.Round(newHeight, 2);
                             shape.Height = newHeight;
                         }
                         else
                         {
-                            Message.RedMessage("Invalid input for Height. The Height remains unchanged. Please enter a value between 1 and 999.");
+                            Message.RedMessage("Invalid input for Height. The Height remains unchanged. Please enter a value between 1 and 1000.");
                             continue;
                         }
 
-                        Console.Write($"Enter the new value for Side Length (1-999) cm: ");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength) && newSideLength >= 1 && newSideLength <= 999)
+                        Console.Write($"Enter the new value for Side Length (1 - 1000) cm: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength) && newSideLength >= 1 && newSideLength <= 1000)
                         {
                             newSideLength = Math.Round(newSideLength, 2);
                             shape.SideLength = newSideLength;
                         }
                         else
                         {
-                            Message.RedMessage("Invalid input for Side Length. The Side Length remains unchanged. Please enter a value between 1 and 999.");
+                            Message.RedMessage("Invalid input for Side Length. The Side Length remains unchanged. Please enter a value between 1 and 1000.");
                             continue;
                         }
 
@@ -180,7 +188,7 @@ namespace Milles_Project1Library.Services
                     }
                     else
                     {
-                        Message.RedMessage("Shape not found.");
+                        Message.RedMessage("Shape not found or not active.");
                     }
                 }
                 else
@@ -225,17 +233,17 @@ namespace Milles_Project1Library.Services
                 {
                     var shape = _dbContext.Shape.Find(shapeId);
 
-                    if (shape != null)
+                    if (shape != null && shape.IsActive)
                     {
                         Console.WriteLine($"Deleting Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
 
-                        DeleteShapeFromDatabase(shape);
+                        shape.IsActive = false;
 
                         Message.GreenMessage("Shape deleted successfully!");
                     }
                     else
                     {
-                        Message.RedMessage("Shape not found.");
+                        Message.RedMessage("Shape not found or already inactive.");
                     }
                 }
                 else
@@ -246,11 +254,46 @@ namespace Milles_Project1Library.Services
                 Console.ReadKey();
             }
         }
-
-        private void DeleteShapeFromDatabase(Shape shape)
+        public void ReActivateShape()
         {
-            _dbContext.Shape.Remove(shape);
-            _dbContext.SaveChanges();
+            while (true)
+            {
+                Console.Clear();
+                ReadShapes();
+
+                Console.Write("Enter the Shape ID you want to reactivate or press 'e' to exit: ");
+                string userInput = Console.ReadLine();
+
+                if (userInput?.ToLower() == "e")
+                {
+                    Console.WriteLine("Exiting shape activation.");
+                    return;
+                }
+
+                if (int.TryParse(userInput, out int shapeId))
+                {
+                    var shape = _dbContext.Shape.Find(shapeId);
+
+                    if (shape != null && !shape.IsActive)
+                    {
+                        Console.WriteLine($"Activating Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
+
+                        shape.IsActive = true;
+
+                        Message.GreenMessage("Shape activated successfully!");
+                    }
+                    else
+                    {
+                        Message.RedMessage("Shape not found or already active.");
+                    }
+                }
+                else
+                {
+                    Message.RedMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
+                }
+
+                Console.ReadKey();
+            }
         }
     }
 }

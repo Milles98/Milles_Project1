@@ -101,7 +101,7 @@ namespace Milles_Project1Library.StrategyContext
                 {
                     string dimensionName = GetDimensionName(i + 1);
 
-                    Console.Write($"Enter {dimensionName} (1-999) cm or 'e' to exit: ");
+                    Console.Write($"Enter {dimensionName} (1 - 1000) cm or 'e' to exit: ");
                     string userInput = Console.ReadLine();
 
                     if (userInput.ToLower() == "e")
@@ -110,7 +110,7 @@ namespace Milles_Project1Library.StrategyContext
                         dimensions[1] = 0;
                         return dimensions;
                     }
-                    else if (decimal.TryParse(userInput, out decimal dimensionValue) && dimensionValue >= 1 && dimensionValue <= 999)
+                    else if (decimal.TryParse(userInput, out decimal dimensionValue) && dimensionValue >= 1 && dimensionValue <= 1000)
                     {
                         dimensions[i] = dimensionValue;
                     }

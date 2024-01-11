@@ -158,18 +158,25 @@ namespace Milles_Project1Library.Services
             Console.Clear();
             var calculation = _dbContext.Calculator.ToList();
 
-            Console.WriteLine("╭───────────────╮───────────────────────╮───────────────╮─────────────╮─────────────╮───────────────────╮");
-            Console.WriteLine("│ Calculation ID| Operator              | Number 1      | Number 2    | Result      | Date              │");
-            Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤");
+            Console.WriteLine("╭───────────────╮───────────────────────╮───────────────╮─────────────╮─────────────╮───────────────────╮────────╮");
+            Console.WriteLine("│ Calculation ID| Operator              | Number 1      | Number 2    | Result      | Date              │ Active │");
+            Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤────────┤");
 
             foreach (var c in calculation)
             {
                 string number2 = c.Number2 == 0 ? "N/A" : $"{c.Number2:F2}";
-                Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-13:F2}│{c.CalculationDate,-13}│");
-                Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤");
+                if (c.IsActive)
+                {
+                    Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-13:F2}│{c.CalculationDate,-13}│{c.IsActive,-8}│");
+                }
+                else
+                {
+                    Message.RedMessage($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-13:F2}│{c.CalculationDate,-13}│{c.IsActive,-8}│");
+                }
+                Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤────────┤");
             }
 
-            Console.WriteLine("╰───────────────╯───────────────────────╯───────────────╯─────────────╯─────────────╯───────────────────╯");
+            Console.WriteLine("╰───────────────╯───────────────────────╯───────────────╯─────────────╯─────────────╯───────────────────╯────────╯");
         }
 
         public void UpdateCalculation()
@@ -191,7 +198,7 @@ namespace Milles_Project1Library.Services
                 {
                     var calculation = _dbContext.Calculator.Find(calculatorId);
 
-                    if (calculation != null)
+                    if (calculation != null && calculation.IsActive)
                     {
                         Console.Write("Enter the new value for Number1 (1 - 1,000,000): ");
                         if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
@@ -209,17 +216,17 @@ namespace Milles_Project1Library.Services
                             }
                             else
                             {
-                                Message.RedMessage("Invalid input for Number2. Please enter a valid number between 1 and 1000000.");
+                                Message.RedMessage("Invalid input for Number2. Please enter a valid number between 1 and 1,000,000.");
                             }
                         }
                         else
                         {
-                            Message.RedMessage("Invalid input for Number1. Please enter a valid number between 1 and 1000000.");
+                            Message.RedMessage("Invalid input for Number1. Please enter a valid number between 1 and 1,000,000.");
                         }
                     }
                     else
                     {
-                        Message.RedMessage("Calculation not found.");
+                        Message.RedMessage("Calculation not found or not active.");
                     }
                 }
                 else
@@ -249,10 +256,12 @@ namespace Milles_Project1Library.Services
                 {
                     var calculation = _dbContext.Calculator.Find(calculatorId);
 
-                    if (calculation != null)
+                    if (calculation != null && calculation.IsActive)
                     {
                         Console.WriteLine($"Deleting Calculator ID: {calculation.CalculationId}");
-                        DeleteCalculationFromDatabase(calculation);
+
+                        calculation.IsActive = false;
+
                         Message.GreenMessage("Calculation deleted successfully!");
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
@@ -260,7 +269,49 @@ namespace Milles_Project1Library.Services
                     }
                     else
                     {
-                        Message.RedMessage("Calculation not found.");
+                        Message.RedMessage("Calculation not found or already inactive.");
+                    }
+                }
+                else
+                {
+                    Message.RedMessage("Invalid input for Calculator ID. Please enter a valid number.");
+                }
+
+                Console.ReadKey();
+            }
+        }
+
+        public void ReActivateCalculation()
+        {
+            while (true)
+            {
+                ReadCalculation();
+                Console.Write("Enter the Calculator ID you want to activate or press 'e' to exit: ");
+                string userInput = Console.ReadLine();
+
+                if (userInput?.ToLower() == "e")
+                {
+                    Console.WriteLine("Exiting calculator activation.");
+                    return;
+                }
+                if (int.TryParse(userInput, out int calculatorId))
+                {
+                    var calculation = _dbContext.Calculator.Find(calculatorId);
+
+                    if (calculation != null && !calculation.IsActive)
+                    {
+                        Console.WriteLine($"Activating Calculator ID: {calculation.CalculationId}");
+
+                        calculation.IsActive = true;
+
+                        Message.GreenMessage("Calculation activated successfully!");
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
+                        return;
+                    }
+                    else
+                    {
+                        Message.RedMessage("Calculation not found or already active.");
                     }
                 }
                 else
@@ -303,12 +354,6 @@ namespace Milles_Project1Library.Services
             const decimal MaxAllowedResult = 1000000;
 
             return Math.Abs(result) > MaxAllowedResult;
-        }
-
-        public void DeleteCalculationFromDatabase(Calculator calculation)
-        {
-            _dbContext.Calculator.Remove(calculation);
-            _dbContext.SaveChanges();
         }
     }
 }
