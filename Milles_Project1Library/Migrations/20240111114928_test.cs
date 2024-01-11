@@ -18,9 +18,9 @@ namespace Milles_Project1Library.Migrations
                     CalculationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Number1 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Number2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Number2 = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Operator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Result = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Result = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CalculationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },

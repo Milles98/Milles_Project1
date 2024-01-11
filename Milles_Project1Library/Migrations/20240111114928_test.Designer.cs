@@ -12,7 +12,7 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240111101908_test")]
+    [Migration("20240111114928_test")]
     partial class test
     {
         /// <inheritdoc />
@@ -42,14 +42,14 @@ namespace Milles_Project1Library.Migrations
                     b.Property<decimal>("Number1")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Number2")
+                    b.Property<decimal?>("Number2")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Operator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Result")
+                    b.Property<decimal?>("Result")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CalculationId");

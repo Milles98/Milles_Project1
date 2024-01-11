@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Microsoft.EntityFrameworkCore;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ContextInterface;
@@ -82,7 +83,7 @@ namespace Milles_Project1Library.StrategyContext
 
         public void UpdateCalculation(int calculationId, decimal num1, decimal num2)
         {
-            var calculation = _dbContext.Calculator.Find(calculationId);
+            var calculation = GetCalculationById(calculationId);
 
             if (calculation != null)
             {
@@ -100,7 +101,7 @@ namespace Milles_Project1Library.StrategyContext
 
         public void DeleteCalculation(int calculationId)
         {
-            var calculation = _dbContext.Calculator.Find(calculationId);
+            var calculation = GetCalculationById(calculationId);
 
             if (calculation != null)
             {
@@ -113,13 +114,13 @@ namespace Milles_Project1Library.StrategyContext
             }
         }
 
-        public void SaveCalculationToDatabase(decimal num1, decimal num2, decimal result)
+        public void SaveCalculationToDatabase(decimal num1, decimal num2, decimal? result)
         {
             SaveCalculationDetails(num1, num2, result);
 
         }
 
-        private void SaveCalculationDetails(decimal num1, decimal num2, decimal result)
+        private void SaveCalculationDetails(decimal num1, decimal num2, decimal? result)
         {
             var calculation = new Calculator
             {
@@ -132,6 +133,10 @@ namespace Milles_Project1Library.StrategyContext
 
             _dbContext.Calculator.Add(calculation);
             _dbContext.SaveChanges();
+        }
+        private Calculator GetCalculationById(int calculationId)
+        {
+            return _dbContext.Calculator.Find(calculationId);
         }
     }
 }
