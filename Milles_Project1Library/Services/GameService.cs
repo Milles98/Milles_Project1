@@ -277,20 +277,20 @@ namespace Milles_Project1Library.Services
             Console.WriteLine("│         How to Play           │");
             Console.WriteLine("╰───────────────────────────────╯");
 
-            Console.WriteLine("Rock-Paper-Scissors is a game played to settle disputes between two people.");
-            Console.WriteLine("It's often taught to children to help them resolve arguments without adult intervention.");
-            Console.WriteLine("However, the game involves an element of skill that requires quick thinking and reasoning.");
-
-            Console.WriteLine("\nThe game is played with three possible hand signals:");
-            Console.WriteLine("- Rock: A closed fist");
-            Console.WriteLine("- Paper: A flat hand with fingers and thumb extended, palm facing downward");
-            Console.WriteLine("- Scissors: A fist with the index and middle fingers fully extended");
+            Message.DarkYellowMessage("\nThe game is played with three possible hand signals:");
+            Console.WriteLine("- Rock");
+            Console.WriteLine("- Paper");
+            Console.WriteLine("- Scissors");
 
             Message.DarkYellowMessage("\nGame Rules:");
             Console.WriteLine("- Rock wins against scissors");
             Console.WriteLine("- Paper wins against rock");
             Console.WriteLine("- Scissors wins against paper");
             Console.WriteLine("- If both players throw the same hand signal, it's considered a tie");
+
+            Message.DarkYellowMessage("\nThe game is played best of 3.");
+            Console.WriteLine("- Example: ");
+            Console.WriteLine("- If you win 2 out of 3, you are the winner.");
 
             Console.WriteLine("\nPress Enter to continue...");
             Console.ReadLine();
