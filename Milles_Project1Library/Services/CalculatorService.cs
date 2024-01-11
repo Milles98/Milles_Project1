@@ -61,6 +61,10 @@ namespace Milles_Project1Library.Services
                             squareRoot = Math.Round(squareRoot, 2);
                             decimal squareResult = _calculatorContext.ExecuteOperation(squareRoot, 0);
                             squareResult = Math.Round(squareResult, 2);
+                            if (squareResult == 0)
+                            {
+                                return;
+                            }
                             Console.WriteLine($"Result: {squareResult}");
                             _calculatorContext.SaveCalculationToDatabase(squareRoot, 0, squareResult);
                             Message.GreenMessage("Calculation saved to the database successfully!");

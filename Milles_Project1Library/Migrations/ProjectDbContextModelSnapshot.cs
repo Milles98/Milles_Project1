@@ -39,14 +39,14 @@ namespace Milles_Project1Library.Migrations
                     b.Property<decimal>("Number1")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Number2")
+                    b.Property<decimal?>("Number2")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Operator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Result")
+                    b.Property<decimal?>("Result")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CalculationId");
