@@ -12,7 +12,7 @@ namespace Milles_Project1Library.Interfaces.ServiceInterface
         public void DeleteCalculation();
 
         public void UpdateCalculationInDatabase(Calculator calculation, decimal newNum1, decimal newNum2);
+        public void ReActivateCalculation();
 
-        public void DeleteCalculationFromDatabase(Calculator calculation);
     }
 }

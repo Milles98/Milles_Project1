@@ -6,5 +6,6 @@
         void ReadShapes();
         void UpdateShape();
         void DeleteShape();
+        void ReActivateShape();
     }
 }

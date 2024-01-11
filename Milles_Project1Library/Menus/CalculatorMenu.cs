@@ -22,14 +22,15 @@ namespace Milles_Project1Library.Menus
                 Console.Clear();
                 Message.ProjectMessage();
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine("╭──────────────────────╮");
-                Console.WriteLine("│Calculator Menu       │");
-                Console.WriteLine("│1. Create             │");
-                Console.WriteLine("│2. Read               │");
-                Console.WriteLine("│3. Update             │");
-                Console.WriteLine("│4. Delete             │");
-                Console.WriteLine("│0. Return to MainMenu │");
-                Console.WriteLine("╰──────────────────────╯");
+                Console.WriteLine("╭─────────────────────────╮");
+                Console.WriteLine("│Calculator Menu          │");
+                Console.WriteLine("│1. Create                │");
+                Console.WriteLine("│2. Read                  │");
+                Console.WriteLine("│3. Update                │");
+                Console.WriteLine("│4. Delete                │");
+                Console.WriteLine("│5. Re Activate           │");
+                Console.WriteLine("│0. Return to MainMenu    │");
+                Console.WriteLine("╰─────────────────────────╯");
                 Console.ResetColor();
 
                 Console.Write("Enter your choice: ");
@@ -50,6 +51,9 @@ namespace Milles_Project1Library.Menus
                             break;
                         case 4:
                             _calculatorService.DeleteCalculation();
+                            break;
+                        case 5:
+                            _calculatorService.ReActivateCalculation();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");

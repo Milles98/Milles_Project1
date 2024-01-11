@@ -28,6 +28,7 @@ namespace Milles_Project1Library.Menus
                 Console.WriteLine("│2. Read             │");
                 Console.WriteLine("│3. Update           │");
                 Console.WriteLine("│4. Delete           │");
+                Console.WriteLine("│5. Re Activate      │");
                 Console.WriteLine("│0. Return to Menu   │");
                 Console.WriteLine("╰────────────────────╯");
                 Console.ResetColor();
@@ -50,6 +51,9 @@ namespace Milles_Project1Library.Menus
                             break;
                         case 4:
                             _shapeService.DeleteShape();
+                            break;
+                        case 5:
+                            _shapeService.ReActivateShape();
                             break;
                         case 0:
                             Console.WriteLine("Returning to MainMenu...");
