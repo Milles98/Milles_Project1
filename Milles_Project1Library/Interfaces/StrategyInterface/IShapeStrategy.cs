@@ -8,6 +8,6 @@
         string ShapeType { get; }
         decimal Base { get; }
         decimal Height { get; }
-        decimal SideLength { get; }
+        decimal? SideLength { get; }
     }
 }

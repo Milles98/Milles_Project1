@@ -168,7 +168,7 @@ namespace Milles_Project1Library.Services
 
             foreach (var c in calculation)
             {
-                string number2 = c.Number2 == 0 ? "N/A" : $"{c.Number2:F2}";
+                string number2 = c.Number2.HasValue ? $"{c.Number2.Value:F2}" : "N/A";
                 if (c.IsActive)
                 {
                     Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-13:F2}│{c.CalculationDate,-13}│{c.IsActive,-8}│");

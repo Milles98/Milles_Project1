@@ -8,7 +8,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
     {
         public decimal Base { get; set; }
         public decimal Height { get; set; }
-        public decimal SideLength { get; set; }
+        public decimal? SideLength { get; set; }
         public string ShapeType => "Rectangle";
 
         public void SetDimensions(params decimal[] dimensions)

@@ -179,7 +179,7 @@ namespace Milles_Project1Library.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("SideLength")
+                    b.Property<decimal?>("SideLength")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ShapeId");

@@ -14,7 +14,7 @@ namespace Milles_Project1Library.Models
 
         public decimal Height { get; set; }
 
-        public decimal SideLength { get; set; }
+        public decimal? SideLength { get; set; }
 
         public decimal Area { get; set; }
 
