@@ -1,14 +1,13 @@
-Project 1
+# Project 1
 This readme includes a short description of the project, its purpose and main functions.
 
 Content
 1. Description
-2. Structure
-3. Patterns/Principles/Methods
-4. Shapes
-5. Calculator
-6. Rock Paper Scissors Game
-7. Autofac, Library & Common Classes & Interfaces
+2. Patterns/Principles/Methods
+3. Shapes
+4. Calculator
+5. Rock Paper Scissors Game
+6. Autofac, Library & Common Classes & Interfaces
 
 1. Description
 
@@ -17,10 +16,7 @@ There are 3 main parts of this app (Shape calculation, Calculation & Rock Paper 
 This project is made to help calculate different shapes (example Rhombus, Parallelogram) and to calculate different numbers (example Square Root, Triangle). 
 The project also feature a mini game called rock paper scissors to play whenever, especially useful when you're bored of doing calculations!
 
-2. Struktur
-Beskriv hur projektet är strukturerat och vilka komponenter det består av.
-
-3. Patterns/Principles
+2. Patterns/Principles
 
 The patterns used in my project:
 Factory pattern
@@ -46,7 +42,7 @@ is following ISP.
 Dependency Inversion Principle (DIP):
 Almost all my classes depend on interfaces that are registered by Autofac, thus my project is not very dependent on different parts of my code.
 
-4. Shapes
+3. Shapes
 Description of how the shapes class/method/interfaces works.
 
 Shapes classes, interfaces and methods.
@@ -120,7 +116,7 @@ IShapeStrategy
 IShapeDimensionsProvider
 - GetDimensionCount
 
-5. Calculator
+4. Calculator
 Description of how the calculator class/method/interfaces works.
 
 Calculator classes, interfaces and methods
@@ -222,7 +218,7 @@ ICalculatorService
 ICalculatorStrategy
 - Calculate
 
-6. Rock Paper Scissors Game
+5. Rock Paper Scissors Game
 Description of how the rock paper scissor class/method/interfaces works.
 
 Rock Paper Scissors classes, interfaces and methods
@@ -275,7 +271,7 @@ IGameService
 - ViewPreviousGames
 - GameRules
 
-7. Autofac, Library & Common Classes & Interfaces
+6. Autofac, Library & Common Classes & Interfaces
 
 The project has a custom made library with all necessary features included to successfully use Shape, Calculation and play Rock Paper Scissor.
 The project also uses autofac to register and resolve all necessary instances of the interfaces aswell as the DbContext.
@@ -291,4 +287,3 @@ Common Classes & Interfaces (that Shape, Calculator and Rock Paper Scissors shar
 - IMenu
 - IMenuFactory
 - IDataSeeding
-- 
