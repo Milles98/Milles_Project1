@@ -122,63 +122,67 @@ namespace Milles_Project1Library.Services
 
         public void UpdateShape()
         {
-            ReadShape();
-
-            Console.Write("Enter the ID of the shape you want to update (press 'e' to cancel): ");
-            string shapeIdInput = Console.ReadLine();
-
-            if (shapeIdInput.ToLower() == "e")
+            while (true)
             {
-                Message.DarkYellowMessage("Update canceled.");
-                return;
-            }
+                ReadShape();
 
-            if (int.TryParse(shapeIdInput, out int shapeId))
-            {
-                var shapeToUpdate = _dbContext.Shape.Find(shapeId);
+                Console.Write("Enter the ID of the shape you want to update (press 'e' to cancel): ");
+                string shapeIdInput = Console.ReadLine();
 
-                if (shapeToUpdate == null || !shapeToUpdate.IsActive)
+                if (shapeIdInput.ToLower() == "e")
                 {
-                    Message.RedMessage($"Shape with ID {shapeId} not found or inactive.");
+                    Message.DarkYellowMessage("Update canceled.");
+                    return;
+                }
+
+                if (int.TryParse(shapeIdInput, out int shapeId))
+                {
+                    var shapeToUpdate = _dbContext.Shape.Find(shapeId);
+
+                    if (shapeToUpdate == null || !shapeToUpdate.IsActive)
+                    {
+                        Message.RedMessage($"Shape with ID {shapeId} not found or inactive.");
+                        Console.ReadKey();
+                        return;
+                    }
+
+                    var shapeType = shapeToUpdate.ShapeType;
+                    var shapeStrategy = GetShapeStrategy(shapeType);
+                    _shapeContext.SetShapeCalculator(shapeStrategy);
+
+                    Console.WriteLine($"Enter new dimensions for the {shapeType} (press 'e' to cancel):");
+
+                    decimal[] dimensions = _shapeContext.GetDimensionsInput();
+
+                    if (dimensions[0] == 0 && dimensions[1] == 0)
+                    {
+                        Message.DarkYellowMessage($"Update for shape with ID {shapeId} canceled.");
+                        return;
+                    }
+
+                    _shapeContext.SetShapeProperties(dimensions);
+
+                    decimal area = shapeStrategy.CalculateArea();
+                    decimal perimeter = shapeStrategy.CalculatePerimeter();
+
+                    area = Math.Round(area, 2);
+                    perimeter = Math.Round(perimeter, 2);
+
+                    shapeToUpdate.Base = shapeStrategy.Base;
+                    shapeToUpdate.Height = shapeStrategy.Height;
+                    shapeToUpdate.SideLength = shapeStrategy.SideLength;
+                    shapeToUpdate.Area = area;
+                    shapeToUpdate.Perimeter = perimeter;
+
+                    _dbContext.SaveChanges();
+
+                    Message.GreenMessage($"Shape with ID {shapeId} successfully updated!");
                     Console.ReadKey();
-                    return;
                 }
-
-                var shapeType = shapeToUpdate.ShapeType;
-                var shapeStrategy = GetShapeStrategy(shapeType);
-                _shapeContext.SetShapeCalculator(shapeStrategy);
-
-                Console.WriteLine($"Enter new dimensions for the {shapeType} (press 'e' to cancel):");
-
-                decimal[] dimensions = _shapeContext.GetDimensionsInput();
-
-                if (dimensions[0] == 0 && dimensions[1] == 0)
+                else
                 {
-                    Message.DarkYellowMessage($"Update for shape with ID {shapeId} canceled.");
-                    return;
+                    Message.RedMessage("Invalid input. Please enter a valid shape ID.");
                 }
-
-                _shapeContext.SetShapeProperties(dimensions);
-
-                decimal area = shapeStrategy.CalculateArea();
-                decimal perimeter = shapeStrategy.CalculatePerimeter();
-
-                area = Math.Round(area, 2);
-                perimeter = Math.Round(perimeter, 2);
-
-                shapeToUpdate.Base = shapeStrategy.Base;
-                shapeToUpdate.Height = shapeStrategy.Height;
-                shapeToUpdate.SideLength = shapeStrategy.SideLength;
-                shapeToUpdate.Area = area;
-                shapeToUpdate.Perimeter = perimeter;
-
-                _dbContext.SaveChanges();
-
-                Message.GreenMessage($"Shape with ID {shapeId} successfully updated!");
-            }
-            else
-            {
-                Message.RedMessage("Invalid input. Please enter a valid shape ID.");
             }
         }
 

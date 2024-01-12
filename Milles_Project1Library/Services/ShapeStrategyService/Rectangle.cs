@@ -15,8 +15,8 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
         {
             if (dimensions.Length == 2)
             {
-                Height = dimensions[0];
-                Base = dimensions[1];
+                Base = dimensions[0];
+                Height = dimensions[1];
 
             }
             else
