@@ -308,6 +308,8 @@ namespace Milles_Project1Library.Services
 
                         calculation.IsActive = true;
 
+                        _dbContext.SaveChanges();
+
                         Message.GreenMessage("Calculation activated successfully!");
                         Console.WriteLine("Press any key to continue.");
                     }
