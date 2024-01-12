@@ -94,3 +94,6 @@ Jag gjorde likadant på shapes eftersom SideLength propertyn inte alltid använd
 Ändrade koden till att låta sidelength vara null när det behövs.
 
 Idag var det dags för att skapa readme filen, fixade till den och gjorde den snygg samt läsbar.
+
+Uppdaterade UpdateShape metoden i ShapeService då jag märkte att den inte betedde sig som den skulle.
+Efter att ha felsökt lyckades jag hitta en lösning så att korrekt shape får dess uppdatering vid begäran.

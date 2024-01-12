@@ -85,12 +85,12 @@ namespace Milles_Project1Library.StrategyContext
             Message.GreenMessage("\nShape calculation successfully saved to database!");
         }
 
-        private void SetShapeProperties(decimal[] dimensions)
+        public void SetShapeProperties(decimal[] dimensions)
         {
             _shapeStrategy.SetDimensions(dimensions);
         }
 
-        private decimal[] GetDimensionsInput()
+        public decimal[] GetDimensionsInput()
         {
             if (_shapeStrategy is IShapeDimensionsProvider dimensionsProvider)
             {
