@@ -1,7 +1,7 @@
 Project 1
 Kort beskrivning av projektet, inklusive dess syfte och huvudfunktioner.
 
-Innehåll
+Content
 1. Description
 2. Structure
 3. Patterns/Principles/Methods
@@ -13,6 +13,8 @@ Innehåll
 9. Beskrivning
 
 1. Description
+
+There are 3 main parts of this app (Shape calculation, Calculation & Rock Paper Scissor).
 
 This project is made to help calculate different shapes (example Rhombus, Parallelogram) and to calculate different numbers (example Square Root, Triangle). 
 The project also feature a mini game called rock paper scissors to play whenever, especially useful when you're bored of doing calculations!
@@ -49,44 +51,129 @@ Almost all my classes depend on interfaces that are registered by Autofac, thus 
 4. Shapes
 Beskriv hur Shapes-delen av projektet fungerar. Inkludera en lista över klasser och gränssnitt som är relaterade till Shapes.
 
-Shapes Klasser
+Shapes classes, interfaces and methods
+
 ShapeMenuFactory
+- CreateMenu
 ShapesMenu
+- ShowMenu
 Shape Entity
+- Relevant attributes for the database
 ParallelogramStrategy
+- SetDimensions
+- GetDimensionCount
+- CalculateArea
+- CalculatePerimeter
 RectangleStrategy
+- Same as Parallelogram
 RhombusStrategy
+- Same as Parallelogram
 TriangleStrategy
+- Same as Parallelogram
 ShapeService
+- GetAvailableShapeTypes
+- GetShapeStrategy
+- CreateShape
+- ReadShape
+- UpdateShape
+- DeleteShape
+- ReActivateShape
+- SaveChangesToDatabase
 ShapeContext
+- SetShapeCalculator
+- CalculateAndDisplayResults
+- SaveResultsToDatabase
+- SetShapeProperties
+- GetDimensionsInput
+- GetDimensionName
+
 Shapes Interface
 IShapeContext
+- SetShapeCalculator
+- CalculateAndDisplayResults
 IMenuFactory
+- CreateMenu
 IShape
+- Relevant attributes for the database
 IShapeStrategy
+- CalculateArea
+- CalculatePerimeter
+- SetDimensions
 IShapeDimensionsProvider
+- GetDimensionCount
 
 5. Calculator
 Beskriv hur Calculator-delen av projektet fungerar. Inkludera en lista över klasser och gränssnitt som är relaterade till Calculator.
 
-Calculator Klasser
+Calculator classes, interfaces and methods
+
 CalculatorMenuFactory
+- CreateMenu
 CalculatorMenu
+- ShowMenu
 Calculator Entity
+- Relevant attributes for the database
 AdditionStrategy
+- Calculate
 DivisionStrategy
+- Calculate
 ModulusStrategy
+- Calculate
 MultiplicationStrategy
+- Calculate
 SquareRootStrategy
+- Calculate
 SubtractionStrategy
+- Calculate
 CalculatorService
+- PerformCreateCalculation
+- IsNumberOutOfRange
+- SetStrategyFromOperationChoice
+- ReadCalculation
+- UpdateCalculation
+- DeleteCalculation
+- ReActivateCalculation
+- UpdateCalculationInDatabase
+- IsResultOutOfRange
 CalculatorContext
+- GetUserInput
+- GetBoundedDoubleInput
+- ExecuteOperation
+- SetStrategy
+- CreateCalculation
+- ReadCalculation
+- UpdateCalculation
+- DeleteCalculation
+- SaveCalculationToDatabase
+- SaveCalculationDetails
+- GetCalculationById
+
 Calculator Interface
 ICalculatorContext
+- ExecuteOperation
+- GetUserInput
+- SetStrategy
+- CreateCalculation
+- ReadCalculation
+- UpdateCalculation
+- DeleteCalculation
+- SaveCalculationToDatabase
+IMenu
+- ShowMenu
+- GetMenuType
 IMenuFactory
+- CreateMenu
 ICalculator
+- Relevant attributes for the database
 ICalculatorService
+- PerformCreateCalculation
+- ReadCalculation
+- UpdateCalculation
+- DeleteCalculation
+- UpdateCalculationInDatabase
+- ReActivateCalculation
 ICalculatorStrategy
+- Calculate
 
 6. Rock Paper Scissors Game
 Om Rock Paper Scissors Game är en del av projektet, inkludera information om dess struktur och komponenter här.
