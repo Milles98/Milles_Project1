@@ -49,7 +49,7 @@ Dependency Inversion Principle (DIP):
 Almost all my classes depend on interfaces that are registered by Autofac, thus my project is not very dependent on different parts of my code.
 
 4. Shapes
-Beskriv hur Shapes-delen av projektet fungerar. Inkludera en lista över klasser och gränssnitt som är relaterade till Shapes.
+Description of how the shapes class/method/interfaces works.
 
 Shapes classes, interfaces and methods
 
@@ -103,7 +103,7 @@ IShapeDimensionsProvider
 - GetDimensionCount
 
 5. Calculator
-Beskriv hur Calculator-delen av projektet fungerar. Inkludera en lista över klasser och gränssnitt som är relaterade till Calculator.
+Description of how the calculator class/method/interfaces works.
 
 Calculator classes, interfaces and methods
 
@@ -176,18 +176,57 @@ ICalculatorStrategy
 - Calculate
 
 6. Rock Paper Scissors Game
-Om Rock Paper Scissors Game är en del av projektet, inkludera information om dess struktur och komponenter här.
+Description of how the rock paper scissor class/method/interfaces works.
 
-7. Bygga och köra projektet
+Rock Paper Scissors classes, interfaces and methods
+
+GameMenuFactory
+- CreateMenu
+GameMenu
+- ShowMenu
+Game
+- Relevant attributes for the database
+GameHistory
+- Relevant attributes for the database
+GameStatistics
+- Relevant attributes for the database
+GameService
+- PlayGame
+- UpdateGameStatistics
+- GenerateComputerMove
+- DetermineResult
+- SaveGameHistory
+- DisplayGameResult
+- ViewPreviousGames
+- GameRules
+
+Rock Paper Scissors Interface
+IMenu
+- ShowMenu
+- GetMenuType
+IMenuFactory
+- CreateMenu
+IGame
+- Relevant attributes for the database
+IGameHistory
+- Relevant attributes for the database
+IGameStatistics
+- Relevant attributes for the database
+IGameService
+- PlayGame
+- ViewPreviousGames
+- GameRules
+
+8. Bygga och köra projektet
 Ge instruktioner om hur man bygger och kör projektet lokalt på användarens maskin.
 
-8. Licens
+9. Licens
 Inkludera licensinformation för ditt projekt.
 
-9. Bidrag
+10. Bidrag
 Om du välkomnar bidrag från andra utvecklare, inkludera information om hur man kan bidra till ditt projekt.
 
-10. Kontakta oss
+11. Kontakta oss
 Ge kontaktinformation för projektets underhållare eller bidragsgivare om någon behöver hjälp eller vill diskutera projektet.
 
 Anpassa och lägg till ytterligare sektioner efter behov. Det viktigaste är att din README ger en tydlig och omfattande översikt över ditt projekt och dess olika komponenter.
