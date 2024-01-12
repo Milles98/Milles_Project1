@@ -105,6 +105,8 @@ Shapes Interface
 ### IShapeContext
 - SetShapeCalculator
 - CalculateAndDisplayResults
+- SetShapeProperties
+- GetDimensionsInput
 ### IMenuFactory
 - CreateMenu
 ### IShape
