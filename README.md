@@ -1,5 +1,5 @@
 Project 1
-Kort beskrivning av projektet, inklusive dess syfte och huvudfunktioner.
+This readme includes a short description of the project, its purpose and main functions.
 
 Content
 1. Description
@@ -8,9 +8,7 @@ Content
 4. Shapes
 5. Calculator
 6. Rock Paper Scissors Game
-7. Bygga och köra projektet
-8. Licens
-9. Beskrivning
+7. Autofac, Library & Common Classes & Interfaces
 
 1. Description
 
@@ -276,3 +274,21 @@ IGameService
 - PlayGame
 - ViewPreviousGames
 - GameRules
+
+7. Autofac, Library & Common Classes & Interfaces
+
+The project has a custom made library with all necessary features included to successfully use Shape, Calculation and play Rock Paper Scissor.
+The project also uses autofac to register and resolve all necessary instances of the interfaces aswell as the DbContext.
+
+Common Classes & Interfaces (that Shape, Calculator and Rock Paper Scissors share)
+- App
+- Program
+- DataSeeding
+- DbConfiguration
+- ProjectDbContext
+- Message
+- Autofac
+- IMenu
+- IMenuFactory
+- IDataSeeding
+- 
