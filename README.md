@@ -1,84 +1,106 @@
-Dag 1
+Project 1
+Kort beskrivning av projektet, inklusive dess syfte och huvudfunktioner.
 
-Jag började med att läsa igenom alla krav, skapade en console app, la till en mapp för menyer samt en app klass för att lämna program.cs.
-Efter det gjorde jag ett library.
+Innehåll
+1. Description
+2. Structure
+3. Patterns/Principles/Methods
+4. Shapes
+5. Calculator
+6. Rock Paper Scissors Game
+7. Bygga och köra projektet
+8. Licens
+9. Beskrivning
 
-Sedan laddade jag ned de nödvändiga nuget paketen inklusive Autofac och började implementera det.
+1. Description
 
-Jag började skissa och skapa klasserna som ska innehålla meny för huvudmeny, sten sax påse, miniräknare och shapes.
-Därefter la jag in metoden ShowMenu i MainMenu klassen, ShowCalculatorMenu i CalculatorMenu klassen, ShowRockPaperScissorMenu i RockPaperScissor klassen, ShowShapesMenu i ShapesMenu klassen.
+This project is made to help calculate different shapes (example Rhombus, Parallelogram) and to calculate different numbers (example Square Root, Triangle). 
+The project also feature a mini game called rock paper scissors to play whenever, especially useful when you're bored of doing calculations!
 
-Efter att grundarbetet lagts upp började jag skriva i program.cs min tankeprocess och vilka tabeller samt attribut jag skulle behöva.
+2. Struktur
+Beskriv hur projektet är strukturerat och vilka komponenter det består av.
 
-Jag skapade en mapp CalculatorStrategyService och StrategyContext för att förbereda strategy pattern till först miniräknaren och senare shapes.
-Jag skapade en ICalculatorStrategy och IShapeStrategy interface. Första implementeringen blev Calculate metod i ICalculatorStrategy.
-Efter det började jag lägga in alla beräknings-klasser i CalculatorStrategyService mappen samt la in CalculatorContext i StrategyContext mappen.
-Sedan testade jag alla beräkningar efter jag la in dom i CalculatorMenu klassens meny metod.
+3. Patterns/Principles
 
-Dag 2
+The patterns used in my project:
+Factory pattern
+Strategy pattern,
+Dependency Injection pattern,
+Singleton pattern.
 
-Jag kollade mer i detalj på vilka entiteter och attribut jag skulle behöva och skrev upp dessa, sedan implementerades de i min Models mapp i mitt library.
+Principles i have used in my project:
+SOC (Separation of Concern):
+I achieved this by making sure to divide my classes and interfaces into different maps and more classes. This makes it easier to for example debug, scale and develop.
 
-Jag började lägga till mapparna för Shapes Strategy.
-Jag implementerade metoderna och strategies för Shapes, började dependency injecta med Autofac och la till fler relevanta interfaces.
+Single Responsibility Principle (SRP):
+Since i have divided my classes and interfaces it also makes my project follow SRP by only being responsible for one thing. 
+An example of this is my Strategy classes, they are only responsible of calculating either a shape or a numbered calculation.
 
-Uppdaterade starten av appen och såg till att relevanta klasser blev resolved med Autofac och la till ShapeTypes i IShapeStrategy som kommer att användas för att spara ned vilken form som användas i SSMS.
+Open/Closed Principle (OCP):
+My classes have been designed to not require any adjustments but they can be developed to include new features without needing to change code that's already written.
 
-Dag 3
+Interface Segregation Principle (ISP):
+Most of my classes have a interface and the interfaces only have methods that the classes require, the methods that arent required for the interface were made private and thus my project
+is following ISP.
 
-Jag hade tänkt dagen innan på hur jag skulle implementera CRUD operationerna för calculations och idag var det dags.
+Dependency Inversion Principle (DIP):
+Almost all my classes depend on interfaces that are registered by Autofac, thus my project is not very dependent on different parts of my code.
 
-Jag uppdaterade min meny i CalculatorMenu, skapade en CalculatorService klass för att hålla i metoderna som skulle anropas i CalculatorMenu klassen.
-Jag uppdaterade CalculatorContext för att hantera CRUD som skulle anropas i CalculatorService klassen.
+4. Shapes
+Beskriv hur Shapes-delen av projektet fungerar. Inkludera en lista över klasser och gränssnitt som är relaterade till Shapes.
 
-Fixade även IsActive attribut som jag hade glömt till alla mina entiteter!
+Shapes Klasser
+ShapeMenuFactory
+ShapesMenu
+Shape Entity
+ParallelogramStrategy
+RectangleStrategy
+RhombusStrategy
+TriangleStrategy
+ShapeService
+ShapeContext
+Shapes Interface
+IShapeContext
+IMenuFactory
+IShape
+IShapeStrategy
+IShapeDimensionsProvider
 
-Dag 4
+5. Calculator
+Beskriv hur Calculator-delen av projektet fungerar. Inkludera en lista över klasser och gränssnitt som är relaterade till Calculator.
 
-La till IShapeService, ShapeService och började implementera CRUD för Shapes.
+Calculator Klasser
+CalculatorMenuFactory
+CalculatorMenu
+Calculator Entity
+AdditionStrategy
+DivisionStrategy
+ModulusStrategy
+MultiplicationStrategy
+SquareRootStrategy
+SubtractionStrategy
+CalculatorService
+CalculatorContext
+Calculator Interface
+ICalculatorContext
+IMenuFactory
+ICalculator
+ICalculatorService
+ICalculatorStrategy
 
-Sedan la jag till en GameService klass som skulle hålla alla metoder för spelet att fungera.
-Skapade en GameHistory entitet, la till relevanta attributer.
-Började skapa metoderna i GameService, exempelvis PlayGame, ViewPreviousGames, GameRules.
+6. Rock Paper Scissors Game
+Om Rock Paper Scissors Game är en del av projektet, inkludera information om dess struktur och komponenter här.
 
-Dag 5
+7. Bygga och köra projektet
+Ge instruktioner om hur man bygger och kör projektet lokalt på användarens maskin.
 
-Jag utvecklade felhanteringen för calculations, speciellt upphöjt till delen. Jag hade gjort alla nummer och resultat till decimal och det
-gav problem med overflow och för stora nummer. Tillslut hittade jag en lösning, om numret är för högt eller lågt blir resultatet 0, om resultatet är 0 så får användaren
-felmeddelande om att det antingen var för stort eller för litet.
+8. Licens
+Inkludera licensinformation för ditt projekt.
 
-Jag funderade ut hur min seeding skulle se ut och skapade en DataSeeding klass som skulle innehålla relevant seeding. Skapade först seeding för de 4 shapes.
+9. Bidrag
+Om du välkomnar bidrag från andra utvecklare, inkludera information om hur man kan bidra till ditt projekt.
 
-Efter det skapade jag seedingen för alla 6 operatorer i calculations.
+10. Kontakta oss
+Ge kontaktinformation för projektets underhållare eller bidragsgivare om någon behöver hjälp eller vill diskutera projektet.
 
-Dag 6
-
-La till färger på alla menyerna, tyckte att darkcyan passade bra.
-Utvecklade calculator create delen, tyckte att det hade varit skönt att kunna lämna beräkningen mitt i och bestämde mig för att inkludera en exit option som kan ta en tillbaka till calculator menyn
-om användaren önskar det.
-
-Började kolla runt efter mindre fel i appen och märkte att min seeding var i min huvudloop, det kanske inte är så illa i sig eftersom den inte seedar det som redan finns men det innebär
-att den kommer att kontinuerligt försöka seeda. Jag bestämde mig för att flytta ut den ur loopen så att den enbart körs en gång när appen startar och aldrig igen.
-
-Letade efter fel i consolen och hittade en smidig lösning med mina shapes och strategies, möjligheten jag ville var att kunden ska kunna gå ur shape uträkningen mitt i ett tal
-löste det till slut genom att sätta tidigare dimensioner till 0 som i sin tur skrevs i en if sats som säkerställde att inget sparas om något relevant värde är 0.
-
-Jag bestämde mig för att gå ur min comfortzone och försökte implementera factory pattern till mina menyer. Det var hackigt att få det att funka med autofac, fick många errors.
-Tillslut fick jag ta bort min meny från huvudprojektet och lägga det i mitt library där jag registrerar mina autofacs. Efter mycket felsökning och debugging lyckades jag få factory pattern att fungera!
-
-Implementerade Singleton pattern genom Autofacs inbygga "SingleInstance" för menyerna.
-
-Dag 7
-
-Korrigerade min CalculatorStrategy, hade råkat lägga in upphöjt till när det skulle vara roten ur. Uppdaterade även (R) på calculator & shapes för att visa 2 decimaler.
-
-Uppdaterade Shape och Calculator delete metoderna, hade placeholder som permanently deletade, nu fixat så att det är enligt standard dvs IsActive = 0 om något blir deletat.
-Fixade relaterade metoder så att de var anpassade till detta och så att inga oväntade fel kan ske.
-
-Dag 8
-
-Har haft problem med min miniräknare strategy pattern mest kring att roten ur behöver bara ett tal. Kollade runt och hittade tillslut en lösning om att göra number2 nullable. Jag uppdaterade relevanta strategies och interfaces.
-Efter flertal error fick jag det att funka. Huvudanledningen till att jag ville göra detta var pga i databasen vid uträkningen av roten ur, stod det exempelvis "number 1 = 25", "number 2 = 0", "result = 5" men jag ville att number 2 skulle 
-då inte ha ett värde, dvs NULL. Löst!
-
-Jag gjorde likadant på shapes eftersom SideLength propertyn inte alltid används, exempelvis vid rektangel uträkning. Ändrade koden till att låta sidelength vara null när det behövs.
+Anpassa och lägg till ytterligare sektioner efter behov. Det viktigaste är att din README ger en tydlig och omfattande översikt över ditt projekt och dess olika komponenter.
