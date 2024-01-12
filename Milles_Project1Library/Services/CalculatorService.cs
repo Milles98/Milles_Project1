@@ -266,6 +266,8 @@ namespace Milles_Project1Library.Services
 
                         calculation.IsActive = false;
 
+                        _dbContext.SaveChanges();
+
                         Message.GreenMessage("Calculation deleted successfully!");
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
