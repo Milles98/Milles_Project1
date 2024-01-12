@@ -26,7 +26,8 @@ namespace Milles_Project1Library.Data
                 .HasColumnType("decimal(18,2)");
             modelBuilder.Entity<Calculator>()
                 .Property(c => c.Number2)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(18,2)")
+                .IsRequired(false);
             modelBuilder.Entity<Calculator>()
                 .Property(c => c.Result)
                 .HasColumnType("decimal(18,2)");

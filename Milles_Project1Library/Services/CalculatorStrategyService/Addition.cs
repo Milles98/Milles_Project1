@@ -4,9 +4,9 @@ namespace Milles_Project1Library.Services.CalculatorStrategyService
 {
     public class Addition : ICalculatorStrategy
     {
-        public decimal Calculate(decimal num1, decimal num2)
+        public decimal Calculate(decimal num1, decimal? num2)
         {
-            return num1 + num2;
+            return num2.HasValue ? num1 + num2.Value : num1;
         }
     }
 }

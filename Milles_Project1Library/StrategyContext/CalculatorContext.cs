@@ -58,7 +58,7 @@ namespace Milles_Project1Library.StrategyContext
             return Math.Round(input, 2);
         }
 
-        public decimal ExecuteOperation(decimal num1, decimal num2)
+        public decimal ExecuteOperation(decimal num1, decimal? num2)
         {
             decimal result = _strategy.Calculate(num1, num2);
 
@@ -70,7 +70,7 @@ namespace Milles_Project1Library.StrategyContext
             _strategy = strategy;
         }
 
-        public void CreateCalculation(decimal num1, decimal num2)
+        public void CreateCalculation(decimal num1, decimal? num2)
         {
             decimal result = ExecuteOperation(num1, num2);
             SaveCalculationToDatabase(num1, num2, result);
@@ -114,13 +114,13 @@ namespace Milles_Project1Library.StrategyContext
             }
         }
 
-        public void SaveCalculationToDatabase(decimal num1, decimal num2, decimal? result)
+        public void SaveCalculationToDatabase(decimal num1, decimal? num2, decimal? result)
         {
             SaveCalculationDetails(num1, num2, result);
 
         }
 
-        private void SaveCalculationDetails(decimal num1, decimal num2, decimal? result)
+        private void SaveCalculationDetails(decimal num1, decimal? num2, decimal? result)
         {
             var calculation = new Calculator
             {
