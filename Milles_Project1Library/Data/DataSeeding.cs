@@ -32,7 +32,7 @@ namespace Milles_Project1Library.Data
                 SeedCalculation(new Subtraction(), 8.0M, 4.0M);
                 SeedCalculation(new Multiplication(), 2.0M, 7.0M);
                 SeedCalculation(new Division(), 10.0M, 2.0M);
-                SeedCalculation(new SquareRoot(), 3.0M, 0M);
+                SeedCalculation(new SquareRoot(), 3.0M, null);
                 SeedCalculation(new Modulus(), 9.0M, 4.0M);
 
                 _dbContext.SaveChanges();
@@ -58,7 +58,7 @@ namespace Milles_Project1Library.Data
             _dbContext.Shape.Add(resultShape);
         }
 
-        private void SeedCalculation(ICalculatorStrategy strategy, decimal num1, decimal num2)
+        private void SeedCalculation(ICalculatorStrategy strategy, decimal num1, decimal? num2)
         {
             if (!IsCalculationSeeded(strategy.GetType().Name))
             {

@@ -2,6 +2,6 @@
 {
     public interface ICalculatorStrategy
     {
-        decimal Calculate(decimal num1, decimal num2);
+        decimal Calculate(decimal num1, decimal? num2);
     }
 }

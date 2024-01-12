@@ -43,6 +43,10 @@ namespace Milles_Project1Library.Services
                 Console.Write("\nEnter your move (1-3): ");
                 if (int.TryParse(Console.ReadLine(), out int playerChoice))
                 {
+                    if (playerChoice == 0)
+                    {
+                        return;
+                    }
                     if (playerChoice >= 1 && playerChoice <= 3)
                     {
                         Move playerMove = (Move)(playerChoice - 1);
@@ -76,14 +80,9 @@ namespace Milles_Project1Library.Services
                         Console.WriteLine("\nPress Enter to continue...");
                         Console.ReadLine();
                     }
-                    else if (playerChoice == 0)
-                    {
-                        Console.WriteLine("Ending the Game...");
-                        break;
-                    }
                     else
                     {
-                        Message.RedMessage("Invalid choice. Please enter a number between 1 and 3.");
+                        Message.RedMessage("Invalid choice. Please enter a number between 0 and 3.");
                         Thread.Sleep(1000);
                     }
                 }

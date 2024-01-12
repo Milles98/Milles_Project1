@@ -59,14 +59,14 @@ namespace Milles_Project1Library.Services
                         {
                             decimal squareRoot = _calculatorContext.GetUserInput($"Enter the value for Number1 (max 1,000,000) or 'e' to exit: ", 1, 1000000);
                             squareRoot = Math.Round(squareRoot, 2);
-                            decimal squareResult = _calculatorContext.ExecuteOperation(squareRoot, 0);
+                            decimal squareResult = _calculatorContext.ExecuteOperation(squareRoot, null);
                             squareResult = Math.Round(squareResult, 2);
                             if (squareResult == 0)
                             {
                                 return;
                             }
                             Console.WriteLine($"Result: {squareResult}");
-                            _calculatorContext.SaveCalculationToDatabase(squareRoot, 0, squareResult);
+                            _calculatorContext.SaveCalculationToDatabase(squareRoot, null, squareResult);
                             Message.GreenMessage("Calculation saved to the database successfully!");
                             Console.ReadKey();
                             return;
