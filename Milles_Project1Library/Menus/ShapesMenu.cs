@@ -42,7 +42,7 @@ namespace Milles_Project1Library.Menus
                             _shapeService.CreateShape();
                             break;
                         case 2:
-                            _shapeService.ReadShapes();
+                            _shapeService.ReadShape();
                             Console.WriteLine("Press any key to continue.");
                             Console.ReadKey();
                             break;

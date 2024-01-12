@@ -99,21 +99,6 @@ namespace Milles_Project1Library.StrategyContext
             }
         }
 
-        public void DeleteCalculation(int calculationId)
-        {
-            var calculation = GetCalculationById(calculationId);
-
-            if (calculation != null)
-            {
-                _dbContext.Calculator.Remove(calculation);
-                _dbContext.SaveChanges();
-            }
-            else
-            {
-                Message.RedMessage("Calculation not found.");
-            }
-        }
-
         public void SaveCalculationToDatabase(decimal num1, decimal? num2, decimal? result)
         {
             SaveCalculationDetails(num1, num2, result);

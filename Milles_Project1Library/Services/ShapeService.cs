@@ -90,7 +90,7 @@ namespace Milles_Project1Library.Services
             }
         }
 
-        public void ReadShapes()
+        public void ReadShape()
         {
             Console.Clear();
             var shape = _dbContext.Shape.ToList();
@@ -127,7 +127,7 @@ namespace Milles_Project1Library.Services
         {
             while (true)
             {
-                ReadShapes();
+                ReadShape();
 
                 Console.Write("\nEnter the Shape ID you want to update or press 'e' to exit: ");
                 string userInput = Console.ReadLine();
@@ -199,26 +199,12 @@ namespace Milles_Project1Library.Services
                 Console.ReadKey();
             }
         }
-
-
-        private void SaveChangesToDatabase()
-        {
-            try
-            {
-                _dbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Message.RedMessage($"Error saving changes to the database: {ex.Message}");
-            }
-        }
-
         public void DeleteShape()
         {
             while (true)
             {
                 Console.Clear();
-                ReadShapes();
+                ReadShape();
 
                 Console.Write("Enter the Shape ID you want to delete or press 'e' to exit: ");
                 string userInput = Console.ReadLine();
@@ -259,7 +245,7 @@ namespace Milles_Project1Library.Services
             while (true)
             {
                 Console.Clear();
-                ReadShapes();
+                ReadShape();
 
                 Console.Write("Enter the Shape ID you want to reactivate or press 'e' to exit: ");
                 string userInput = Console.ReadLine();
@@ -295,5 +281,19 @@ namespace Milles_Project1Library.Services
                 Console.ReadKey();
             }
         }
+
+
+        private void SaveChangesToDatabase()
+        {
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Message.RedMessage($"Error saving changes to the database: {ex.Message}");
+            }
+        }
+
     }
 }

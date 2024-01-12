@@ -3,7 +3,7 @@
     public interface IShapeService
     {
         void CreateShape();
-        void ReadShapes();
+        void ReadShape();
         void UpdateShape();
         void DeleteShape();
         void ReActivateShape();
