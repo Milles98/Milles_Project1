@@ -11,7 +11,6 @@ namespace Milles_Project1Library.Interfaces.ContextInterface
         public void CreateCalculation(decimal num1, decimal? num2);
         public IEnumerable<Calculator> ReadCalculation();
         public void UpdateCalculation(int calculationId, decimal num1, decimal num2);
-        public void DeleteCalculation(int calculationId);
         public void SaveCalculationToDatabase(decimal num1, decimal? num2, decimal? result);
     }
 }
