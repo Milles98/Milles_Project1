@@ -1,7 +1,7 @@
 # Project 1
 This readme includes a short description of the project, its purpose and main functions.
 
-Content
+## Content
 1. Description
 2. Patterns/Principles/Methods
 3. Shapes
@@ -9,14 +9,14 @@ Content
 5. Rock Paper Scissors Game
 6. Autofac, Library & Common Classes & Interfaces
 
-# 1. Description
+## 1. Description
 
 There are 3 main parts of this app (Shape calculation, Calculation & Rock Paper Scissor).
 
 This project is made to help calculate different shapes (example Rhombus, Parallelogram) and to calculate different numbers (example Square Root, Triangle). 
 The project also feature a mini game called rock paper scissors to play whenever, especially useful when you're bored of doing calculations!
 
-# 2. Patterns/Principles
+## 2. Patterns/Principles
 
 The patterns used in my project:
 Factory pattern
@@ -42,7 +42,7 @@ is following ISP.
 Dependency Inversion Principle (DIP):
 Almost all my classes depend on interfaces that are registered by Autofac, thus my project is not very dependent on different parts of my code.
 
-# 3. Shapes
+## 3. Shapes
 Description of how the shapes class/method/interfaces works.
 
 Shapes classes, interfaces and methods.
@@ -116,7 +116,7 @@ Shapes Interface
 ### IShapeDimensionsProvider
 - GetDimensionCount
 
-# 4. Calculator
+## 4. Calculator
 Description of how the calculator class/method/interfaces works.
 
 Calculator classes, interfaces and methods
@@ -218,7 +218,7 @@ Calculator Interface
 ### ICalculatorStrategy
 - Calculate
 
-# 5. Rock Paper Scissors Game
+## 5. Rock Paper Scissors Game
 Description of how the rock paper scissor class/method/interfaces works.
 
 Rock Paper Scissors classes, interfaces and methods
@@ -271,7 +271,7 @@ Rock Paper Scissors Interface
 - ViewPreviousGames
 - GameRules
 
-# 6. Autofac, Library & Common Classes & Interfaces
+## 6. Autofac, Library & Common Classes & Interfaces
 
 The project has a custom made library with all necessary features included to successfully use Shape, Calculation and play Rock Paper Scissor.
 The project also uses autofac to register and resolve all necessary instances of the interfaces aswell as the DbContext.
