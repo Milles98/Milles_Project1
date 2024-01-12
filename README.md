@@ -19,7 +19,7 @@ The project also feature a mini game called rock paper scissors to play whenever
 ## 2. Patterns/Principles
 
 The patterns used in my project:
-Factory pattern
+Factory pattern,
 Strategy pattern,
 Dependency Injection pattern,
 Singleton pattern.
