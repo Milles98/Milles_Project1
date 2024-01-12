@@ -13,13 +13,11 @@ namespace Milles_Project1Library.Services
     {
         private readonly ProjectDbContext _dbContext;
         private readonly IShapeContext _shapeContext;
-        //private readonly IShapeStrategy _shapeStrategy;
 
         public ShapeService(ILifetimeScope lifetimeScope)
         {
             _dbContext = lifetimeScope.Resolve<ProjectDbContext>();
             _shapeContext = lifetimeScope.Resolve<IShapeContext>();
-            //_shapeStrategy = lifetimeScope.Resolve<IShapeStrategy>();
         }
 
         public IEnumerable<string> GetAvailableShapeTypes()
@@ -80,7 +78,6 @@ namespace Milles_Project1Library.Services
                     _shapeContext.CalculateAndDisplayResults();
 
                     Console.WriteLine("Press any key to continue.");
-                    Console.ReadKey();
                 }
                 else
                 {
@@ -170,16 +167,23 @@ namespace Milles_Project1Library.Services
                             continue;
                         }
 
-                        Console.Write($"Enter the new value for Side Length (1 - 1000) cm: ");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength) && newSideLength >= 1 && newSideLength <= 1000)
+                        if (shape.ShapeType == "Rectangle" || shape.ShapeType == "Rhombus")
                         {
-                            newSideLength = Math.Round(newSideLength, 2);
-                            shape.SideLength = newSideLength;
+                            shape.SideLength = null;
                         }
                         else
                         {
-                            Message.RedMessage("Invalid input for Side Length. The Side Length remains unchanged. Please enter a value between 1 and 1000.");
-                            continue;
+                            Console.Write($"Enter the new value for Side Length (1 - 1000) cm: ");
+                            if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength) && newSideLength >= 1 && newSideLength <= 1000)
+                            {
+                                newSideLength = Math.Round(newSideLength, 2);
+                                shape.SideLength = newSideLength;
+                            }
+                            else
+                            {
+                                Message.RedMessage("Invalid input for Side Length. The Side Length remains unchanged. Please enter a value between 1 and 1000.");
+                                continue;
+                            }
                         }
 
                         SaveChangesToDatabase();
