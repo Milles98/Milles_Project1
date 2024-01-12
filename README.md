@@ -80,3 +80,5 @@ Dag 8
 Har haft problem med min miniräknare strategy pattern mest kring att roten ur behöver bara ett tal. Kollade runt och hittade tillslut en lösning om att göra number2 nullable. Jag uppdaterade relevanta strategies och interfaces.
 Efter flertal error fick jag det att funka. Huvudanledningen till att jag ville göra detta var pga i databasen vid uträkningen av roten ur, stod det exempelvis "number 1 = 25", "number 2 = 0", "result = 5" men jag ville att number 2 skulle 
 då inte ha ett värde, dvs NULL. Löst!
+
+Jag gjorde likadant på shapes eftersom SideLength propertyn inte alltid används, exempelvis vid rektangel uträkning. Ändrade koden till att låta sidelength vara null när det behövs.
