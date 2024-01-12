@@ -92,3 +92,5 @@ stod det exempelvis "number 1 = 25", "number 2 = 0", "result = 5" men jag ville 
 
 Jag gjorde likadant på shapes eftersom SideLength propertyn inte alltid används, exempelvis vid rektangel uträkning. 
 Ändrade koden till att låta sidelength vara null när det behövs.
+
+Idag var det dags för att skapa readme filen, fixade till den och gjorde den snygg samt läsbar.
