@@ -25,21 +25,21 @@ Dependency Injection pattern,
 Singleton pattern.
 
 ### Principles i have used in my project:
-SOC (Separation of Concern):
+#### SOC (Separation of Concern):
 I achieved this by making sure to divide my classes and interfaces into different maps and more classes. This makes it easier to for example debug, scale and develop.
 
-Single Responsibility Principle (SRP):
+#### Single Responsibility Principle (SRP):
 Since i have divided my classes and interfaces it also makes my project follow SRP by only being responsible for one thing. 
 An example of this is my Strategy classes, they are only responsible of calculating either a shape or a numbered calculation.
 
-Open/Closed Principle (OCP):
+#### Open/Closed Principle (OCP):
 My classes have been designed to not require any adjustments but they can be developed to include new features without needing to change code that's already written.
 
-Interface Segregation Principle (ISP):
+#### Interface Segregation Principle (ISP):
 Most of my classes have a interface and the interfaces only have methods that the classes require, the methods that arent required for the interface were made private and thus my project
 is following ISP.
 
-Dependency Inversion Principle (DIP):
+#### Dependency Inversion Principle (DIP):
 Almost all my classes depend on interfaces that are registered by Autofac, thus my project is not very dependent on different parts of my code.
 
 ## 3. Shapes & Methods
