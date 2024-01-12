@@ -91,7 +91,8 @@ namespace Milles_Project1Library.StrategyContext
                 calculation.Number2 = num2;
                 calculation.Result = ExecuteOperation(num1, num2);
 
-                SaveCalculationToDatabase(num1, num2, calculation.Result);
+                _dbContext.SaveChanges();
+                //SaveCalculationToDatabase(num1, num2, calculation.Result);
             }
             else
             {

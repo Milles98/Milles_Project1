@@ -213,10 +213,10 @@ namespace Milles_Project1Library.Services
                                 newNum1 = Math.Round(newNum1, 2);
                                 newNum2 = Math.Round(newNum2, 2);
 
-                                UpdateCalculationInDatabase(calculation, newNum1, newNum2);
+                                _calculatorContext.UpdateCalculation(calculatorId, newNum1, newNum2);
+
                                 Message.GreenMessage("Calculation updated successfully!");
-                                Console.ReadKey();
-                                break;
+                                Console.WriteLine("Press any key to continue.");
                             }
                             else
                             {
@@ -270,8 +270,6 @@ namespace Milles_Project1Library.Services
 
                         Message.GreenMessage("Calculation deleted successfully!");
                         Console.WriteLine("Press any key to continue.");
-                        Console.ReadKey();
-                        return;
                     }
                     else
                     {
@@ -312,8 +310,6 @@ namespace Milles_Project1Library.Services
 
                         Message.GreenMessage("Calculation activated successfully!");
                         Console.WriteLine("Press any key to continue.");
-                        Console.ReadKey();
-                        return;
                     }
                     else
                     {
