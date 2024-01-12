@@ -122,87 +122,65 @@ namespace Milles_Project1Library.Services
 
         public void UpdateShape()
         {
-            while (true)
+            ReadShape();
+
+            Console.Write("Enter the ID of the shape you want to update (press 'e' to cancel): ");
+            string shapeIdInput = Console.ReadLine();
+
+            if (shapeIdInput.ToLower() == "e")
             {
-                ReadShape();
+                Message.DarkYellowMessage("Update canceled.");
+                return;
+            }
 
-                Console.Write("\nEnter the Shape ID you want to update or press 'e' to exit: ");
-                string userInput = Console.ReadLine();
+            if (int.TryParse(shapeIdInput, out int shapeId))
+            {
+                var shapeToUpdate = _dbContext.Shape.Find(shapeId);
 
-                if (userInput?.ToLower() == "e")
+                if (shapeToUpdate == null)
                 {
-                    Console.WriteLine("Exiting update operation.");
+                    Message.RedMessage($"Shape with ID {shapeId} not found.");
                     return;
                 }
 
-                if (int.TryParse(userInput, out int shapeId))
+                var shapeType = shapeToUpdate.ShapeType;
+                var shapeStrategy = GetShapeStrategy(shapeType);
+                _shapeContext.SetShapeCalculator(shapeStrategy);
+
+                Console.WriteLine($"Enter new dimensions for the {shapeType} (press 'e' to cancel):");
+
+                decimal[] dimensions = _shapeContext.GetDimensionsInput();
+
+                if (dimensions[0] == 0 && dimensions[1] == 0)
                 {
-                    var shape = _dbContext.Shape.Find(shapeId);
-
-                    if (shape != null && shape.IsActive)
-                    {
-                        Console.WriteLine($"Updating Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
-
-                        Console.Write($"Enter the new value for Base (1 - 1000) cm: ");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal newBase) && newBase >= 1 && newBase <= 1000)
-                        {
-                            newBase = Math.Round(newBase, 2);
-                            shape.Base = newBase;
-                        }
-                        else
-                        {
-                            Message.RedMessage("Invalid input for Base. The Base remains unchanged. Please enter a value between 1 and 1000.");
-                            continue;
-                        }
-
-                        Console.Write($"Enter the new value for Height (1 - 1000) cm: ");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal newHeight) && newHeight >= 1 && newHeight <= 1000)
-                        {
-                            newHeight = Math.Round(newHeight, 2);
-                            shape.Height = newHeight;
-                        }
-                        else
-                        {
-                            Message.RedMessage("Invalid input for Height. The Height remains unchanged. Please enter a value between 1 and 1000.");
-                            continue;
-                        }
-
-                        if (shape.ShapeType == "Rectangle" || shape.ShapeType == "Rhombus")
-                        {
-                            shape.SideLength = null;
-                        }
-                        else
-                        {
-                            Console.Write($"Enter the new value for Side Length (1 - 1000) cm: ");
-                            if (decimal.TryParse(Console.ReadLine(), out decimal newSideLength) && newSideLength >= 1 && newSideLength <= 1000)
-                            {
-                                newSideLength = Math.Round(newSideLength, 2);
-                                shape.SideLength = newSideLength;
-                            }
-                            else
-                            {
-                                Message.RedMessage("Invalid input for Side Length. The Side Length remains unchanged. Please enter a value between 1 and 1000.");
-                                continue;
-                            }
-                        }
-
-                        SaveChangesToDatabase();
-
-                        Message.GreenMessage("Shape updated successfully!");
-                    }
-                    else
-                    {
-                        Message.RedMessage("Shape not found or not active.");
-                    }
-                }
-                else
-                {
-                    Message.RedMessage("Invalid input for Shape ID. Please enter a valid number or 'e' to exit.");
+                    Message.DarkYellowMessage($"Update for shape with ID {shapeId} canceled.");
+                    return;
                 }
 
-                Console.ReadKey();
+                _shapeContext.SetShapeProperties(dimensions);
+
+                decimal area = shapeStrategy.CalculateArea();
+                decimal perimeter = shapeStrategy.CalculatePerimeter();
+
+                area = Math.Round(area, 2);
+                perimeter = Math.Round(perimeter, 2);
+
+                shapeToUpdate.Base = shapeStrategy.Base;
+                shapeToUpdate.Height = shapeStrategy.Height;
+                shapeToUpdate.SideLength = shapeStrategy.SideLength;
+                shapeToUpdate.Area = area;
+                shapeToUpdate.Perimeter = perimeter;
+
+                _dbContext.SaveChanges();
+
+                Message.GreenMessage($"Shape with ID {shapeId} successfully updated!");
+            }
+            else
+            {
+                Message.RedMessage("Invalid input. Please enter a valid shape ID.");
             }
         }
+
         public void DeleteShape()
         {
             while (true)
