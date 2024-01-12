@@ -47,15 +47,15 @@ Description of how the shapes class/method/interfaces works.
 
 Shapes classes, interfaces and methods.
 
-ShapeMenuFactory
+### ShapeMenuFactory
 - CreateMenu
 Uses IMenu and IMenuFactory to create Menu for Shapes.
-ShapesMenu
+### ShapesMenu
 - ShowMenu
 Shows all necessary parts of Shapes menu.
-Shape Entity
+### Shape Entity
 - Relevant attributes for the database.
-ParallelogramStrategy
+### ParallelogramStrategy
 - SetDimensions
 Sets the dimensions for the shape.
 - GetDimensionCount
@@ -64,13 +64,13 @@ Returns the count of dimensions.
 Returns a calculation of the area.
 - CalculatePerimeter
 Returns a calculation of the perimeter.
-RectangleStrategy
+### RectangleStrategy
 - Same as Parallelogram.
-RhombusStrategy
+### RhombusStrategy
 - Same as Parallelogram.
-TriangleStrategy
+### TriangleStrategy
 - Same as Parallelogram.
-ShapeService
+### ShapeService
 - GetAvailableShapeTypes
 Returns a list of possible shapes (Parallelogram, Rectangle, Rhombus or Triangle).
 - GetShapeStrategy
@@ -87,7 +87,7 @@ Uses methods "ReadShape" and finds the ShapeID to soft delete.
 Uses methods "ReadShape" and finds the ShapeID to re activate.  
 - SaveChangesToDatabase
 Uses .SaveChanges to save the input from user.
-ShapeContext
+### ShapeContext
 - SetShapeCalculator
 Takes the IShapeStrategy and sets it to the relevant strategy.
 - CalculateAndDisplayResults
@@ -102,18 +102,18 @@ Used to ask user for their input and save it to the relevant dimension (base, he
 Switch case, returns (base, height, sidelength or default dimension)
 
 Shapes Interface
-IShapeContext
+### IShapeContext
 - SetShapeCalculator
 - CalculateAndDisplayResults
-IMenuFactory
+### IMenuFactory
 - CreateMenu
-IShape
+### IShape
 - Relevant attributes for the database
-IShapeStrategy
+### IShapeStrategy
 - CalculateArea
 - CalculatePerimeter
 - SetDimensions
-IShapeDimensionsProvider
+### IShapeDimensionsProvider
 - GetDimensionCount
 
 # 4. Calculator
@@ -121,33 +121,33 @@ Description of how the calculator class/method/interfaces works.
 
 Calculator classes, interfaces and methods
 
-CalculatorMenuFactory
+### CalculatorMenuFactory
 - CreateMenu
 Uses IMenu and IMenuFactory to create Menu for Calculator.
-CalculatorMenu
+### CalculatorMenu
 - ShowMenu
 Shows all necessary parts of Shapes menu.
-Calculator Entity
+### Calculator Entity
 - Relevant attributes for the database
-AdditionStrategy
+### AdditionStrategy
 - Calculate
 Returns the required calculation.
-DivisionStrategy
+### DivisionStrategy
 - Calculate
 Returns the required calculation.
-ModulusStrategy
+### ModulusStrategy
 - Calculate
 Returns the required calculation.
-MultiplicationStrategy
+### MultiplicationStrategy
 - Calculate
 Returns the required calculation.
-SquareRootStrategy
+### SquareRootStrategy
 - Calculate
 Returns the required calculation.
-SubtractionStrategy
+### SubtractionStrategy
 - Calculate
 Returns the required calculation.
-CalculatorService
+### CalculatorService
 - PerformCreateCalculation
 Gives user the option of what operator to use for the calculation.
 Uses methods "SetStrategyFromOperationChoice", "GetUserInput", "ExecuteOperation", "SaveCalculationToDatabase" to create the desired calculation.
@@ -169,7 +169,7 @@ Uses methods "IsNumberOutOfRange", "ExecuteOperation", "SaveCalculationToDatabas
 This method checks that it is possible to update the calculation.
 - IsResultOutOfRange
 Returns a check if the result is less than 1,000,000.
-CalculatorContext
+### CalculatorContext
 - GetUserInput
 Returns method "GetBoundedDoubleInput"
 - GetBoundedDoubleInput
@@ -192,7 +192,7 @@ Saves all information the user has input.
 Finds a calculation by CalculatorID
 
 Calculator Interface
-ICalculatorContext
+### ICalculatorContext
 - ExecuteOperation
 - GetUserInput
 - SetStrategy
@@ -201,21 +201,21 @@ ICalculatorContext
 - UpdateCalculation
 - DeleteCalculation
 - SaveCalculationToDatabase
-IMenu
+### IMenu
 - ShowMenu
 - GetMenuType
-IMenuFactory
+### IMenuFactory
 - CreateMenu
-ICalculator
+### ICalculator
 - Relevant attributes for the database
-ICalculatorService
+### ICalculatorService
 - PerformCreateCalculation
 - ReadCalculation
 - UpdateCalculation
 - DeleteCalculation
 - UpdateCalculationInDatabase
 - ReActivateCalculation
-ICalculatorStrategy
+### ICalculatorStrategy
 - Calculate
 
 # 5. Rock Paper Scissors Game
@@ -223,19 +223,19 @@ Description of how the rock paper scissor class/method/interfaces works.
 
 Rock Paper Scissors classes, interfaces and methods
 
-GameMenuFactory
+### GameMenuFactory
 - CreateMenu
 Uses IMenu and IMenuFactory to create Menu for the game.
-GameMenu
+### GameMenu
 - ShowMenu
 Shows all necessary parts of game menu.
-Game
+### Game
 - Relevant attributes for the database
-GameHistory
+### GameHistory
 - Relevant attributes for the database
-GameStatistics
+### GameStatistics
 - Relevant attributes for the database
-GameService
+### GameService
 - PlayGame
 Uses methods "GenerateComputerMove", "DetermineResult", DisplayGameResult", "UpdateGameStatistics, "SaveGameHistory".
 This method is responsible for playing the game, it shows all relevant parts and gathers the logic to play rock paper scissors.
@@ -255,18 +255,18 @@ Shows the user all previous games ever played, aswell as statistics such as tota
 Displays the game rules.
 
 Rock Paper Scissors Interface
-IMenu
+### IMenu
 - ShowMenu
 - GetMenuType
-IMenuFactory
+### IMenuFactory
 - CreateMenu
-IGame
+### IGame
 - Relevant attributes for the database
-IGameHistory
+### IGameHistory
 - Relevant attributes for the database
-IGameStatistics
+### IGameStatistics
 - Relevant attributes for the database
-IGameService
+### IGameService
 - PlayGame
 - ViewPreviousGames
 - GameRules
@@ -276,7 +276,7 @@ IGameService
 The project has a custom made library with all necessary features included to successfully use Shape, Calculation and play Rock Paper Scissor.
 The project also uses autofac to register and resolve all necessary instances of the interfaces aswell as the DbContext.
 
-Common Classes & Interfaces (that Shape, Calculator and Rock Paper Scissors share)
+### Common Classes & Interfaces (that Shape, Calculator and Rock Paper Scissors share)
 - App
 - Program
 - DataSeeding
