@@ -74,3 +74,9 @@ Korrigerade min CalculatorStrategy, hade råkat lägga in upphöjt till när det
 
 Uppdaterade Shape och Calculator delete metoderna, hade placeholder som permanently deletade, nu fixat så att det är enligt standard dvs IsActive = 0 om något blir deletat.
 Fixade relaterade metoder så att de var anpassade till detta och så att inga oväntade fel kan ske.
+
+Dag 8
+
+Har haft problem med min miniräknare strategy pattern mest kring att roten ur behöver bara ett tal. Kollade runt och hittade tillslut en lösning om att göra number2 nullable. Jag uppdaterade relevanta strategies och interfaces.
+Efter flertal error fick jag det att funka. Huvudanledningen till att jag ville göra detta var pga i databasen vid uträkningen av roten ur, stod det exempelvis "number 1 = 25", "number 2 = 0", "result = 5" men jag ville att number 2 skulle 
+då inte ha ett värde, dvs NULL. Löst!
