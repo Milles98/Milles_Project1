@@ -24,7 +24,7 @@ Strategy pattern,
 Dependency Injection pattern,
 Singleton pattern.
 
-Principles i have used in my project:
+### Principles i have used in my project:
 SOC (Separation of Concern):
 I achieved this by making sure to divide my classes and interfaces into different maps and more classes. This makes it easier to for example debug, scale and develop.
 
