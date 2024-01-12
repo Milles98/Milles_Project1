@@ -255,6 +255,8 @@ namespace Milles_Project1Library.Services
 
                         shape.IsActive = true;
 
+                        _dbContext.SaveChanges();
+
                         Message.GreenMessage("Shape activated successfully!");
                     }
                     else
