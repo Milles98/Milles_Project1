@@ -4,10 +4,10 @@ This readme includes a short description of the project, its purpose and main fu
 ## Content
 1. Description
 2. Patterns/Principles
-3. Shapes & Methods
-4. Calculator & Methods
-5. Rock Paper Scissors Game & Methods
-6. Autofac, Library & Common Classes & Interfaces
+3. Shapes & its Methods
+4. Calculator & its Methods
+5. Rock Paper Scissors Game & its Methods
+6. Autofac, Library, Common Classes & Interfaces
 
 ## 1. Description
 
@@ -42,7 +42,7 @@ is following ISP.
 #### Dependency Inversion Principle (DIP):
 Almost all my classes depend on interfaces that are registered by Autofac, thus my project is not very dependent on different parts of my code.
 
-## 3. Shapes & Methods
+## 3. Shapes & its Methods
 Description of how the shapes class/method/interfaces works.
 
 Shapes classes, interfaces and methods.
@@ -118,7 +118,7 @@ Shapes Interface
 ### IShapeDimensionsProvider
 - GetDimensionCount
 
-## 4. Calculator & Methods
+## 4. Calculator & its Methods
 Description of how the calculator class/method/interfaces works.
 
 Calculator classes, interfaces and methods
@@ -220,7 +220,7 @@ Calculator Interface
 ### ICalculatorStrategy
 - Calculate
 
-## 5. Rock Paper Scissors Game & Methods
+## 5. Rock Paper Scissors Game & its Methods
 Description of how the rock paper scissor class/method/interfaces works.
 
 Rock Paper Scissors classes, interfaces and methods
