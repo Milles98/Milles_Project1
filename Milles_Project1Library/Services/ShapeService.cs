@@ -137,9 +137,10 @@ namespace Milles_Project1Library.Services
             {
                 var shapeToUpdate = _dbContext.Shape.Find(shapeId);
 
-                if (shapeToUpdate == null)
+                if (shapeToUpdate == null || !shapeToUpdate.IsActive)
                 {
-                    Message.RedMessage($"Shape with ID {shapeId} not found.");
+                    Message.RedMessage($"Shape with ID {shapeId} not found or inactive.");
+                    Console.ReadKey();
                     return;
                 }
 
@@ -206,6 +207,8 @@ namespace Milles_Project1Library.Services
                         Console.WriteLine($"Deleting Shape ID: {shape.ShapeId}, Type: {shape.ShapeType}");
 
                         shape.IsActive = false;
+
+                        _dbContext.SaveChanges();
 
                         Message.GreenMessage("Shape deleted successfully!");
                     }
