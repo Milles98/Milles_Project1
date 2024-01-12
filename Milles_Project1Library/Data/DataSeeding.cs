@@ -49,7 +49,7 @@ namespace Milles_Project1Library.Data
                 ShapeType = strategy.ShapeType,
                 Base = Math.Round(strategy.Base, 2),
                 Height = Math.Round(strategy.Height, 2),
-                SideLength = Math.Round(strategy.SideLength, 2),
+                SideLength = strategy.SideLength.HasValue ? Math.Round(strategy.SideLength.Value, 2) : (decimal?)null,
                 Area = Math.Round(strategy.CalculateArea(), 2),
                 Perimeter = Math.Round(strategy.CalculatePerimeter(), 2),
                 CalculationDate = DateTime.Now

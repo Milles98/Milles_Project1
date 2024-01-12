@@ -8,7 +8,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
     {
         public decimal Base { get; set; }
         public decimal Height { get; set; }
-        public decimal SideLength { get; set; }
+        public decimal? SideLength { get; set; }
         public string ShapeType => "Parallelogram";
 
         public void SetDimensions(params decimal[] dimensions)
@@ -38,7 +38,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 
         public decimal CalculatePerimeter()
         {
-            return 2 * (Base + SideLength);
+            return 2 * (Base + SideLength.Value);
         }
     }
 

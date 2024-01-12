@@ -12,7 +12,7 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240112073442_test")]
+    [Migration("20240112075142_test")]
     partial class test
     {
         /// <inheritdoc />
@@ -182,7 +182,7 @@ namespace Milles_Project1Library.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("SideLength")
+                    b.Property<decimal?>("SideLength")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ShapeId");

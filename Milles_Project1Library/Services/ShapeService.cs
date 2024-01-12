@@ -101,7 +101,7 @@ namespace Milles_Project1Library.Services
 
             foreach (var s in shape)
             {
-                string sideLengthDisplay = s.SideLength == 0 ? "N/A" : $"{s.SideLength:F2} cm";
+                string sideLengthDisplay = s.SideLength.HasValue ? $"{s.SideLength.Value:F2} cm" : "N/A";
                 string baseWithUnit = $"{s.Base:F2} cm";
                 string heightWithUnit = $"{s.Height:F2} cm";
                 string areaWithUnit = $"{s.Area:F2} cm²";
