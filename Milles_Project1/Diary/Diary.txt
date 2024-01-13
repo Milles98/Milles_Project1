@@ -97,3 +97,10 @@ Idag var det dags för att skapa readme filen, fixade till den och gjorde den sn
 
 Uppdaterade UpdateShape metoden i ShapeService då jag märkte att den inte betedde sig som den skulle.
 Efter att ha felsökt lyckades jag hitta en lösning så att korrekt shape får dess uppdatering vid begäran.
+
+Dag 9
+
+Fixade create calculation problem där den inte loopade efter en beräkning gjorts, uppdaterad så att användaren inte sparkas ur till huvudmenyn.
+
+Korrigerade UpdateCalculation metoden då den inte riktigt fungera på SquareRoot strategin som enbart behöver ett tal. Gjorde en ny metod i 
+CalculatorContext och fick till det.

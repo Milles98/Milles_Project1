@@ -69,7 +69,7 @@ namespace Milles_Project1Library.Services
                             _calculatorContext.SaveCalculationToDatabase(squareRoot, null, squareResult);
                             Message.GreenMessage("Calculation saved to the database successfully!");
                             Console.ReadKey();
-                            return;
+                            continue;
                         }
 
                         decimal num1 = _calculatorContext.GetUserInput($"Enter the value for Number1 (max 1,000,000) or 'e' to exit: ", 1, 1000000);
@@ -204,28 +204,48 @@ namespace Milles_Project1Library.Services
 
                     if (calculation != null && calculation.IsActive)
                     {
-                        Console.Write("Enter the new value for Number1 (1 - 1,000,000): ");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
+                        if (_strategy is SquareRoot)
                         {
-                            Console.Write("Enter the new value for Number2 (1 - 1,000,000): ");
-                            if (decimal.TryParse(Console.ReadLine(), out decimal newNum2) && newNum2 >= 1 && newNum2 <= 1000000)
+                            // For SquareRoot strategy, only one input is needed
+                            Console.Write("Enter the new value for Number1 (1 - 1,000,000): ");
+                            if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
                             {
                                 newNum1 = Math.Round(newNum1, 2);
-                                newNum2 = Math.Round(newNum2, 2);
 
-                                _calculatorContext.UpdateCalculation(calculatorId, newNum1, newNum2);
+                                _calculatorContext.UpdateSquareRootCalculation(calculatorId, newNum1);
 
                                 Message.GreenMessage("Calculation updated successfully!");
                                 Console.WriteLine("Press any key to continue.");
                             }
                             else
                             {
-                                Message.RedMessage("Invalid input for Number2. Please enter a valid number between 1 and 1,000,000.");
+                                Message.RedMessage("Invalid input for Number1. Please enter a valid number between 1 and 1,000,000.");
                             }
                         }
                         else
                         {
-                            Message.RedMessage("Invalid input for Number1. Please enter a valid number between 1 and 1,000,000.");
+                            // For other strategies, ask for both inputs (Number1 and Number2)
+                            Console.Write("Enter the new value for Number1 (1 - 1,000,000): ");
+                            if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
+                            {
+                                Console.Write("Enter the new value for Number2 (1 - 1,000,000): ");
+                                if (decimal.TryParse(Console.ReadLine(), out decimal newNum2) && newNum2 >= 1 && newNum2 <= 1000000)
+                                {
+                                    newNum2 = Math.Round(newNum2, 2);
+                                    _calculatorContext.UpdateCalculation(calculatorId, newNum1, newNum2);
+
+                                    Message.GreenMessage("Calculation updated successfully!");
+                                    Console.WriteLine("Press any key to continue.");
+                                }
+                                else
+                                {
+                                    Message.RedMessage("Invalid input for Number2. Please enter a valid number between 1 and 1,000,000.");
+                                }
+                            }
+                            else
+                            {
+                                Message.RedMessage("Invalid input for Number1. Please enter a valid number between 1 and 1,000,000.");
+                            }
                         }
                     }
                     else
@@ -241,6 +261,7 @@ namespace Milles_Project1Library.Services
                 Console.ReadKey();
             }
         }
+
 
 
         public void DeleteCalculation()
