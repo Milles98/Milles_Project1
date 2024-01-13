@@ -104,3 +104,5 @@ Fixade create calculation problem där den inte loopade efter en beräkning gjor
 
 Korrigerade UpdateCalculation metoden då den inte riktigt fungera på SquareRoot strategin som enbart behöver ett tal. Gjorde en ny metod i 
 CalculatorContext och fick till det.
+
+Fortsatt att få lite bugs kring calculator, lyckades refactor en del av CalculatorService klassen och nu fungerar alla beräkningar som de ska.

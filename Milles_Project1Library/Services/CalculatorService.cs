@@ -53,7 +53,8 @@ namespace Milles_Project1Library.Services
                 {
                     if (operationChoice >= 1 && operationChoice <= 6)
                     {
-                        SetStrategyFromOperationChoice(operationChoice);
+                        string operationName = GetOperationNameFromChoice(operationChoice);
+                        SetStrategyFromOperationChoice(operationName);
 
                         if (operationChoice == 5)
                         {
@@ -130,26 +131,47 @@ namespace Milles_Project1Library.Services
             return Math.Abs(number) > MaxAllowedValue;
         }
 
-        private void SetStrategyFromOperationChoice(int operationChoice)
+        private string GetOperationNameFromChoice(int operationChoice)
         {
             switch (operationChoice)
             {
                 case 1:
+                    return "Addition";
+                case 2:
+                    return "Subtraction";
+                case 3:
+                    return "Multiplication";
+                case 4:
+                    return "Division";
+                case 5:
+                    return "SquareRoot";
+                case 6:
+                    return "Modulus";
+                default:
+                    return null;
+            }
+        }
+
+        private void SetStrategyFromOperationChoice(string operationChoice)
+        {
+            switch (operationChoice)
+            {
+                case "Addition":
                     _strategy = new Addition();
                     break;
-                case 2:
+                case "Subtraction":
                     _strategy = new Subtraction();
                     break;
-                case 3:
+                case "Multiplication":
                     _strategy = new Multiplication();
                     break;
-                case 4:
+                case "Division":
                     _strategy = new Division();
                     break;
-                case 5:
+                case "SquareRoot":
                     _strategy = new SquareRoot();
                     break;
-                case 6:
+                case "Modulus":
                     _strategy = new Modulus();
                     break;
             }
@@ -204,9 +226,11 @@ namespace Milles_Project1Library.Services
 
                     if (calculation != null && calculation.IsActive)
                     {
-                        if (_strategy is SquareRoot)
+                        SetStrategyFromOperationChoice(calculation.Operator);
+
+                        if (calculation.Operator == typeof(SquareRoot).Name)
                         {
-                            // For SquareRoot strategy, only one input is needed
+
                             Console.Write("Enter the new value for Number1 (1 - 1,000,000): ");
                             if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
                             {
@@ -224,7 +248,6 @@ namespace Milles_Project1Library.Services
                         }
                         else
                         {
-                            // For other strategies, ask for both inputs (Number1 and Number2)
                             Console.Write("Enter the new value for Number1 (1 - 1,000,000): ");
                             if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
                             {
