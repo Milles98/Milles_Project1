@@ -185,7 +185,9 @@ Uses methods "ExecuteOperation" and "SaveCalculationToDatabase" to create the ca
 - ReadCalculation
 Returns a list of all calculations
 - UpdateCalculation
-Gets calculationID and saves the changes to database.
+Gets calculationID, executes strategy and saves the changes to database.
+- UpdateSquareRootCalculation
+Gets calculationID, executes strategy and saves the changes to database (for square root strategy).
 - SaveCalculationToDatabase
 Uses method "SaveCalculationDetails" to save relevant info.
 - SaveCalculationDetails
