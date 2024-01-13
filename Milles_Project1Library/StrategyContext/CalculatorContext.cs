@@ -92,7 +92,24 @@ namespace Milles_Project1Library.StrategyContext
                 calculation.Result = ExecuteOperation(num1, num2);
 
                 _dbContext.SaveChanges();
-                //SaveCalculationToDatabase(num1, num2, calculation.Result);
+            }
+            else
+            {
+                Message.RedMessage("Calculation not found.");
+            }
+        }
+
+        public void UpdateSquareRootCalculation(int calculationId, decimal num1)
+        {
+            var calculation = GetCalculationById(calculationId);
+
+            if (calculation != null)
+            {
+                calculation.Number1 = num1;
+                calculation.Number2 = null;
+                calculation.Result = ExecuteOperation(num1, null);
+
+                _dbContext.SaveChanges();
             }
             else
             {
