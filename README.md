@@ -13,7 +13,7 @@ This readme includes a short description of the project, its purpose and main fu
 
 There are 3 main parts of this app (Shape calculation, Calculation & Rock Paper Scissor).
 
-This project is made to help calculate different shapes (example Rhombus, Parallelogram) and to calculate different numbers (example Square Root, Triangle). 
+This project is made to help calculate different shapes (example Rhombus, Parallelogram) and to calculate different numbers (example Square Root, Modulus). 
 The project also feature a mini game called rock paper scissors to play whenever, especially useful when you're bored of doing calculations!
 
 ## 2. Patterns/Principles
