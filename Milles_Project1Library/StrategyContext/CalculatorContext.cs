@@ -1,10 +1,10 @@
 ﻿using Autofac;
-using Microsoft.EntityFrameworkCore;
 using Milles_Project1Library.Data;
 using Milles_Project1Library.ExtraServices;
 using Milles_Project1Library.Interfaces.ContextInterface;
 using Milles_Project1Library.Interfaces.StrategyInterface;
 using Milles_Project1Library.Models;
+using Milles_Project1Library.Services.CalculatorStrategyService;
 
 namespace Milles_Project1Library.StrategyContext
 {
@@ -107,6 +107,9 @@ namespace Milles_Project1Library.StrategyContext
             {
                 calculation.Number1 = num1;
                 calculation.Number2 = null;
+
+                SetStrategy(new SquareRoot());
+
                 calculation.Result = ExecuteOperation(num1, null);
 
                 _dbContext.SaveChanges();
