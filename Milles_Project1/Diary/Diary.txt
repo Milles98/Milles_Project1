@@ -106,3 +106,8 @@ Korrigerade UpdateCalculation metoden då den inte riktigt fungera på SquareRoo
 CalculatorContext och fick till det.
 
 Fortsatt att få lite bugs kring calculator, lyckades refactor en del av CalculatorService klassen och nu fungerar alla beräkningar som de ska.
+
+Dag 10
+
+Små fixes (exempel stavfel), kollat igenom att allting fungerar enligt kravlistan. 
+Kollade igenom alla möjliga scenarion och appen verkar funka som den ska nu.

@@ -82,7 +82,6 @@ namespace Milles_Project1Library.Services
                 else
                 {
                     Message.RedMessage("Invalid input. Please enter a valid number or 'e' to exit.");
-                    Console.ReadKey();
                 }
             }
         }
@@ -143,7 +142,7 @@ namespace Milles_Project1Library.Services
                     {
                         Message.RedMessage($"Shape with ID {shapeId} not found or inactive.");
                         Console.ReadKey();
-                        return;
+                        continue;
                     }
 
                     var shapeType = shapeToUpdate.ShapeType;
@@ -157,7 +156,7 @@ namespace Milles_Project1Library.Services
                     if (dimensions[0] == 0 && dimensions[1] == 0)
                     {
                         Message.DarkYellowMessage($"Update for shape with ID {shapeId} canceled.");
-                        return;
+                        continue;
                     }
 
                     _shapeContext.SetShapeProperties(dimensions);
