@@ -83,6 +83,7 @@ namespace Milles_Project1Library.StrategyContext
             _dbContext.SaveChanges();
 
             Message.GreenMessage("\nShape calculation successfully saved to database!");
+            Console.ReadKey();
         }
 
         public void SetShapeProperties(decimal[] dimensions)
@@ -116,7 +117,7 @@ namespace Milles_Project1Library.StrategyContext
                     }
                     else
                     {
-                        Console.WriteLine("Invalid input. Please enter a valid decimal between 1 and 999 or 'e' to exit.");
+                        Message.RedMessage("Invalid input. Please enter a valid decimal between 1 and 1000 or 'e' to exit.");
                         i--;
                     }
                 }
