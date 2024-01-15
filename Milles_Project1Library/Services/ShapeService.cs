@@ -235,7 +235,7 @@ namespace Milles_Project1Library.Services
                 Console.Clear();
                 ReadShape();
 
-                Console.Write("Enter the Shape ID you want to reactivate or press 'e' to exit: ");
+                Console.Write("Enter the Shape ID you want to re activate or press 'e' to exit: ");
                 string userInput = Console.ReadLine();
 
                 if (userInput?.ToLower() == "e")
