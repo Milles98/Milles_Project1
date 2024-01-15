@@ -30,6 +30,7 @@ namespace Milles_Project1Library.Services
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("╭──────────────────────╮");
+                Console.WriteLine("│Calculations          │");
                 Console.WriteLine("│1. (+) Addition       │");
                 Console.WriteLine("│2. (-) Subtraction    │");
                 Console.WriteLine("│3. (*) Multiplication │");
