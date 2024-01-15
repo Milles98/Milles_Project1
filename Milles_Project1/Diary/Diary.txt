@@ -111,3 +111,9 @@ Dag 10
 
 Små fixes (exempel stavfel), kollat igenom att allting fungerar enligt kravlistan. 
 Kollade igenom alla möjliga scenarion och appen verkar funka som den ska nu.
+
+Dag 11
+
+Kollat igenom kravlistan ytterligare och sett till att min app följer allting som krävs av mig.
+Jag fixade även ett "InitialMessage" som användaren kommer få i början av appen, mest för att få en förståelse på det jag kan ha gjort
+lite annorlunda och att appen funkar bäst med helfönster.
