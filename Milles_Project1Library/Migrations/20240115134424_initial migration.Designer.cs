@@ -12,8 +12,8 @@ using Milles_Project1Library.Data;
 namespace Milles_Project1Library.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240114122107_test")]
-    partial class test
+    [Migration("20240115134424_initial migration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

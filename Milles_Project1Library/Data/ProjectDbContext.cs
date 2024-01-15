@@ -55,7 +55,7 @@ namespace Milles_Project1Library.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=localhost;initial catalog=Project1;integrated security=true;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("DefaultConnection");
             }
         }
     }
