@@ -37,6 +37,7 @@ namespace Milles_Project1Library.Services
                 Console.WriteLine("│1. Rock                   │");
                 Console.WriteLine("│2. Paper                  │");
                 Console.WriteLine("│3. Scissors               │");
+                Console.WriteLine("│                          │");
                 Console.WriteLine("│0. End the Game           │");
                 Console.WriteLine($"╰──────────────────────────╯");
 
