@@ -33,17 +33,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 
         public decimal CalculateArea()
         {
-            decimal s = (Base + Height + SideLength.Value) / 2;
-            double area = Math.Sqrt((double)(s * (s - Base) * (s - Height) * (s - SideLength)));
-
-            if (area >= (double)decimal.MinValue && area <= (double)decimal.MaxValue)
-            {
-                return new decimal(area);
-            }
-            else
-            {
-                throw new OverflowException("Calculated area is outside the valid range for a decimal.");
-            }
+            return Base * Height / 2;
         }
 
         public decimal CalculatePerimeter()
