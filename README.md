@@ -1,4 +1,4 @@
-#### Project 1
+# Project 1
 This readme includes a short description of the project, its purpose and main functions.
 
 ## Content
