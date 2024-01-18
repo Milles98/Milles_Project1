@@ -38,7 +38,7 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 
         public decimal CalculatePerimeter()
         {
-            return 4 * SideLength.Value;
+            return 4 * (decimal)Math.Sqrt((double)(Base * Base) + (double)(Height * Height));
         }
     }
 
