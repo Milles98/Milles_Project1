@@ -18,56 +18,41 @@ namespace Milles_Project1Library.Services
 
         public void PlayGame()
         {
-            int playerWins = 0;
-            int computerWins = 0;
-            int rounds = 0;
-            Game lastGame = null;
+            bool keepPlaying = true;
 
-            do
+            while (keepPlaying)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine($"╭──────────────────────────╮");
                 Console.WriteLine($"│Rock Paper Scissors Game  │");
-                Message.GreenMessage($"│ Player Wins: {playerWins}           │");
-                Message.RedMessage($"│ Computer Wins: {computerWins}         │");
                 Console.WriteLine($"╰──────────────────────────╯");
 
                 Console.WriteLine($"╭──────────────────────────╮");
-                Message.DarkYellowMessage($"│Round {rounds + 1}                   │");
                 Console.WriteLine("│1. Rock                   │");
                 Console.WriteLine("│2. Paper                  │");
                 Console.WriteLine("│3. Scissors               │");
-                Console.WriteLine("│                          │");
                 Console.WriteLine("│0. End the Game           │");
                 Console.WriteLine($"╰──────────────────────────╯");
+                Console.ResetColor();
 
-                Console.Write("\nEnter your move (1-3): ");
+                Console.Write("\nEnter your move (0-3): ");
                 if (int.TryParse(Console.ReadLine(), out int playerChoice))
                 {
                     if (playerChoice == 0)
                     {
-                        return;
+                        keepPlaying = false;
+                        continue;
                     }
                     if (playerChoice >= 1 && playerChoice <= 3)
                     {
                         Move playerMove = (Move)(playerChoice - 1);
-
                         Move computerMove = GenerateComputerMove();
-
                         GameResult result = DetermineResult(playerMove, computerMove);
 
                         DisplayGameResult(playerMove, computerMove, result);
 
-                        if (result == GameResult.Win)
-                        {
-                            playerWins++;
-                        }
-                        else if (result == GameResult.Loss)
-                        {
-                            computerWins++;
-                        }
-
-                        lastGame = new Game
+                        var game = new Game
                         {
                             PlayerMove = playerMove,
                             ComputerMove = computerMove,
@@ -76,10 +61,15 @@ namespace Milles_Project1Library.Services
                             IsActive = true
                         };
 
-                        rounds++;
+                        var gameStatistics = _dbContext.GameStatistics.FirstOrDefault();
+                        if (gameStatistics == null)
+                        {
+                            gameStatistics = new GameStatistics();
+                            _dbContext.GameStatistics.Add(gameStatistics);
+                        }
 
-                        Console.WriteLine("\nPress Enter to continue...");
-                        Console.ReadLine();
+                        UpdateGameStatistics(result, gameStatistics);
+                        SaveGameHistory(game, 1);
                     }
                     else
                     {
@@ -93,35 +83,13 @@ namespace Milles_Project1Library.Services
                     Thread.Sleep(1000);
                 }
 
-            } while (playerWins < 2 && computerWins < 2);
-
-            string winner = (playerWins >= 2) ? "Player" : "Computer";
-
-            Message.GreenMessage("──────────────────");
-            Message.GreenMessage($"Winner: {winner}");
-            Message.GreenMessage("──────────────────");
-
-            if (lastGame != null)
-            {
-                var gameStatistics = _dbContext.GameStatistics.FirstOrDefault();
-                if (gameStatistics == null)
-                {
-                    gameStatistics = new GameStatistics();
-                    _dbContext.GameStatistics.Add(gameStatistics);
-                }
-
-                UpdateGameStatistics(lastGame.Result, gameStatistics);
-                SaveGameHistory(lastGame, rounds);
-            }
-
-            Console.Write("\nDo you want to play again? (Y/N): ");
-            string playAgainInput = Console.ReadLine();
-
-            if (playAgainInput?.Trim().ToUpper() == "Y")
-            {
-                PlayGame();
+                Console.WriteLine("Press any key to play again.");
+                Console.ReadKey();
             }
         }
+
+
+
 
         private void UpdateGameStatistics(GameResult result, GameStatistics statistics)
         {
@@ -248,13 +216,14 @@ namespace Milles_Project1Library.Services
 
                 var totalWins = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Player") ?? 0);
                 var totalLosses = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Computer") ?? 0);
+                var totalDraws = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Draw") ?? 0);
 
-                var totalGames = previousGames.Sum(g => g.GameHistories?.Count() ?? 0);
-
+                var totalGames = previousGames.Count;
                 var averageWins = totalGames > 0 ? (double)totalWins / totalGames : 0;
 
                 Message.GreenMessage($"Total Wins: {totalWins}");
                 Message.RedMessage($"Total Losses: {totalLosses}");
+                Message.DarkYellowMessage($"Total Draws: {totalDraws}");
                 Console.WriteLine($"Average Wins Against Computer: {averageWins:P}");
                 Console.WriteLine("──────────────────────────────────────");
             }
@@ -285,10 +254,6 @@ namespace Milles_Project1Library.Services
             Console.WriteLine("- Paper wins against rock");
             Console.WriteLine("- Scissors wins against paper");
             Console.WriteLine("- If both players throw the same hand signal, it's considered a tie");
-
-            Message.DarkYellowMessage("\nThe game is played best of 3.");
-            Console.WriteLine("- Example: ");
-            Console.WriteLine("- If you win 2 out of 3, you are the winner.");
 
             Console.WriteLine("\nPress Enter to continue...");
             Console.ReadLine();
