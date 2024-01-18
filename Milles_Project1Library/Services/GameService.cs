@@ -248,7 +248,6 @@ namespace Milles_Project1Library.Services
 
                 var totalWins = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Player") ?? 0);
                 var totalLosses = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Computer") ?? 0);
-                var totalDraws = previousGames.Sum(g => g.GameHistories?.Count(gh => gh.Winner == "Draw") ?? 0);
 
                 var totalGames = previousGames.Sum(g => g.GameHistories?.Count() ?? 0);
 
@@ -256,7 +255,6 @@ namespace Milles_Project1Library.Services
 
                 Message.GreenMessage($"Total Wins: {totalWins}");
                 Message.RedMessage($"Total Losses: {totalLosses}");
-                Message.DarkYellowMessage($"Total Draws: {totalDraws}");
                 Console.WriteLine($"Average Wins Against Computer: {averageWins:P}");
                 Console.WriteLine("──────────────────────────────────────");
             }
