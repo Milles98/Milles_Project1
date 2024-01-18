@@ -74,7 +74,8 @@ namespace Milles_Project1Library.Services
                             continue;
                         }
 
-                        decimal num1 = _calculatorContext.GetUserInput($"Enter the value for Number1 (max 1,000,000) or 'e' to exit: ", 1, 1000000);
+                        decimal num1 = _calculatorContext.GetUserInput
+                            ($"Enter the value for Number1 (-1,000,000 to 1,000,000) or 'e' to exit: ", -1000000, 1000000);
 
                         if (num1 == -1)
                         {
@@ -84,7 +85,8 @@ namespace Milles_Project1Library.Services
 
                         num1 = Math.Round(num1, 2);
 
-                        decimal num2 = _calculatorContext.GetUserInput($"Enter the value for Number2 (max 1,000,000) or 'e' to exit: ", 1, 1000000);
+                        decimal num2 = _calculatorContext.GetUserInput
+                            ($"Enter the value for Number2 (-1,000,000 to 1,000,000) or 'e' to exit: ", -1000000, 1000000);
 
                         if (num2 == -1)
                         {
@@ -95,13 +97,6 @@ namespace Milles_Project1Library.Services
                         num2 = Math.Round(num2, 2);
 
                         decimal result = _calculatorContext.ExecuteOperation(num1, num2);
-
-                        if (result == 0)
-                        {
-                            Console.WriteLine("Press any key to go back to calculator menu.");
-                            Console.ReadKey();
-                            return;
-                        }
 
                         result = Math.Round(result, 2);
 
@@ -185,25 +180,25 @@ namespace Milles_Project1Library.Services
             Console.Clear();
             var calculation = _dbContext.Calculator.ToList();
 
-            Console.WriteLine("╭───────────────╮───────────────────────╮───────────────╮─────────────╮─────────────╮───────────────────╮────────╮");
-            Console.WriteLine("│ Calculation ID| Operator              | Number 1      | Number 2    | Result      | Date              │ Active │");
-            Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤────────┤");
+            Console.WriteLine("╭───────────────╮───────────────────────╮───────────────╮─────────────╮─────────────────╮───────────────────╮────────╮");
+            Console.WriteLine("│ Calculation ID| Operator              | Number 1      | Number 2    | Result          | Date              │ Active │");
+            Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────────┼───────────────────┤────────┤");
 
             foreach (var c in calculation)
             {
                 string number2 = c.Number2.HasValue ? $"{c.Number2.Value:F2}" : "N/A";
                 if (c.IsActive)
                 {
-                    Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-13:F2}│{c.CalculationDate,-13}│{c.IsActive,-8}│");
+                    Console.WriteLine($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-17:F2}│{c.CalculationDate,-13}│{c.IsActive,-8}│");
                 }
                 else
                 {
-                    Message.RedMessage($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-13:F2}│{c.CalculationDate,-13}│{c.IsActive,-8}│");
+                    Message.RedMessage($"│{c.CalculationId,-15}│{c.Operator,-23}│{c.Number1,-15:F2}│{number2,-13}│{c.Result,-17:F2}│{c.CalculationDate,-13}│{c.IsActive,-8}│");
                 }
-                Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────┼───────────────────┤────────┤");
+                Console.WriteLine("├───────────────┼───────────────────────┼───────────────┼─────────────┼─────────────────┼───────────────────┤────────┤");
             }
 
-            Console.WriteLine("╰───────────────╯───────────────────────╯───────────────╯─────────────╯─────────────╯───────────────────╯────────╯");
+            Console.WriteLine("╰───────────────╯───────────────────────╯───────────────╯─────────────╯─────────────────╯───────────────────╯────────╯");
         }
 
         public void UpdateCalculation()
@@ -249,11 +244,11 @@ namespace Milles_Project1Library.Services
                         }
                         else
                         {
-                            Console.Write("Enter the new value for Number1 (1 - 1,000,000): ");
-                            if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= 1 && newNum1 <= 1000000)
+                            Console.Write("Enter the new value for Number1 (-1,000,000 to 1,000,000): ");
+                            if (decimal.TryParse(Console.ReadLine(), out decimal newNum1) && newNum1 >= -1000000 && newNum1 <= 1000000)
                             {
-                                Console.Write("Enter the new value for Number2 (1 - 1,000,000): ");
-                                if (decimal.TryParse(Console.ReadLine(), out decimal newNum2) && newNum2 >= 1 && newNum2 <= 1000000)
+                                Console.Write("Enter the new value for Number2 (-1,000,000 to 1,000,000): ");
+                                if (decimal.TryParse(Console.ReadLine(), out decimal newNum2) && newNum2 >= -1000000 && newNum2 <= 1000000)
                                 {
                                     newNum2 = Math.Round(newNum2, 2);
                                     _calculatorContext.UpdateCalculation(calculatorId, newNum1, newNum2);
@@ -263,12 +258,12 @@ namespace Milles_Project1Library.Services
                                 }
                                 else
                                 {
-                                    Message.RedMessage("Invalid input for Number2. Please enter a valid number between 1 and 1,000,000.");
+                                    Message.RedMessage("Invalid input for Number2. Please enter a valid number between -1,000,000 and 1,000,000.");
                                 }
                             }
                             else
                             {
-                                Message.RedMessage("Invalid input for Number1. Please enter a valid number between 1 and 1,000,000.");
+                                Message.RedMessage("Invalid input for Number1. Please enter a valid number between -1,000,000 and 1,000,000.");
                             }
                         }
                     }

@@ -271,19 +271,5 @@ namespace Milles_Project1Library.Services
                 Console.ReadKey();
             }
         }
-
-
-        private void SaveChangesToDatabase()
-        {
-            try
-            {
-                _dbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Message.RedMessage($"Error saving changes to the database: {ex.Message}");
-            }
-        }
-
     }
 }
