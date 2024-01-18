@@ -21,8 +21,6 @@ namespace Milles_Project1
 
             dataSeeding.Seed();
 
-            Message.InitialMessage();
-
             while (true)
             {
                 MainMenu.ShowMenu(_container);
