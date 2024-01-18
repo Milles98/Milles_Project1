@@ -33,12 +33,12 @@ namespace Milles_Project1Library.Services.ShapeStrategyService
 
         public decimal CalculateArea()
         {
-            return (Base * Height) / 2;
+            return Base * Height;
         }
 
         public decimal CalculatePerimeter()
         {
-            return 4 * (decimal)Math.Sqrt((double)(Base * Base + Height * Height) / 4);
+            return 4 * SideLength.Value;
         }
     }
 
