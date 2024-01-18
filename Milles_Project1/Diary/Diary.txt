@@ -117,3 +117,15 @@ Dag 11
 Kollat igenom kravlistan ytterligare och sett till att min app följer allting som krävs av mig.
 Jag fixade även ett "InitialMessage" som användaren kommer få i början av appen, mest för att få en förståelse på det jag kan ha gjort
 lite annorlunda och att appen funkar bäst med helfönster.
+
+Dag 12
+
+Haft några dagar att reflektera mer över mitt arbete nu. Korrigerade Shapes då jag märkte att beräkningarna inte riktigt utfördes som jag önskade mig.
+Det gäller framförallt triangeln, nu känns det löst dock. Det var arean jag hade råkat skriva fel på.
+
+Samma gällande calculatorn, jag kollade över mina lösningar och uppdatera så att värdena kan vara -1,000,000 till 1,000,000.
+Mest för att det är lite av en självklarhet att det ska tillåtas negativa värden.
+
+Generellt sätt är jag nöjd över min app och har försökt få med så många SOLID principer jag kan samt implementering av flertalet patterns.
+Det var lite knepigt att få in Factory pattern för mig men annars tyckte jag att det var väldigt smidigt med dependency injection pattern,
+strategy pattern, singleton pattern.
